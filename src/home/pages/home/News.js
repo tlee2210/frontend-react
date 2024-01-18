@@ -18,7 +18,7 @@ import withRouter from "../../../Components/Common/withRouter";
 import { Link } from "react-router-dom";
 
 import img8 from "../../../assets/images/small/2.jpg";
-import img9 from "../../../assets/images/small/3.jpg";
+import img9 from "../../../assets/images/small/3.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

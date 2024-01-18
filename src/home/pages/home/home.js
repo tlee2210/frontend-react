@@ -27,8 +27,10 @@ import EducationProgram from "./EducationProgram";
 import News from "./News";
 import JoinUs from "./JoinUs";
 import ParticlesHome from "../../layouts/ParticlesAuth";
-import img8 from "../../../assets/images/small/2.jpg";
-import img9 from "../../../assets/images/small/3.jpg";
+import img3 from "../../../assets/images/small/2.jpg";
+import img2 from "../../../assets/images/small/3.png";
+import img1 from "../../../assets/images/small/1.jpg";
+import img4 from "../../../assets/images/small/4.png";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -66,10 +68,16 @@ const home = (props) => {
               >
                 <div className="swiper-wrapper">
                   <SwiperSlide>
-                    <img src={img8} alt="" className="img-fluid h-100 w-100" />
+                    <img src={img3} alt="" className="img-fluid h-100 w-100" />
                   </SwiperSlide>
                   <SwiperSlide>
-                    <img src={img9} alt="" className="img-fluid h-100 w-100" />
+                    <img src={img2} alt="" className="img-fluid h-100 w-100" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={img1} alt="" className="img-fluid h-100 w-100" />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={img4} alt="" className="img-fluid h-100 w-100" />
                   </SwiperSlide>
                 </div>
               </Swiper>
@@ -79,7 +87,7 @@ const home = (props) => {
                   {/* Education Program */}
                   <EducationProgram />
                   {/* JoinUs */}
-                  <JoinUs/>
+                  <JoinUs />
                   {/* News */}
                   <News />
                 </CardBody>
