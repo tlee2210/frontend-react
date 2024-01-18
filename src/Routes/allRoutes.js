@@ -16,6 +16,7 @@ import HomePage from "../home/pages/home/home";
 //Admin pages
 import Courses from "../dashboard/pages/Courses/index";
 import Category from "../dashboard/pages/Article/Category/index";
+
 // Article
 import Article from "../dashboard/pages/Article/Article/index";
 import CreateArticle from "../dashboard/pages/Article/Article/create";
