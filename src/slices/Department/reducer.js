@@ -1,23 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  SelectOption: [],
-  ArticleData: [],
+  DepartmentData: [],
   item:{},
 };
 
-const ArticleSlice = createSlice({
-  name: "ArticleSlice",
+const DepartmentSlice = createSlice({
+  name: "DepartmentSlice",
   initialState,
   reducers: {
-    setArticleData(state, action){
-      state.ArticleData = action.payload;
+    setDepartmentData(state, action){
+      state.DepartmentData = action.payload;
     },
-    setSelectOption(state, action) {
-      state.SelectOption = action.payload;
-    },
-    removeArticle(state, action) {
-      state.ArticleData = state.ArticleData.filter(Article => Article.id !== action.payload);
+    removeDepartment(state, action) {
+      state.DepartmentData = state.DepartmentData.filter(Item => Item.id !== action.payload);
     },
     setEdit(state, action){
       state.item = action.payload;
@@ -26,10 +22,9 @@ const ArticleSlice = createSlice({
 });
 
 export const {
-  setArticleData,
-  setSelectOption,
-  removeArticle,
+  setDepartmentData,
+  removeDepartment,
   setEdit,
-} = ArticleSlice.actions;
+} = DepartmentSlice.actions;
 
-export default ArticleSlice.reducer;
+export default DepartmentSlice.reducer;

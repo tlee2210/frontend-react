@@ -1,93 +1,72 @@
 import axios from "axios";
 import {
-  setSelectOption,
-  setArticleData,
-  removeArticle,
-  setEdit,
+  setDepartmentData,
+  removeDepartment,
+  setEdit
 } from "./reducer";
 import { setMessage , errorMessage } from "../message/reducer";
-export const GetArticle = () => async (dispatch) => {
+export const GetDepartment = () => async (dispatch) => {
   await axios
-    .get("https://localhost:7112/api/dashboard/Article/GetArticle")
+    .get("https://localhost:7112/api/dashboard/department/GetList")
     .then((response) => {
-      // console.log(response);
-      dispatch(setArticleData(response.data));
+      console.log(response);
+      dispatch(setDepartmentData(response.data));
     })
     .catch((error) => {
       console.log(error);
     });
 };
-export const GetCreate = () => async (dispatch) => {
-  await axios
-    .get("https://localhost:7112/api/dashboard/Article/getCreate")
-    .then((response) => {
-      // console.log(response)
-      dispatch(setSelectOption(response.data));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-export const ArticleStore = (formData, history) => async (dispatch) => {
+export const DepartmentStore = (formData, history) => async (dispatch) => {
   axios
-    .post("https://localhost:7112/api/dashboard/Article/Create", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    .post("https://localhost:7112/api/dashboard/department/create", formData)
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       if (response.data.message) {
         dispatch(setMessage(response.data.message));
       }
-      history("/dashboard/article");
+      history("/dashboard/department");
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch(errorMessage(error.response.data.message));
+    });
+};
+export const GetEditDepartment = (id) => async (dispatch) => {
+  axios
+    .get(`https://localhost:7112/api/dashboard/department/${id}/edit`)
+    .then((response) => {
+      console.log(response);
+      dispatch(setEdit(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export const UpdateDepartment = (formData, history) => async (dispatch) => {
+  axios
+    .post("https://localhost:7112/api/dashboard/department/update", formData)
+    .then((response) => {
+      console.log(response);
+      if (response.data.message) {
+        dispatch(setMessage(response.data.message));
+      }
+      history("/dashboard/department");
     })
     .catch((error) => {
       // console.log(error);
-      dispatch(errorMessage(error.response.data));
+      dispatch(errorMessage(error.response.data.message));
     });
 };
-export const GetEditArticle = (id) => async (dispatch) => {
+export const DeleteDepartment = (id) => async (dispatch) => {
   axios
-    .get(`https://localhost:7112/api/dashboard/Article/${id}/edit`)
+    .delete(`https://localhost:7112/api/dashboard/department/${id}`)
     .then((response) => {
-      // console.log(response);
-      dispatch(setEdit(response.data.data.model));
-      dispatch(setSelectOption(response.data.data.selectOption));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-export const UpdateArticle = (formData, history) => async (dispatch) => {
-  axios
-    .post("https://localhost:7112/api/dashboard/Article/update", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then((response) => {
-      // console.log(response);
-      if (response.data.message) {
-        dispatch(setMessage(response.data.message));
-      }
-      history("/dashboard/article");
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-      dispatch(errorMessage(error.response.data));
-    });
-};
-export const DeleteArticle = (id) => async (dispatch) => {
-  axios
-    .delete(`https://localhost:7112/api/dashboard/Article/${id}`)
-    .then((response) => {
-      // console.log(response);
+      console.log(response);
       if (response.data.message) {
         dispatch(setMessage(response.data.message));
       }
       if (response.data.data) {
-        dispatch(removeArticle(response.data.data));
+        dispatch(removeDepartment(response.data.data));
       }
     })
     .catch((error) => {

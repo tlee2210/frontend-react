@@ -32,7 +32,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import classnames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
-import { GetCreateFaculty, FacultyStore } from "../../../slices/Faculty/thunk";
+import { DepartmentStore } from "../../../slices/Department/thunk";
 //formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -48,13 +48,13 @@ const FacultyCreate = (props) => {
   const FacultyCreatepageData = createSelector(
     selectFacultyCreateState,
     (state) => ({
-      SelectOption: state.Facultydashboard.SelectOption,
       isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
       errorMessage: state.Message.errorMessage,
     })
   );
-  const { SelectOption, isErrorNotificationVisible, errorMessage } =
-    useSelector(FacultyCreatepageData);
+  const { isErrorNotificationVisible, errorMessage } = useSelector(
+    FacultyCreatepageData
+  );
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -72,8 +72,7 @@ const FacultyCreate = (props) => {
           /^[A-Z]{3}\d{5}$/,
           "Code must be 3 uppercase letters followed by 5 numbers"
         ),
-
-      Description: Yup.string().required("Please Enter a Description")
+      Description: Yup.string().required("Please Enter a Description"),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -81,7 +80,7 @@ const FacultyCreate = (props) => {
       formData.append("Subject", values.Subject);
       formData.append("Code", values.Code);
       formData.append("Description", values.Description);
-      // dispatch(FacultyStore(formData, props.router.navigate));
+      dispatch(DepartmentStore(formData, props.router.navigate));
       //   validation.resetForm();
     },
   });
@@ -95,10 +94,6 @@ const FacultyCreate = (props) => {
       dispatch(clearNotificationMessage());
     }
   }, [errorMessage, isErrorNotificationVisible]);
-
-  useEffect(() => {
-    dispatch(GetCreateFaculty());
-  }, []);
 
   return (
     <div className="page-content">
@@ -135,12 +130,14 @@ const FacultyCreate = (props) => {
                           onBlur={validation.handleBlur}
                           onChange={validation.handleChange}
                           invalid={
-                            validation.errors.Subject && validation.touched.Subject
+                            validation.errors.Subject &&
+                            validation.touched.Subject
                               ? true
                               : false
                           }
                         />
-                        {validation.errors.Subject && validation.touched.Subject ? (
+                        {validation.errors.Subject &&
+                        validation.touched.Subject ? (
                           <FormFeedback type="invalid">
                             {validation.errors.Subject}
                           </FormFeedback>
@@ -209,8 +206,6 @@ const FacultyCreate = (props) => {
               </div>
             </Form>
           </Col>
-
-          
         </Row>
       </Container>
     </div>
