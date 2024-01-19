@@ -1,0 +1,51 @@
+.container-graduate-Navbar {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.navbar-graduate-Navbar {
+  display: flex;
+  background-color: #f90000;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.navbar-item-graduate-Navbar {
+  font-weight: bold;
+  background-color: #f90000;
+  color: #ffffff;
+  padding: 18px 28px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease, text-decoration 0.3s ease; /* Sửa đổi transition */
+}
+
+.navbar-item-graduate-Navbar i {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+/* Style the navbar item when active */
+.navbar-item-graduate-Navbar.active {
+  background-color: #ffffff;
+  color: #f90000;
+  text-decoration: underline; /* Thêm dấu gạch chân khi active */
+}
+
+/* Show text when the navbar item is hovered or active with a slight delay */
+.navbar-item-graduate-Navbar:hover span,
+.navbar-item-graduate-Navbar.active span {
+  display: inline;
+}
+
+/* Hide text initially */
+.navbar-item-graduate-Navbar span {
+  display: none;
+}
+
+/* Smoother hover transition */
+.navbar-item-graduate-Navbar:hover,
+.navbar-item-graduate-Navbar.active {
+  transition: background-color 0.5s ease, color 0.5s ease, text-decoration 0.5s ease; /* Sửa đổi transition */
+}

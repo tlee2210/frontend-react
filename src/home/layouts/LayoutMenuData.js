@@ -31,7 +31,7 @@ const Navdata = () => {
         if (iscurrentState !== 'Apps') {
             setIsApps(false);
         }
-        
+
     }, [
         history,
         iscurrentState,
@@ -45,26 +45,84 @@ const Navdata = () => {
             isHeader: true,
         },
         {
-            id: "dashboard",
-            label: "User",
-            link: "/#",
-            stateVariables: isDashboard,
+            id: "home",
+            label: "Home",
+            link: "/",
+
+            click: function (e) {
+
+            },
+        },
+        //User
+        // {
+        //     id: "dashboard",
+        //     label: "User",
+        //     link: "/#",
+        //     stateVariables: isDashboard,
+        //     click: function (e) {
+        //         e.preventDefault();
+        //         setIsDashboard(!isDashboard);
+        //         setIscurrentState('Dashboard');
+        //         updateIconSidebar(e);
+        //     },
+        //     subItems: [
+        //         {
+        //             id: "products",
+        //             label: "products list",
+        //             link: "/products",
+        //             parentId: "dashboard",
+        //         },
+
+        //     ],
+        // },
+        //Course
+        {
+            id: "coursespage",
+            label: "Courses",
+            link: "/courses-page",
+
+            click: function (e) {
+                // e.preventDefault();
+                // updateIconSidebar(e);
+            },
+            subItems: [
+                {
+                    id: "find-a-source",
+                    label: "Find A Source",
+                    link: "/courses-page/find-a-source",
+                },
+                {
+                    id: "under-graduate",
+                    label: "Under Graduate",
+                    link: "/courses-page/under-graduate-page",
+                },
+            ],
+        },
+
+        //contact
+        {
+            id: "contact",
+            label: "Contact",
+            link: "#",
+
             click: function (e) {
                 e.preventDefault();
-                setIsDashboard(!isDashboard);
-                setIscurrentState('Dashboard');
                 updateIconSidebar(e);
             },
             subItems: [
                 {
-                    id: "products",
-                    label: "products list",
-                    link: "/products",
-                    parentId: "dashboard",
+                    id: "contact-us",
+                    label: "Contact Us",
+                    link: "/about-us",
                 },
-               
+                {
+                    id: "contact-details",
+                    label: "Contact Details",
+                    link: "/about-us/details",
+                },
             ],
         },
+
     ];
     return <React.Fragment>{menuItems}</React.Fragment>;
 };

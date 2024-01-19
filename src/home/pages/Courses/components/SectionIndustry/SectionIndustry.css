@@ -1,0 +1,37 @@
+.content {
+    max-width: 800px; /* Adjust the max-width as necessary */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .section {
+    padding: 35px 0;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+  }
+  
+  .section-text {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .section-link {
+    font-size: 16px;
+    color: #c40606;
+    text-decoration: none;
+    border-bottom: 1px solid #0066cc;
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  
+  .section-link:hover {
+    color: #0055a3;
+    border-bottom-color: #0055a3;
+  }

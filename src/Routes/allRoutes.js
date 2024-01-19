@@ -12,6 +12,16 @@ import UserProfile from "../pages/Authentication/user-profile";
 
 //home page
 import HomePage from "../home/pages/home/home";
+//contact page
+import AboutUs from "../home/pages/AboutUs/AboutUs";
+//Details Page
+import DetailsPage from "../home/pages/DetailsPage/DetailsPage"
+//Course Page
+import CoursesPage from "../home/pages/Courses/CoursesPage"
+//Find A Sourse Page
+import FindASource from "../home/pages/FindASource/FindASource";
+//Under Graduate Page
+import UnderGraduatePage from "../home/pages/UnderGraduate/UnderGraduatePage";
 
 //Admin pages
 import Courses from "../dashboard/pages/Courses/index";
@@ -91,5 +101,10 @@ const publicHome = [
     component: <HomePage />,
   },
   { path: "*", component: <HomePage /> },
+  { path: "/about-us", component: <AboutUs /> },
+  { path: "/about-us/details", component: <DetailsPage /> },
+  { path: "/courses-page", component: <CoursesPage /> },
+  { path: "/courses-page/find-a-source", component: <FindASource /> },
+  { path: "/courses-page/under-graduate-page", component: <UnderGraduatePage /> },
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicRoutes, publicHome };

@@ -1,0 +1,91 @@
+.fees-scholarships-container-how-to-apply {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #fff; /* or any color as per your design */
+  }
+  
+  .title-container-how-to-apply {
+    flex-basis: 20%;
+    font-size: 1.5rem;
+  }
+  
+  .description-container-how-to-apply {
+    flex-basis: 50%;
+    padding: 0 15px;
+  }
+  
+  .apply-container-how-to-apply {
+    flex-basis: 30%;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box; /* Include border and padding in total size */
+  }
+  
+  .course-code-container-how-to-apply {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .apply-button-how-to-apply {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .apply-button-how-to-apply:hover {
+    background-color: #333;
+  }
+
+  .dates-container-how-to-apply {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  .start-dates-how-to-apply, .upcoming-events-how-to-apply {
+    border-left: 4px solid red;
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .heading-how-to-apply {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .table-how-to-apply .row-how-to-apply {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .semester-how-to-apply, 
+  .location-how-to-apply, 
+  .apply-date-how-to-apply, 
+  .start-date-how-to-apply,
+  .event-name-how-to-apply, 
+  .event-date-how-to-apply {
+    flex: 1;
+    padding: 5px;
+    text-align: left;
+  }
+  
+  .event-how-to-apply {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 15px;
+  }

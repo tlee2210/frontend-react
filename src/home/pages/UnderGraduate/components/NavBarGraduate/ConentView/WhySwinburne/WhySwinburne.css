@@ -1,0 +1,53 @@
+.why-swinburne-container-overview-WhySwinburne {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .why-swinburne-heading-overview-WhySwinburne {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .why-swinburne-items-overview-WhySwinburne {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; /* Adjust width as necessary */
+  }
+  
+  .why-swinburne-item-overview-WhySwinburne {
+    text-align: center;
+  }
+  
+  .why-swinburne-item-overview-WhySwinburne p {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  .why-swinburne-sources-overview-WhySwinburne {
+    margin-top: 20px;
+  }
+  
+  .why-swinburne-sources-overview-WhySwinburne a {
+    font-size: 0.8rem;
+    color: #0062cc;
+    text-decoration: none;
+  }
+  
+  .why-swinburne-sources-overview-WhySwinburne a:hover {
+    text-decoration: underline;
+  }
+  .why-swinburne-items-overview-WhySwinburne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .why-swinburne-item-overview-WhySwinburne {
+    text-align: center;
+    flex: 1;
+    margin: 0 10px; /* Add margin for spacing between items */
+  }

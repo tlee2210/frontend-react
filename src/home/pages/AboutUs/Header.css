@@ -1,0 +1,18 @@
+.header-container {
+    position: relative;
+    text-align: center;
+    color: rgb(240, 240, 240); /* Text color */
+    background-image: url('https://daihoc.fpt.edu.vn/templates/fpt-university/images/header.jpg'); /* Path to your image */
+    background-size: cover; /* Cover ensures the image covers the entire container */
+    background-position: center; /* Center the background image */
+    height: 300px; /* Adjust the height as needed */
+    display: flex;
+    align-items: center; /* This will vertically align your text to the middle */
+    justify-content: center; /* This will horizontally align your text to the center */
+  }
+  
+  .header-title {
+    font-size: 48px;
+    text-shadow: 2px 2px 4px #020202;
+    color: white; /* Set text color to white */
+  }
