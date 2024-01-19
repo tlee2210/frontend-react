@@ -31,7 +31,10 @@ import FacilitiesCreate from "../dashboard/pages/facilities/create";
 import FacilitiesEdit from "../dashboard/pages/facilities/edit";
 //ContactUs
 import ContactUs from "../dashboard/pages/ContactUs/index";
-
+// department
+import Departments from "../dashboard/pages/Department/index";
+import DepartmentCreate from "../dashboard/pages/Department/create";
+import DepartmentEdit from "../dashboard/pages/Department/edit";
 //404 pages
 import Basic404 from "../pages/AuthenticationInner/Errors/Basic404";
 import Cover404 from "../pages/AuthenticationInner/Errors/Cover404";
@@ -56,6 +59,10 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/facilities", component: <Facilities /> },
   { path: "/dashboard/facilities/create", component: <FacilitiesCreate /> },
   { path: "/dashboard/facilities/:id/edit", component: <FacilitiesEdit /> },
+  // Department 
+  { path: "/dashboard/department", component: <Departments /> },
+  { path: "/dashboard/department/create", component: <DepartmentCreate /> },
+  { path: "/dashboard/department/:id/edit", component: <DepartmentEdit /> },
 ];
 
 const authProtectedRoutes = [

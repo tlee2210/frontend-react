@@ -8,6 +8,7 @@ const Navdata = () => {
   const [isArticle, setIsArticle] = useState(false);
   const [isContact, setIsContact] = useState(false);
   const [isFaculty, setIsFaculty] = useState(false);
+  const [isDepartment, setIsDepartment] = useState(false);
   const [isStaff, setIsStaff] = useState(false);
   const [isfacilities, setIsfacilities] = useState(false);
   const [iscurrentState, setIscurrentState] = useState("Dashboard");
@@ -46,6 +47,9 @@ const Navdata = () => {
     if (iscurrentState !== "Facilities") {
       setIsfacilities(false);
     }
+    if (iscurrentState !== "Department") {
+      setIsDepartment(false);
+    }
   }, [
     history,
     iscurrentState,
@@ -55,6 +59,7 @@ const Navdata = () => {
     isFaculty,
     isStaff,
     isfacilities,
+    isDepartment
   ]);
 
   const menuItems = [
@@ -101,6 +106,27 @@ const Navdata = () => {
           label: "faculty list",
           link: "/dashboard/faculty",
           parentId: "faculty",
+        },
+      ],
+    },
+    {
+      id: "department",
+      label: "Department",
+      icon: "ri-bookmark-fill",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsDepartment(!isDepartment);
+        setIscurrentState("Department");
+        updateIconSidebar(e);
+      },
+      stateVariables: isDepartment,
+      subItems: [
+        {
+          id: "Departmentlist",
+          label: "Department list",
+          link: "/dashboard/department",
+          parentId: "department",
         },
       ],
     },
