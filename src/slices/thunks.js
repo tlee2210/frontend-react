@@ -14,4 +14,6 @@ export * from "./ContactUs/thunk";
 //Courses
 export * from "./Courses/thunk";
 //Faculty
-export * from "./Faculty/thunk"
+export * from "./Faculty/thunk";
+// Department
+export * from "./Department/thunk";

@@ -12,6 +12,7 @@ import MessageReducer from "./message/reducer";
 import ContactUsReducer from "./ContactUs/reducer";
 import CoursesReducer from "./Courses/reducer";
 import facultyReducer from "./Faculty/reducer";
+import DepartmentReducer from "./Department/reducer";
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
   Login: LoginReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   ContactUsdashboard: ContactUsReducer,
   Coursesdashboard: CoursesReducer,
   Facultydashboard: facultyReducer,
+  Departmentdashboard: DepartmentReducer,
   Message: MessageReducer,
 });
 
