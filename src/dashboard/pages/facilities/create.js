@@ -138,7 +138,7 @@ const FacilitiesCreate = (props) => {
     onSubmit: (values) => {
       // console.log(values);
       const formData = new FormData();
-      formData.append("Title", values.name);
+      formData.append("title", values.title);
       formData.append("Desciption", values.Description);
       formData.append("image", values.files[0]);
       dispatch(FacilitiesStore(formData, props.router.navigate));

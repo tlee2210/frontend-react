@@ -1,35 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  SelectOption: [],
-  ArticleData: [],
-  item:{},
+  FacilitiesData: [],
+  item: {},
 };
 
-const ArticleSlice = createSlice({
-  name: "ArticleSlice",
+const FacilitiesSlice = createSlice({
+  name: "FacilitiesSlice",
   initialState,
   reducers: {
-    setArticleData(state, action){
-      state.ArticleData = action.payload;
+    setFacilitiesData(state, action) {
+      state.FacilitiesData = action.payload;
     },
     setSelectOption(state, action) {
       state.SelectOption = action.payload;
     },
-    removeArticle(state, action) {
-      state.ArticleData = state.ArticleData.filter(Article => Article.id !== action.payload);
+    removeFacilities(state, action) {
+      state.FacilitiesData = state.FacilitiesData.filter(
+        (Facilities) => Facilities.id !== action.payload
+      );
     },
-    setEdit(state, action){
+    setEdit(state, action) {
       state.item = action.payload;
-    }
+    },
   },
 });
 
 export const {
-  setArticleData,
-  setSelectOption,
-  removeArticle,
+  setFacilitiesData,
+  // setSelectOption,
+  removeFacilities,
   setEdit,
-} = ArticleSlice.actions;
+} = FacilitiesSlice.actions;
 
-export default ArticleSlice.reducer;
+export default FacilitiesSlice.reducer;

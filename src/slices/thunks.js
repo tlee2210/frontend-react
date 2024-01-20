@@ -17,3 +17,4 @@ export * from "./Courses/thunk";
 export * from "./Faculty/thunk";
 // Department
 export * from "./Department/thunk";
+export * from "./Facilities/thunk";

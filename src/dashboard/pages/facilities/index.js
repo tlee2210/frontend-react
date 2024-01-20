@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { GetFaculty, DeleteFaculty } from "../../../slices/Faculty/thunk";
+import {
+  GetFacilities,
+  DeleteFacilitie,
+} from "../../../slices/Facilities/thunk";
 import { createSelector } from "reselect";
 import { ToastContainer, toast } from "react-toastify";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
@@ -21,23 +24,23 @@ import {
   FormFeedback,
   Badge,
 } from "reactstrap";
-import { message, Table } from "antd";
+import { message, Table, Image } from "antd";
 
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { Link } from "react-router-dom";
 
-const ArticleTables = (props) => {
+const FacilitiesTables = (props) => {
   const dispatch = useDispatch();
-  const selectArticleState = (state) => state;
+  const selectFacilitiesState = (state) => state;
   const [modal_detele, setmodal_detele] = useState(false);
   const [Id, setId] = useState("");
 
   useEffect(() => {
-    dispatch(GetFaculty());
+    dispatch(GetFacilities());
   }, []);
 
-  const ArticlepageData = createSelector(selectArticleState, (state) => ({
-    FacultyData: state.Facultydashboard.FacultyData,
+  const FacilitiespageData = createSelector(selectFacilitiesState, (state) => ({
+    FacilitiesData: state.Facilitiesdashboard.FacilitiesData,
     isNotificationVisible: state.Message.isNotificationVisible,
     notificationMessage: state.Message.notificationMessage,
     isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
@@ -45,12 +48,12 @@ const ArticleTables = (props) => {
   }));
 
   const {
-    FacultyData,
+    FacilitiesData,
     isNotificationVisible,
     notificationMessage,
     isErrorNotificationVisible,
     errorMessage,
-  } = useSelector(ArticlepageData);
+  } = useSelector(FacilitiespageData);
 
   function tog_togdelete(id) {
     setmodal_detele(!modal_detele);
@@ -68,63 +71,20 @@ const ArticleTables = (props) => {
       render: (text, record, index) => index + 1,
     },
     {
-      title: "code",
-      key: "code",
-      dataIndex: "code",
+      title: "image",
+      key: "image",
+      render: (record) => {
+        return (
+          <>
+            <Image src={record.image} alt={record.title} width={100} />
+          </>
+        );
+      },
     },
     {
       title: "Name",
       key: "Name",
       dataIndex: "title",
-    },
-    {
-      title: "courses",
-      key: "coursesName",
-      dataIndex: "coursesName",
-    },
-    {
-      title: "entryScore",
-      key: "entryScore",
-      dataIndex: "entryScore",
-    },
-
-    {
-      title: "opportunities",
-      key: "opportunities",
-      render: (record) => {
-        const opportunitiesArray = record.opportunities.split(",");
-        return (
-          <>
-            {opportunitiesArray.map((opportunity, index) => (
-              <Badge
-                key={index}
-                className="badge bg-info-subtle text-info badge-border me-2"
-              >
-                {opportunity}
-              </Badge>
-            ))}
-          </>
-        );
-      },
-    },
-    {
-      title: "skill learn",
-      key: "skill_learn",
-      render: (record) => {
-        const opportunitiesArray = record.skill_learn.split(",");
-        return (
-          <>
-            {opportunitiesArray.map((opportunity, index) => (
-              <Badge
-                key={index}
-                className="badge bg-secondary-subtle text-secondary badge-border me-2"
-              >
-                {opportunity}
-              </Badge>
-            ))}
-          </>
-        );
-      },
     },
     {
       title: "Actions",
@@ -133,7 +93,7 @@ const ArticleTables = (props) => {
       render: (record) => {
         return (
           <>
-            <Link to={`/dashboard/faculty/${record.id}/edit`}>
+            <Link to={`/dashboard/facilities/${record.id}/edit`}>
               <span className="bg-gradient me-3 fs-4 text-info">
                 <i className="ri-edit-2-fill"></i>
               </span>
@@ -174,8 +134,8 @@ const ArticleTables = (props) => {
 
   function deleteitem(id) {
     if (id) {
-      //   console.log(id);
-      dispatch(DeleteFaculty(id));
+      // console.log(id);
+      dispatch(DeleteFacilitie(id));
     }
   }
 
@@ -225,7 +185,7 @@ const ArticleTables = (props) => {
                         </Row>
                         <Table
                           columns={columns}
-                          dataSource={FacultyData}
+                          dataSource={FacilitiesData}
                           rowKey={"id"}
                         />
                       </div>
@@ -283,4 +243,4 @@ const ArticleTables = (props) => {
   );
 };
 
-export default ArticleTables;
+export default FacilitiesTables;
