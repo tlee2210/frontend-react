@@ -15,9 +15,9 @@ import HomePage from "../home/pages/home/home";
 //contact page
 import AboutUs from "../home/pages/AboutUs/AboutUs";
 //Details Page
-import DetailsPage from "../home/pages/DetailsPage/DetailsPage"
+import DetailsPage from "../home/pages/DetailsPage/DetailsPage";
 //Course Page
-import CoursesPage from "../home/pages/Courses/CoursesPage"
+import CoursesPage from "../home/pages/Courses/CoursesPage";
 //Find A Sourse Page
 import FindASource from "../home/pages/FindASource/FindASource";
 //Under Graduate Page
@@ -39,6 +39,14 @@ import FacultyEdit from "../dashboard/pages/Faculty/edit";
 import Facilities from "../dashboard/pages/facilities/index";
 import FacilitiesCreate from "../dashboard/pages/facilities/create";
 import FacilitiesEdit from "../dashboard/pages/facilities/edit";
+//student
+import Student from "../dashboard/pages/Student/index";
+import StudentCreate from "../dashboard/pages/Student/create";
+import StudentEdit from "../dashboard/pages/Student/edit";
+// staff
+import Staff from "../dashboard/pages/staff/index";
+import StaffCreate from "../dashboard/pages/staff/create";
+import StaffEdit from "../dashboard/pages/staff/edit";
 //ContactUs
 import ContactUs from "../dashboard/pages/ContactUs/index";
 // department
@@ -69,10 +77,18 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/facilities", component: <Facilities /> },
   { path: "/dashboard/facilities/create", component: <FacilitiesCreate /> },
   { path: "/dashboard/facilities/:id/edit", component: <FacilitiesEdit /> },
-  // Department 
+  // Department
   { path: "/dashboard/department", component: <Departments /> },
   { path: "/dashboard/department/create", component: <DepartmentCreate /> },
   { path: "/dashboard/department/:id/edit", component: <DepartmentEdit /> },
+  // student
+  { path: "/dashboard/students", component: <Student /> },
+  { path: "/dashboard/student/create", component: <StudentCreate /> },
+  { path: "/dashboard/student/:id/edit", component: <StudentEdit /> },
+  // Staff
+  { path: "/dashboard/staffs", component: <Staff /> },
+  { path: "/dashboard/staff/create", component: <StaffCreate /> },
+  { path: "/dashboard/staff/:id/edit", component: <StaffEdit /> },
 ];
 
 const authProtectedRoutes = [
@@ -105,6 +121,9 @@ const publicHome = [
   { path: "/about-us/details", component: <DetailsPage /> },
   { path: "/courses-page", component: <CoursesPage /> },
   { path: "/courses-page/find-a-source", component: <FindASource /> },
-  { path: "/courses-page/under-graduate-page", component: <UnderGraduatePage /> },
+  {
+    path: "/courses-page/under-graduate-page",
+    component: <UnderGraduatePage />,
+  },
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicRoutes, publicHome };

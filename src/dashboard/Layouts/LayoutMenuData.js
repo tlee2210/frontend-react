@@ -10,6 +10,7 @@ const Navdata = () => {
   const [isFaculty, setIsFaculty] = useState(false);
   const [isDepartment, setIsDepartment] = useState(false);
   const [isStaff, setIsStaff] = useState(false);
+  const [isStudent, setisStudent] = useState(false);
   const [isfacilities, setIsfacilities] = useState(false);
   const [iscurrentState, setIscurrentState] = useState("Dashboard");
 
@@ -50,6 +51,9 @@ const Navdata = () => {
     if (iscurrentState !== "Department") {
       setIsDepartment(false);
     }
+    if (iscurrentState !== "Student") {
+      setisStudent(false);
+    }
   }, [
     history,
     iscurrentState,
@@ -59,7 +63,8 @@ const Navdata = () => {
     isFaculty,
     isStaff,
     isfacilities,
-    isDepartment
+    isDepartment,
+    isStudent,
   ]);
 
   const menuItems = [
@@ -112,7 +117,7 @@ const Navdata = () => {
     {
       id: "department",
       label: "Department",
-      icon: "ri-bookmark-fill",
+      icon: "ri-book-fill",
       link: "/#",
       click: function (e) {
         e.preventDefault();
@@ -137,7 +142,7 @@ const Navdata = () => {
     {
       id: "staff",
       label: "Staff",
-      icon: "ri-user-line",
+      icon: "ri-user-2-fill",
       link: "/#",
       click: function (e) {
         e.preventDefault();
@@ -150,8 +155,29 @@ const Navdata = () => {
         {
           id: "staffList",
           label: "Staff list",
-          link: "/dashboard/staff",
+          link: "/dashboard/staffs",
           parentId: "staff",
+        },
+      ],
+    },
+    {
+      id: "student",
+      label: "Student",
+      icon: "ri-contacts-line",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setisStudent(!isStudent);
+        setIscurrentState("Student");
+        updateIconSidebar(e);
+      },
+      stateVariables: isStudent,
+      subItems: [
+        {
+          id: "Studentlist",
+          label: "Student list",
+          link: "/dashboard/students",
+          parentId: "student",
         },
       ],
     },
