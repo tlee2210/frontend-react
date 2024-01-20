@@ -1,7 +1,6 @@
 import React from 'react';
 import './AboutUs.css';
 import ContactPage from './components/ContactPage';
-import ContactForm from './components/ContactForm';
 import ParticlesHome from "../../layouts/ParticlesAuth";
 // Import Data
 import Sidebar from '../../layouts/Sidebar';
@@ -14,8 +13,7 @@ function AboutUs() {
     <div style={{paddingTop:150}}>
       <ParticlesHome>
         <Header />
-        <ContactPage />
-        <ContactForm />    
+        <ContactPage />  
       </ParticlesHome>
     </div>
        

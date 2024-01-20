@@ -1,0 +1,40 @@
+.category-list {
+    background-color: rgb(208, 208, 208);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  .category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .category:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .icon {
+    font-size: 24px;
+  }
+  
+  .name {
+    margin-left: 10px;
+    font-weight: bold;
+    flex-grow: 1;
+  }
+  
+  .arrow {
+    font-size: 24px;
+    font-weight: bold;
+  }

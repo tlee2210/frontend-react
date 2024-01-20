@@ -49,3 +49,403 @@
 .navbar-item-graduate-Navbar.active {
   transition: background-color 0.5s ease, color 0.5s ease, text-decoration 0.5s ease; /* Sửa đổi transition */
 }
+
+/*Over View CSS*/
+
+.overview-container-overview-Graduated {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+  padding-bottom: 100px;
+
+}
+
+.overview-title-overview-Graduated {
+  max-width: 200px;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.overview-text-overview-Graduated {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.course-handbook-link-overview-Graduated,
+.course-guide-link-overview-Graduated,
+.register-link-overview-Graduated {
+  display: block;
+  margin: 10px 0;
+  color: #0062cc;
+  text-decoration: none;
+}
+
+.course-handbook-link-overview-Graduated:hover,
+.course-guide-link-overview-Graduated:hover,
+.register-link-overview-Graduated:hover {
+  text-decoration: underline;
+}
+
+.study-expo-container-overview-Graduated {
+  background-color: #e9f5e9;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.study-expo-title-overview-Graduated {
+  font-size: 18px;
+  color: #2c5d2c;
+}
+
+.study-expo-text-overview-Graduated {
+  font-size: 14px;
+  color: #2c5d2c;
+}
+
+.overview-container-overview-Graduated {
+display: flex;
+max-width: 1200px; /* Optional: Set a maximum width for the container */
+margin: auto;
+}
+
+.overview-content {
+flex: 1;
+}
+
+.overview-text {
+flex: 1;
+margin-left: 180px
+}
+
+.overview-text-overview-Graduated-column {
+  columns: 2; /* Set the number of columns */
+  column-gap: 20px; /* Adjust the gap between columns */
+  max-width: 1200px;  /* Optional: Set a maximum width for the columns */
+  margin: auto;
+}
+
+.why-swinburne-container-overview-WhySwinburne {
+  background-color: #cccccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .why-swinburne-heading-overview-WhySwinburne {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 20px;
+    padding-top: 30px;
+  }
+  
+  .why-swinburne-items-overview-WhySwinburne {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; /* Adjust width as necessary */
+  }
+  
+  .why-swinburne-item-overview-WhySwinburne {
+    text-align: center;
+  }
+  
+  .why-swinburne-item-overview-WhySwinburne p {
+    font-size: 1rem;
+    color: black;
+    margin-top: 10px;
+  }
+  
+  .why-swinburne-sources-overview-WhySwinburne {
+    margin-top: 20px;
+  }
+  
+  .why-swinburne-sources-overview-WhySwinburne a {
+    font-size: 0.8rem;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .why-swinburne-sources-overview-WhySwinburne a:hover {
+    text-decoration: underline;
+  }
+  .why-swinburne-items-overview-WhySwinburne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .why-swinburne-item-overview-WhySwinburne {
+    text-align: center;
+    flex: 1;
+    margin: 0 10px; /* Add margin for spacing between items */
+  }
+
+/* Study Strcuture CSS */
+.credit-points-container {
+    
+  text-align: center;
+}
+
+.credit-points-info {
+  margin-left: -245px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Increased the gap for better spacing */
+  margin-top: 20px;
+}
+
+.credit-point-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.credit-point-circle {
+  background-color: #333; /* or the color of your circles */
+  color: white;
+  border-radius: 50%;
+  width: 80px; /* Increased the size */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px; /* Increased the font size */
+  margin-bottom: 10px; /* Increased the margin */
+}
+
+.plus-symbol,
+.equals-symbol {
+  font-size: 30px; /* Increased the font size */
+  color: #333; /* or your specific color */
+}
+
+.degree-icon {
+  color: #d32f2f; /* or your specific color */
+  font-size: 60px; /* Increased the size */
+}
+
+.degree-icon .las {
+  /* Assuming you are using Line Awesome for the icon */
+  font-size: 80px; /* Increased the size */
+  color: #d32f2f; /* Color of the icon */
+}
+.credit-point-circle-red{
+  background-color: #ff0202; /* or the color of your circles */
+  color: rgb(255, 0, 0);
+  border-radius: 50%;
+  width: 80px; /* Increased the size */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px; /* Increased the font size */
+  margin-bottom: 10px; /* Increased the margin */
+}
+
+.bachelor-container {
+font-family: Arial, sans-serif;
+}
+
+.bachelor-header {
+border: 1px solid black;
+padding: 10px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+}
+
+.bachelor-header h1 {
+font-size: 18px;
+margin: 0;
+}
+
+.icon {
+/* Style your icon here */
+font-size: 24px;
+}
+
+.units-table {
+margin-top: 10px;
+}
+
+.table-header {
+background-color: #D32F2F; /* Dark red */
+color: white;
+display: flex;
+justify-content: space-between;
+padding: 10px;
+}
+
+.table-row {
+background-color: #f2f2f2; /* Light grey */
+display: flex;
+justify-content: space-between;
+padding: 10px;
+border-bottom: 1px solid #ccc;
+}
+
+.table-row span {
+font-size: 16px;
+}
+
+/* Bachelor CSS */
+
+.bachelor-container {
+  font-family: 'Arial', sans-serif;
+  max-width: 800px; /* Set a max-width for better readability */
+  margin: auto; /* Center the container */
+}
+
+.bachelor-header {
+  border: 1px solid #ddd;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: #f8f8f8;
+  transition: background-color 0.3s ease;
+}
+
+.bachelor-header:hover {
+  background-color: #e0e0e0;
+}
+
+.bachelor-header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.units-table {
+  margin-top: 20px;
+}
+
+.table-header {
+  background-color: #D32F2F;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.table-row {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 1.3s ease;
+}
+
+.table-row:hover {
+  background-color: #f0f0f0;
+}
+
+.table-row span {
+  font-size: 16px;
+}
+
+
+/*How To Appy CSS*/
+
+.fees-scholarships-container-how-to-apply {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #fff; /* or any color as per your design */
+}
+
+.title-container-how-to-apply {
+  flex-basis: 20%;
+  font-size: 1.5rem;
+}
+
+.description-container-how-to-apply {
+  flex-basis: 50%;
+  padding: 0 15px;
+}
+
+.apply-container-how-to-apply {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box; /* Include border and padding in total size */
+}
+
+.course-code-container-how-to-apply {
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+.apply-button-how-to-apply {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  cursor: pointer;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.apply-button-how-to-apply:hover {
+  background-color: #333;
+}
+
+.dates-container-how-to-apply {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.start-dates-how-to-apply, .upcoming-events-how-to-apply {
+  border-left: 4px solid red;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.heading-how-to-apply {
+  font-size: 24px;
+  color: #333;
+}
+
+.table-how-to-apply .row-how-to-apply {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.semester-how-to-apply, 
+.location-how-to-apply, 
+.apply-date-how-to-apply, 
+.start-date-how-to-apply,
+.event-name-how-to-apply, 
+.event-date-how-to-apply {
+  flex: 1;
+  padding: 5px;
+  text-align: left;
+}
+
+.event-how-to-apply {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
