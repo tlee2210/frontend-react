@@ -255,13 +255,13 @@ const MainPage = () => {
                       <div className="col-md-2 d-flex align-items-center">
                         <div>
                           <p className="mb-1 ">ATAR Guaranteed Entry Score</p>
-                          <p className="fs-1 fw-bold" >60</p>
+                          <p className="fs-1 fw-bold"  style={{color:'black'}}>60</p>
                         </div>
                       </div>
                       <div className="col-md-4 d-flex align-items-left ">
                         <div>
                           <p className="mb-1">2023 lowest rank to receive an offer [before adjustment pts.]</p>
-                          <p className="fs-1 fw-bold" >65.1</p>
+                          <p className="fs-1 fw-bold" style={{color:'black'}}>65.1</p>
                         </div>
                       </div>
                     </div>
@@ -499,12 +499,9 @@ const MainPage = () => {
           </TabPane>
 
 
-
-
-
           {/*  Fees & Scholarships */}
           <TabPane tabId="4" id="nav-border-justified-messages">
-            <div style={{ paddingTop: 50 }}>
+            <div style={{ paddingTop: 0 }}>
               <div className='FeesScholarshipsContent' style={{ paddingTop: 50 }}>
                 {/* 2024 fees */}
                 <div className='row'>
@@ -514,12 +511,12 @@ const MainPage = () => {
                   <div className='col-sm-8'>
                     <div className='row'>
                       <div className='col-sm-3'> Yearly fee* ($AUD)
-                        <p className='fs-3 fw-bold'>
+                        <p className='fs-2 fw-bold' style={{color:'black'}}>
                           $16,323
                         </p>
                       </div>
                       <div className='col-sm-2'> Total fee* ($AUD)
-                        <p className='fs-3 fw-bold'>
+                        <p className='fs-2 fw-bold' style={{color:'black'}}>
                           $65,292
                         </p>
                       </div>
@@ -582,7 +579,7 @@ const MainPage = () => {
                   <p className='study-expo-text-overview-Graduated'>The fee shown in the capped amount for 2024.</p>
                   <div className='row'>
                     <div className='col-sm-2 fs-4'> SSAF fee* ($AUD)
-                      <p className='fs-1 fw-bold'>
+                      <p className='fs-1 fw-bold' style={{color:'black'}}>
                         $16,323
                       </p>
                     </div>

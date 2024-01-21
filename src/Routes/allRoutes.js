@@ -13,9 +13,7 @@ import UserProfile from "../pages/Authentication/user-profile";
 //home page
 import HomePage from "../home/pages/home/home";
 //contact page
-import AboutUs from "../home/pages/AboutUs/AboutUs";
-//Details Page
-import DetailsPage from "../home/pages/DetailsPage/DetailsPage";
+import ContactUsPage from "../home/pages/AboutUs/ContactUs";
 //Course Page
 import CoursesPage from "../home/pages/Courses/CoursesPage";
 //Find A Sourse Page
@@ -117,8 +115,7 @@ const publicHome = [
     component: <HomePage />,
   },
   { path: "*", component: <HomePage /> },
-  { path: "/about-us", component: <AboutUs /> },
-  { path: "/about-us/details", component: <DetailsPage /> },
+  { path: "/contact-us", component: <ContactUsPage /> },
   { path: "/courses-page", component: <CoursesPage /> },
   { path: "/courses-page/find-a-source", component: <FindASource /> },
   {
