@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { GetDepartment, DeleteDepartment } from "../../../slices/Department/thunk";
+import {
+  GetDepartment,
+  DeleteDepartment,
+} from "../../../slices/Department/thunk";
 import { createSelector } from "reselect";
 import { ToastContainer, toast } from "react-toastify";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
@@ -131,12 +134,12 @@ const DepartmentTables = (props) => {
 
   function deleteitem(id) {
     if (id) {
-        // console.log(id);
+      // console.log(id);
       dispatch(DeleteDepartment(id));
     }
   }
 
-  document.title = "staff List";
+  document.title = "students List";
 
   return (
     <React.Fragment>
@@ -144,19 +147,19 @@ const DepartmentTables = (props) => {
         <Col xs={12}>
           <div className="page-content">
             <Container fluid>
-              <BreadCrumb title="department list" pageTitle="department" />
+              <BreadCrumb title="students list" pageTitle="students" />
               <Row>
                 <Col lg={12}>
                   <Card>
                     <CardHeader>
                       <ToastContainer />
-                      <h4 className="card-title mb-0">department list</h4>
+                      <h4 className="card-title mb-0">students list</h4>
                     </CardHeader>
                     <CardBody>
                       <div className="listjs-table" id="customerList">
                         <Row className="g-4 mb-3">
                           <Col className="col-sm-auto">
-                            <Link to="/dashboard/department/create">
+                            <Link to="/dashboard/students/create">
                               <Button
                                 color="success"
                                 className="add-btn me-1"
