@@ -1,0 +1,162 @@
+.why-study-with-us {
+    background-color: #d0d0d0;
+    text-align: center;
+    max-width : 100%;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+  
+  .features-courses-page {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Add some gap between feature items */
+    margin-bottom: 2rem;
+  }
+  
+  .feature-courses-page {
+    
+    min-width: 150px; /* Smaller min-width for smaller screens */
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  .icon-courses-page {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold; /* Only the icon in bold */
+    color: #e53e3e;
+  }
+  
+  .feature-text-courses-page{
+    font-size: 12px;
+  }
+  .feature-ready{
+    font-size: 15px;
+  }
+
+
+  /* Search CSS */
+
+  .search-container-source-page {
+    background-color: #ffe8e8;
+    padding: 4rem;
+    text-align: left;
+  }
+  
+  .search-box-source-page {
+    
+    margin: 1rem auto;
+    max-width: 500px;
+  }
+  
+  .search-box-source-page,
+  .input-source-page {
+    margin-left: -292px;
+    width: 100%;
+    padding: 0.75rem; /* Slightly larger padding */
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none; /* Remove the input border on focus */
+  }
+  
+  /* Banner */
+
+  .header-container-Sources-Header {
+    margin-left: 180px;
+    display: flex;
+    align-items: center;
+    background: url('../../../../assets/images/small/3.png') no-repeat center center;
+    background-size: cover;
+    padding: 26.67px; /* Reduced padding */
+    box-shadow: 30px 30px 30px 30px rgba(0, 0, 0, 0.2); /* Added box shadow */
+    width: 1200px; /* Set width to 2/3 */
+}
+
+.header-content-Sources-Header {
+  max-width: 490px; /* Reduced max width to 2/3 */
+  padding: 25px; /* Reduced padding */
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Added box shadow */
+}
+
+.change-Sources-Header-red {
+  color: red;
+  text-decoration: underline;
+}
+
+.header-code-Sources-Header {
+  font-size: 0.75rem; /* Reduced font size */
+  color: #333;
+}
+
+.header-title-Sources-Header {
+  font-size: 1.5rem; /* Reduced font size */
+  font-weight: bold;
+  color: #000;
+  margin: 5px 0; /* Reduced margin */
+}
+
+.header-actions-Sources-Header {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.button-add-Sources-Header,
+.button-change-Sources-Header {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 8px; /* Reduced padding */
+  margin-right: 20px; /* Adjusted margin */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Added box shadow */
+}
+
+.button-add-Sources-Header:hover,
+.button-change-Sources-Header:hover {
+  background-color: #555;
+}
+
+.student-status-Sources-Header {
+  font-size: 0.75rem; /* Reduced font size */
+  display: flex;
+  align-items: center;
+}
+
+.details-container-Sources-Header {
+  padding: 20px; /* Reduced padding */
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+.detail-Sources-Header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.detail-Sources-Header strong {
+  font-size: 1rem; /* Reduced font size */
+  color: #000;
+}
+
+.detail-Sources-Header span {
+  font-size: 0.8rem; /* Reduced font size */
+  color: #666;
+}
+
+
+  /* background: url('../../../../../assets/images/banner/cq5dam.web.1920.1080.jpeg') no-repeat center center; */
+  
+  
+    

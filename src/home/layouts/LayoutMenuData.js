@@ -101,26 +101,14 @@ const Navdata = () => {
 
         //contact
         {
-            id: "contact",
-            label: "Contact",
-            link: "#",
+            id: "contact-us",
+            label: "Contact Us",
+            link: "/contact-us",
 
             click: function (e) {
                 e.preventDefault();
                 updateIconSidebar(e);
             },
-            subItems: [
-                {
-                    id: "contact-us",
-                    label: "Contact Us",
-                    link: "/about-us",
-                },
-                {
-                    id: "contact-details",
-                    label: "Contact Details",
-                    link: "/about-us/details",
-                },
-            ],
         },
 
     ];

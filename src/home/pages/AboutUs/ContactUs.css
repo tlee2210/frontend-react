@@ -1,5 +1,4 @@
-.contact-page-contactus {
-    
+.contact-page-contact-us {
     font-family: 'Arial', sans-serif;
     max-width: 1200px;
     margin: auto;
@@ -8,39 +7,29 @@
     background: linear-gradient(to right, #fdfdfd, #ffffff); 
     
   }
-  .contact-conten-contact-ust{
+  .contact-conten-contact-us{
     padding-top: 30px;
   }
-  p {
-    color: #000000;
-  }
+ 
   .contact-header-contact-us {
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 1px solid #32383e; /* Subtle separation line */
   }
   
-  .contact-header-contact-u {
+  .contact-header-contact-us {
     font-size: 2.5em;
     padding-bottom: 20px;
     color: #000000; /* Brighter color for emphasis */
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
   }
   
-  .contact-header-contact-us p {
+  .contact-header-contact-us{
     font-size: 1.2em;
     margin-bottom: 2em;
-    opacity: 0.9; /* Slightly transparent for better layering */
+    opacity: 0.9; 
   }
   
-  h5{
-    color: #000000;
-    font-weight: bold;
-    font-size: 20px;
-  }
-  .text-edit{
-    font-size: 15px;
-  }
   .button-showinformation {
     margin-top: 30px;
     display: inline-block;

@@ -1,4 +1,4 @@
-.header-container {
+.header-container-contact-us {
     position: relative;
     text-align: center;
     color: rgb(240, 240, 240); /* Text color */
@@ -11,7 +11,7 @@
     justify-content: center; /* This will horizontally align your text to the center */
   }
   
-  .header-title {
+  .header-title-contact-us {
     font-size: 48px;
     text-shadow: 2px 2px 4px #020202;
     color: white; /* Set text color to white */
