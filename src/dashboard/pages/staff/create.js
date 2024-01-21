@@ -41,7 +41,7 @@ import Flatpickr from "react-flatpickr";
 import Select from "react-select";
 
 const FacultyCreate = (props) => {
-  document.title = "Create Faculty";
+  document.title = "Create Staff";
   const history = useNavigate();
   const dispatch = useDispatch();
   const selectFacultyCreateState = (state) => state;
@@ -60,27 +60,34 @@ const FacultyCreate = (props) => {
     enableReinitialize: true,
 
     initialValues: {
-      Subject: "",
-      Code: "",
-      Description: "",
+      FirstName: "",
+      LastName: "",
+      Email: "",
+      Address: "",
+      Gender: "",
+      Phone: "",
+      Password: "",
+      Qualification: "",
+      Experience: "",
     },
     validationSchema: Yup.object({
-      Subject: Yup.string().required("Please Enter a Subject Title"),
-      Code: Yup.string()
-        .required("Please Enter a Code")
-        .matches(
-          /^[A-Z]{3}\d{5}$/,
-          "Code must be 3 uppercase letters followed by 5 numbers"
-        ),
-      Description: Yup.string().required("Please Enter a Description"),
+      FirstName: Yup.string().required("Please Enter a First Name"),
+      LastName: Yup.string().required("Please Enter a Last Name"),
+      Email: Yup.string().required("Please Enter a Email"),
+      Address: Yup.string().required("Please Enter a Address"),
+      Gender: Yup.string().required("Please Enter a Gender"),
+      Phone: Yup.string().required("Please Enter a Phone"),
+      Password: Yup.string().required("Please Enter a Password"),
+      Qualification: Yup.string().required("Please Enter a Qualification"),
+      Experience: Yup.string().required("Please Enter a Experience"),
     }),
     onSubmit: (values) => {
       console.log(values);
-      const formData = new FormData();
-      formData.append("Subject", values.Subject);
-      formData.append("Code", values.Code);
-      formData.append("Description", values.Description);
-      dispatch(DepartmentStore(formData, props.router.navigate));
+      // const formData = new FormData();
+      // formData.append("Subject", values.Subject);
+      // formData.append("Code", values.Code);
+      // formData.append("Description", values.Description);
+      // dispatch(DepartmentStore(formData, props.router.navigate));
       //   validation.resetForm();
     },
   });
@@ -98,7 +105,7 @@ const FacultyCreate = (props) => {
   return (
     <div className="page-content">
       <Container fluid>
-        <BreadCrumb title="Create faculty" pageTitle="faculty" />
+        <BreadCrumb title="Create Staff" pageTitle="Staff" />
 
         <Row>
           <Col md={12}>
@@ -118,28 +125,28 @@ const FacultyCreate = (props) => {
                           className="form-label"
                           htmlFor="product-title-input"
                         >
-                          Subject
+                          First Name
                         </Label>
                         <Input
                           type="text"
                           className="form-control"
                           id="product-title-input"
-                          placeholder="Enter Subject title"
-                          name="Subject"
-                          value={validation.values.Subject || ""}
+                          placeholder="Enter First Name"
+                          name="FirstName"
+                          value={validation.values.FirstName || ""}
                           onBlur={validation.handleBlur}
                           onChange={validation.handleChange}
                           invalid={
-                            validation.errors.Subject &&
-                            validation.touched.Subject
+                            validation.errors.FirstName &&
+                            validation.touched.FirstName
                               ? true
                               : false
                           }
                         />
-                        {validation.errors.Subject &&
-                        validation.touched.Subject ? (
+                        {validation.errors.FirstName &&
+                        validation.touched.FirstName ? (
                           <FormFeedback type="invalid">
-                            {validation.errors.Subject}
+                            {validation.errors.FirstName}
                           </FormFeedback>
                         ) : null}
                       </div>
@@ -150,52 +157,255 @@ const FacultyCreate = (props) => {
                           className="form-label"
                           htmlFor="product-title-input"
                         >
-                          Code
+                          Last Name
                         </Label>
                         <Input
                           type="text"
                           className="form-control"
                           id="product-title-input"
-                          placeholder="Enter Code"
-                          name="Code"
-                          value={validation.values.Code || ""}
+                          placeholder="Enter Last Name"
+                          name="LastName"
+                          value={validation.values.LastName || ""}
                           onBlur={validation.handleBlur}
                           onChange={validation.handleChange}
                           invalid={
-                            validation.errors.Code && validation.touched.Code
+                            validation.errors.LastName && validation.touched.LastName
                               ? true
                               : false
                           }
                         />
-                        {validation.errors.Code && validation.touched.Code ? (
+                        {validation.errors.LastName && validation.touched.LastName ? (
                           <FormFeedback type="invalid">
-                            {validation.errors.Code}
+                            {validation.errors.LastName}
                           </FormFeedback>
                         ) : null}
                       </div>
                     </Col>
                   </Row>
-
-                  <div>
-                    <Label>Description</Label>
-                    <CKEditor
-                      editor={ClassicEditor}
-                      data={validation.values.Description}
-                      onChange={(event, editor) => {
-                        const data = editor.getData();
-                        validation.setFieldValue("Description", data);
-                      }}
-                      onBlur={() =>
-                        validation.setFieldTouched("Description", true)
-                      }
-                    />
-                    {validation.touched.Description &&
-                    validation.errors.Description ? (
-                      <div className="invalid-feedback d-block">
-                        {validation.errors.Description}
+                  <Row>
+                    <Col md={6}>
+                      <div className="mb-3">
+                        <Label
+                          className="form-label"
+                          htmlFor="product-title-input"
+                        >
+                          Email
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          id="product-title-input"
+                          placeholder="Enter Email"
+                          name="Email"
+                          value={validation.values.Email || ""}
+                          onBlur={validation.handleBlur}
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.errors.Email &&
+                            validation.touched.Email
+                              ? true
+                              : false
+                          }
+                        />
+                        {validation.errors.Email &&
+                        validation.touched.Email ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.Email}
+                          </FormFeedback>
+                        ) : null}
                       </div>
-                    ) : null}
-                  </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="mb-3">
+                        <Label
+                          className="form-label"
+                          htmlFor="product-title-input"
+                        >
+                          Address
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          id="product-title-input"
+                          placeholder="Enter Address"
+                          name="Address"
+                          value={validation.values.Address || ""}
+                          onBlur={validation.handleBlur}
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.errors.Address && validation.touched.Address
+                              ? true
+                              : false
+                          }
+                        />
+                        {validation.errors.Address && validation.touched.Address ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.Address}
+                          </FormFeedback>
+                        ) : null}
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={4}>
+                      <div className="mb-3">
+                        <Label
+                          className="form-label"
+                          htmlFor="product-title-input"
+                        >
+                          Gender
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          id="product-title-input"
+                          placeholder="Enter Gender"
+                          name="Gender"
+                          value={validation.values.Gender || ""}
+                          onBlur={validation.handleBlur}
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.errors.Gender &&
+                            validation.touched.Gender
+                              ? true
+                              : false
+                          }
+                        />
+                        {validation.errors.Gender &&
+                        validation.touched.Gender ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.Gender}
+                          </FormFeedback>
+                        ) : null}
+                      </div>
+                    </Col>
+                    <Col md={4}>
+                      <div className="mb-3">
+                        <Label
+                          className="form-label"
+                          htmlFor="product-title-input"
+                        >
+                          Phone
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          id="product-title-input"
+                          placeholder="Enter Phone"
+                          name="Phone"
+                          value={validation.values.Phone || ""}
+                          onBlur={validation.handleBlur}
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.errors.Phone && validation.touched.Phone
+                              ? true
+                              : false
+                          }
+                        />
+                        {validation.errors.Phone && validation.touched.Phone ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.Phone}
+                          </FormFeedback>
+                        ) : null}
+                      </div>
+                    </Col>
+                    <Col md={4}>
+                      <div className="mb-3">
+                        <Label
+                          className="form-label"
+                          htmlFor="product-title-input"
+                        >
+                          Password
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          id="product-title-input"
+                          placeholder="Enter Password"
+                          name="Password"
+                          value={validation.values.Password || ""}
+                          onBlur={validation.handleBlur}
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.errors.Password &&
+                            validation.touched.Password
+                              ? true
+                              : false
+                          }
+                        />
+                        {validation.errors.Password &&
+                        validation.touched.Password ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.Password}
+                          </FormFeedback>
+                        ) : null}
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={6}>
+                      <div className="mb-3">
+                        <Label
+                          className="form-label"
+                          htmlFor="product-title-input"
+                        >
+                          Qualification
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          id="product-title-input"
+                          placeholder="Enter Qualification"
+                          name="Qualification"
+                          value={validation.values.Qualification || ""}
+                          onBlur={validation.handleBlur}
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.errors.Qualification &&
+                            validation.touched.Qualification
+                              ? true
+                              : false
+                          }
+                        />
+                        {validation.errors.Qualification &&
+                        validation.touched.Qualification ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.Qualification}
+                          </FormFeedback>
+                        ) : null}
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <div className="mb-3">
+                        <Label
+                          className="form-label"
+                          htmlFor="product-title-input"
+                        >
+                          Experience
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          id="product-title-input"
+                          placeholder="Enter Experience"
+                          name="Experience"
+                          value={validation.values.Experience || ""}
+                          onBlur={validation.handleBlur}
+                          onChange={validation.handleChange}
+                          invalid={
+                            validation.errors.Experience && validation.touched.Experience
+                              ? true
+                              : false
+                          }
+                        />
+                        {validation.errors.Experience && validation.touched.Experience ? (
+                          <FormFeedback type="invalid">
+                            {validation.errors.Experience}
+                          </FormFeedback>
+                        ) : null}
+                      </div>
+                    </Col>
+                  </Row>
                 </CardBody>
               </Card>
 
