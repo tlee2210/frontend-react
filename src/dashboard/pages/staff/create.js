@@ -2,59 +2,97 @@ import React, { useState, useEffect } from "react";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { createSelector } from "reselect";
 import withRouter from "../../../Components/Common/withRouter";
+import { FilePond, registerPlugin } from "react-filepond";
+import Dropzone from "react-dropzone";
 
 import {
   Card,
   CardBody,
   Col,
   Container,
-  CardHeader,
-  Nav,
-  NavItem,
-  NavLink,
   Row,
-  TabContent,
-  TabPane,
   Input,
   Label,
   FormFeedback,
   Form,
-  Button,
+  FormGroup,
 } from "reactstrap";
 import { message } from "antd";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
 
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-// import { addNewProduct as onAddNewProduct } from "../../../slices/thunks";
 
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import classnames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
-import { DepartmentStore } from "../../../slices/Department/thunk";
+import { staffStore } from "../../../slices/Staff/thunk";
 //formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import Flatpickr from "react-flatpickr";
-import Select from "react-select";
-
-const FacultyCreate = (props) => {
+const StaffCreate = (props) => {
   document.title = "Create Staff";
   const history = useNavigate();
   const dispatch = useDispatch();
-  const selectFacultyCreateState = (state) => state;
-  const FacultyCreatepageData = createSelector(
-    selectFacultyCreateState,
+  const selectStaffCreateState = (state) => state;
+  const StaffCreatepageData = createSelector(
+    selectStaffCreateState,
     (state) => ({
       isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
       errorMessage: state.Message.errorMessage,
     })
   );
-  const { isErrorNotificationVisible, errorMessage } = useSelector(
-    FacultyCreatepageData
-  );
+  const { isErrorNotificationVisible, errorMessage } =
+    useSelector(StaffCreatepageData);
+  const [selectedFiles, setselectedFiles] = useState([]);
+  function handleAcceptedFiles(files) {
+    files.map((file) =>
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+        formattedSize: formatBytes(file.size),
+      })
+    );
+    setselectedFiles(files);
+  }
+  function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  }
+  const customStyles = {
+    multiValue: (styles, { data }) => {
+      return {
+        ...styles,
+        backgroundColor: "#1fe6f0",
+      };
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      backgroundColor: "#1fe6f0",
+      color: "white",
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: "white",
+      backgroundColor: "#1fe6f0",
+      ":hover": {
+        backgroundColor: "#405189",
+        color: "white",
+      },
+    }),
+  };
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -69,25 +107,54 @@ const FacultyCreate = (props) => {
       Password: "",
       Qualification: "",
       Experience: "",
+      files: [],
     },
     validationSchema: Yup.object({
       FirstName: Yup.string().required("Please Enter a First Name"),
       LastName: Yup.string().required("Please Enter a Last Name"),
       Email: Yup.string().required("Please Enter a Email"),
       Address: Yup.string().required("Please Enter a Address"),
-      Gender: Yup.string().required("Please Enter a Gender"),
-      Phone: Yup.string().required("Please Enter a Phone"),
+      Gender: Yup.string()
+        .oneOf(
+          ["Male", "Female"],
+          "Invalid gender. Please choose either Male or Female."
+        )
+        .required("Please Enter a Gender"),
+      Phone: Yup.string()
+        .required("Please Enter a Phone")
+        .matches(/^\d{10}$/, "Phone number must be exactly 10 digits"),
       Password: Yup.string().required("Please Enter a Password"),
       Qualification: Yup.string().required("Please Enter a Qualification"),
-      Experience: Yup.string().required("Please Enter a Experience"),
+      Experience: Yup.string()
+        .matches(
+          /^(\d+)\s*(year|years)?$/,
+          "Experience must be a number followed by 'year' or 'years'"
+        )
+        .required("Please Enter Experience"),
+      files: Yup.array()
+        .of(
+          Yup.mixed().test(
+            "fileType",
+            "Unsupported File Format",
+            (value) => value && value.type.startsWith("image/")
+          )
+        )
+        .min(1, "Please upload at least one avatar"),
     }),
     onSubmit: (values) => {
-      console.log(values);
-      // const formData = new FormData();
-      // formData.append("Subject", values.Subject);
-      // formData.append("Code", values.Code);
-      // formData.append("Description", values.Description);
-      // dispatch(DepartmentStore(formData, props.router.navigate));
+      // console.log(values);
+      const formData = new FormData();
+      formData.append("FirstName", values.FirstName);
+      formData.append("LastName", values.LastName);
+      formData.append("Email", values.Email);
+      formData.append("Address", values.Address);
+      formData.append("Gender", values.Gender);
+      formData.append("Phone", values.Phone);
+      formData.append("Password", values.Password);
+      formData.append("Qualification", values.Qualification);
+      formData.append("Experience", values.Experience);
+      formData.append("FileAvatar", values.files[0]);
+      dispatch(staffStore(formData, props.router.navigate));
       //   validation.resetForm();
     },
   });
@@ -169,12 +236,14 @@ const FacultyCreate = (props) => {
                           onBlur={validation.handleBlur}
                           onChange={validation.handleChange}
                           invalid={
-                            validation.errors.LastName && validation.touched.LastName
+                            validation.errors.LastName &&
+                            validation.touched.LastName
                               ? true
                               : false
                           }
                         />
-                        {validation.errors.LastName && validation.touched.LastName ? (
+                        {validation.errors.LastName &&
+                        validation.touched.LastName ? (
                           <FormFeedback type="invalid">
                             {validation.errors.LastName}
                           </FormFeedback>
@@ -201,14 +270,12 @@ const FacultyCreate = (props) => {
                           onBlur={validation.handleBlur}
                           onChange={validation.handleChange}
                           invalid={
-                            validation.errors.Email &&
-                            validation.touched.Email
+                            validation.errors.Email && validation.touched.Email
                               ? true
                               : false
                           }
                         />
-                        {validation.errors.Email &&
-                        validation.touched.Email ? (
+                        {validation.errors.Email && validation.touched.Email ? (
                           <FormFeedback type="invalid">
                             {validation.errors.Email}
                           </FormFeedback>
@@ -233,12 +300,14 @@ const FacultyCreate = (props) => {
                           onBlur={validation.handleBlur}
                           onChange={validation.handleChange}
                           invalid={
-                            validation.errors.Address && validation.touched.Address
+                            validation.errors.Address &&
+                            validation.touched.Address
                               ? true
                               : false
                           }
                         />
-                        {validation.errors.Address && validation.touched.Address ? (
+                        {validation.errors.Address &&
+                        validation.touched.Address ? (
                           <FormFeedback type="invalid">
                             {validation.errors.Address}
                           </FormFeedback>
@@ -393,12 +462,14 @@ const FacultyCreate = (props) => {
                           onBlur={validation.handleBlur}
                           onChange={validation.handleChange}
                           invalid={
-                            validation.errors.Experience && validation.touched.Experience
+                            validation.errors.Experience &&
+                            validation.touched.Experience
                               ? true
                               : false
                           }
                         />
-                        {validation.errors.Experience && validation.touched.Experience ? (
+                        {validation.errors.Experience &&
+                        validation.touched.Experience ? (
                           <FormFeedback type="invalid">
                             {validation.errors.Experience}
                           </FormFeedback>
@@ -406,6 +477,77 @@ const FacultyCreate = (props) => {
                       </div>
                     </Col>
                   </Row>
+                  <Col md="12">
+                    <FormGroup className="mb-3">
+                      <Label htmlFor="validationCustom02">avatar</Label>
+                      <Dropzone
+                        onDrop={(acceptedFiles) => {
+                          handleAcceptedFiles(acceptedFiles);
+                          validation.setFieldValue("files", acceptedFiles);
+                        }}
+                      >
+                        {({ getRootProps, getInputProps }) => (
+                          <div className="dropzone dz-clickable">
+                            <div
+                              className="dz-message needsclick"
+                              {...getRootProps()}
+                            >
+                              <div className="mb-3">
+                                <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                              </div>
+                              <h4>upload avatar</h4>
+                            </div>
+                          </div>
+                        )}
+                      </Dropzone>
+                      {validation.touched.files && validation.errors.files ? (
+                        <div className="invalid-feedback d-block">
+                          {validation.errors.files}
+                        </div>
+                      ) : null}
+                      <div className="list-unstyled mb-0" id="file-previews">
+                        {selectedFiles.map((f, i) => {
+                          return (
+                            <Card
+                              className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                              key={i + "-file"}
+                            >
+                              <div className="p-2">
+                                <Row className="align-items-center">
+                                  <Col className="col-auto">
+                                    <img
+                                      data-dz-thumbnail=""
+                                      height="80"
+                                      className="avatar-sm rounded bg-light"
+                                      alt={f.name}
+                                      src={f.preview}
+                                    />
+                                  </Col>
+                                  <Col>
+                                    <Link
+                                      to="#"
+                                      className="text-muted font-weight-bold"
+                                    >
+                                      {f.name}
+                                    </Link>
+                                    <p className="mb-0">
+                                      <strong>{f.formattedSize}</strong>
+                                    </p>
+                                  </Col>
+                                </Row>
+                              </div>
+                            </Card>
+                          );
+                        })}
+                      </div>
+                      {validation.touched.Category &&
+                      validation.errors.Category ? (
+                        <FormFeedback type="invalid">
+                          {validation.errors.Category}
+                        </FormFeedback>
+                      ) : null}
+                    </FormGroup>
+                  </Col>
                 </CardBody>
               </Card>
 
@@ -422,4 +564,4 @@ const FacultyCreate = (props) => {
   );
 };
 
-export default withRouter(FacultyCreate);
+export default withRouter(StaffCreate);

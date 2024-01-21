@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { GetDepartment, DeleteDepartment } from "../../../slices/Department/thunk";
+import { GetStaff, Deletestaff } from "../../../slices/Staff/thunk";
 import { createSelector } from "reselect";
 import { ToastContainer, toast } from "react-toastify";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
@@ -21,24 +21,24 @@ import {
   FormFeedback,
   Badge,
 } from "reactstrap";
-import { message, Table } from "antd";
+import { message, Table, Image } from "antd";
 
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { Link } from "react-router-dom";
 import withRouter from "../../../Components/Common/withRouter";
 
-const DepartmentTables = (props) => {
+const StaffTables = (props) => {
   const dispatch = useDispatch();
-  const selectDepartmentState = (state) => state;
+  const selectStaffState = (state) => state;
   const [modal_detele, setmodal_detele] = useState(false);
   const [Id, setId] = useState("");
 
   useEffect(() => {
-    dispatch(GetDepartment());
+    dispatch(GetStaff());
   }, []);
 
-  const DepartmentpageData = createSelector(selectDepartmentState, (state) => ({
-    DepartmentData: state.Departmentdashboard.DepartmentData,
+  const StaffpageData = createSelector(selectStaffState, (state) => ({
+    StaffData: state.Staffdashboard.StaffData,
     isNotificationVisible: state.Message.isNotificationVisible,
     notificationMessage: state.Message.notificationMessage,
     isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
@@ -46,12 +46,12 @@ const DepartmentTables = (props) => {
   }));
 
   const {
-    DepartmentData,
+    StaffData,
     isNotificationVisible,
     notificationMessage,
     isErrorNotificationVisible,
     errorMessage,
-  } = useSelector(DepartmentpageData);
+  } = useSelector(StaffpageData);
 
   function tog_togdelete(id) {
     setmodal_detele(!modal_detele);
@@ -65,32 +65,78 @@ const DepartmentTables = (props) => {
       title: "Index",
       key: "Index",
       fixed: "left",
-      width: 100,
+      width: 80,
       render: (text, record, index) => index + 1,
     },
     {
-      title: "code",
-      key: "code",
-      dataIndex: "code",
+      title: "avatar",
+      key: "avatar",
+      render: (record) => {
+        return (
+          <>
+            <Image src={record.fileAvatar} alt={record.firstName} width={100} />
+          </>
+        );
+      },
     },
     {
-      title: "Subject",
-      key: "Subject",
-      dataIndex: "subject",
+      title: "first Name",
+      key: "firstName",
+      dataIndex: "firstName",
     },
     {
-      title: "Description",
-      key: "Description",
-      dataIndex: "description",
+      title: "last Name",
+      key: "lastName",
+      dataIndex: "lastName",
+    },
+    {
+      title: "email",
+      key: "email",
+      dataIndex: "email",
+    },
+    {
+      title: "phone",
+      key: "phone",
+      dataIndex: "phone",
+    },
+    {
+      title: "address",
+      key: "address",
+      dataIndex: "address",
+    },
+    {
+      title: "Gender",
+      key: "gender",
+      dataIndex: "gender",
+      render: (gender) =>
+        gender === 0 ? (
+          <span className="badge bg-secondary-subtle text-secondary badge-border">
+            Male
+          </span>
+        ) : (
+          <span className="badge bg-warning-subtle text-warning badge-border">
+            Female
+          </span>
+        ),
+    },
+    {
+      title: "experience",
+      key: "experience",
+      dataIndex: "experience",
+    },
+    {
+      title: "qualification",
+      key: "qualification",
+      dataIndex: "qualification",
     },
     {
       title: "Actions",
       fixed: "right",
-      width: 200,
+      width: 100,
       render: (record) => {
         return (
           <>
-            <Link to={`/dashboard/department/${record.id}/edit`}>
+            <Link to={`/dashboard/Staff/${record.id}/edit`}>
               <span className="bg-gradient me-3 fs-4 text-info">
                 <i className="ri-edit-2-fill"></i>
               </span>
@@ -131,8 +177,9 @@ const DepartmentTables = (props) => {
 
   function deleteitem(id) {
     if (id) {
-        // console.log(id);
-      dispatch(DeleteDepartment(id));
+      // console.log(id);
+      //here
+      dispatch(Deletestaff(id));
     }
   }
 
@@ -144,13 +191,13 @@ const DepartmentTables = (props) => {
         <Col xs={12}>
           <div className="page-content">
             <Container fluid>
-              <BreadCrumb title="department list" pageTitle="department" />
+              <BreadCrumb title="Staff list" pageTitle="Staff" />
               <Row>
                 <Col lg={12}>
                   <Card>
                     <CardHeader>
                       <ToastContainer />
-                      <h4 className="card-title mb-0">department list</h4>
+                      <h4 className="card-title mb-0">Staff list</h4>
                     </CardHeader>
                     <CardBody>
                       <div className="listjs-table" id="customerList">
@@ -182,8 +229,9 @@ const DepartmentTables = (props) => {
                         </Row>
                         <Table
                           columns={columns}
-                          dataSource={DepartmentData}
+                          dataSource={StaffData}
                           rowKey={"id"}
+                          scroll={{ x: 1800 }}
                         />
                       </div>
                     </CardBody>
@@ -240,4 +288,4 @@ const DepartmentTables = (props) => {
   );
 };
 
-export default withRouter(DepartmentTables);
+export default withRouter(StaffTables);
