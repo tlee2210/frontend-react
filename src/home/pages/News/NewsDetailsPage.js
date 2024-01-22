@@ -1,17 +1,27 @@
 import React from "react";
 import ParticlesAuth from '../../layouts/ParticlesAuth';
-import { Container, Card, CardHeader, CardBody } from "reactstrap";
+import { Container, Card, CardHeader, CardBody, Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {  Mousewheel } from "swiper";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
+import "swiper/css/effect-fade";
+import "swiper/css/effect-flip";
 
-import img3 from "../../../assets/images/logo-dark.png"
-import img4 from "../../../assets/images/logo-dark.png"
-import img5 from "../../../assets/images/logo-dark.png"
-import img6 from "../../../assets/images/logo-dark.png"
-import img7 from "../../../assets/images/logo-dark.png"
-import img8 from "../../../assets/images/logo-dark.png"
-import img9 from "../../../assets/images/logo-dark.png"
+import img8 from "../../../assets/images/small/2.jpg";
+import img9 from "../../../assets/images/small/3.png";
+
+const EducationProgram = (props) => {
+    const pagination = {
+        clickable: true,
+        renderBullet: function (index, className) {
+            return '<span className="' + className + '">' + (index + 1) + "</span>";
+        },
+    };
+}
 function NewDetailsPage() {
     return (
         <ParticlesAuth>
@@ -93,82 +103,136 @@ function NewDetailsPage() {
 
 
                 {/* Related articles */}
-                <div>
-                    <Card className="card-height-100">
-                        <div className="card-header align-items-center d-flex">
-                            <h1 className="card-title mb-0 flex-grow-1 fs-1">Related articles</h1>
-                            <div className="flex-shrink-0">
-                                <Link className="text-muted" to="#">
-                                    View All
-                                </Link>
+                <Col lg={12}>
+                    <h5 className="fs-3 mb-2 mt-5">Education program</h5>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={5}
+                        pagination={{
+                            el: ".swiper-pagination",
+                            clickable: true,
+                        }}
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 5,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                                spaceBetween: 10,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 15,
+                            },
+                        }}
+                        loop={true}
+                        modules={[Pagination]}
+                        className="mySwiper swiper responsive-swiper rounded gallery-light pb-4"
+                    >
+                        <Row>
+                            <div className="swiper-wrapper">
+                                <SwiperSlide>
+                                    <Card>
+                                        <img src={img9} className="card-img-top" alt="..." />
+                                        <CardBody>
+                                            <h5 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h5>
+                                            <p className="card-text">
+                                                e Computer Science and Artificial Intelligence Lab (CSAIL)
+                                            </p>
+                                            <Link to="#" className="btn btn-primary stretched-link">
+                                                Go somewhere
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Card>
+                                        <img src={img8} className="card-img-top" alt="..." />
+                                        <CardBody>
+                                            <h5 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h5>
+                                            <p className="card-text">
+                                                e Computer Science and Artificial Intelligence Lab (CSAIL)
+                                            </p>
+                                            <Link to="#" className="btn btn-primary stretched-link">
+                                                Go somewhere
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Card>
+                                        <img src={img9} className="card-img-top" alt="..." />
+                                        <CardBody>
+                                            <h5 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h5>
+                                            <p className="card-text">
+                                                e Computer Science and Artificial Intelligence Lab (CSAIL)
+                                            </p>
+                                            <Link to="#" className="btn btn-primary stretched-link">
+                                                Go somewhere
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Card>
+                                        <img src={img8} className="card-img-top" alt="..." />
+                                        <CardBody>
+                                            <h5 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h5>
+                                            <p className="card-text">
+                                                e Computer Science and Artificial Intelligence Lab (CSAIL)
+                                            </p>
+                                            <Link to="#" className="btn btn-primary stretched-link">
+                                                Go somewhere
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Card>
+                                        <img src={img9} className="card-img-top" alt="..." />
+                                        <CardBody>
+                                            <h5 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h5>
+                                            <p className="card-text">
+                                                e Computer Science and Artificial Intelligence Lab (CSAIL)
+                                            </p>
+                                            <Link to="#" className="btn btn-primary stretched-link">
+                                                Go somewhere
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Card>
+                                        <img src={img8} className="card-img-top" alt="..." />
+                                        <CardBody>
+                                            <h5 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h5>
+                                            <p className="card-text">
+                                                e Computer Science and Artificial Intelligence Lab (CSAIL)
+                                            </p>
+                                            <Link to="#" className="btn btn-primary stretched-link">
+                                                Go somewhere
+                                            </Link>
+                                        </CardBody>
+                                    </Card>
+                                </SwiperSlide>
                             </div>
-                        </div>
-                        <CardBody>
-                            <Swiper
-                                direction={"horizontal"}
-                                slidesPerView={1.5}
-                                spaceBetween={250}
-                                mousewheel={true}
-                                loop={false}
-                                modules={[ Mousewheel]}
-                                className="mySwiper vertical-swiper"
-                            >
-                                <SwiperSlide style={{ maxWidth: "200px" }}>
-                                    <div>
-                                        <div className="bg-info-subtle rounded">
-                                            <img src="https://themes.themesbrand.com/velzon/react/default/static/media/img-3.50996c6b5349bce6789b.png" alt="" style={{ maxHeight: "210px", maxWidth: "auto" }} />
-                                        </div>
-                                        <div className="pt-3">
-                                            <h5 className="text-secondary">$99.94</h5>
-                                            <Link to="#">
-                                                <h6 className="fs-15 lh-base text-truncate mb-0">350 ml Glass Grocery Container</h6>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide style={{ maxWidth: "200px" }}>
-                                    <div>
-                                        <div className="bg-success-subtle rounded">
-                                            <img src="https://themes.themesbrand.com/velzon/react/default/static/media/img-3.50996c6b5349bce6789b.png" alt="" style={{ maxHeight: "210px", maxWidth: "auto" }} />
-                                        </div>
-                                        <div className="pt-3">
-                                            <h5 className="text-secondary">$99.94</h5>
-                                            <Link to="#">
-                                                <h6 className="fs-15 lh-base text-truncate mb-0">Fabric Dual Tone Living Room Chair</h6>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide style={{ maxWidth: "200px" }}>
-                                    <div>
-                                        <div className="bg-warning-subtle rounded">
-                                            <img src="https://themes.themesbrand.com/velzon/react/default/static/media/img-3.50996c6b5349bce6789b.png" alt="" style={{ maxHeight: "210px", maxWidth: "auto" }} />
-                                        </div>
-                                        <div className="pt-3">
-                                            <h5 className="text-secondary">$99.94</h5>
-                                            <Link to="#">
-                                                <h6 className="fs-15 lh-base text-truncate mb-0">Crux Motorsports Helmet</h6>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide style={{ maxWidth: "200px" }}>
-                                    <div>
-                                        <div className="bg-secondary-subtle rounded">
-                                            <img src="https://themes.themesbrand.com/velzon/react/default/static/media/img-3.50996c6b5349bce6789b.png" alt="" style={{ maxHeight: "210px", maxWidth: "auto" }} />
-                                        </div>
-                                        <div className="pt-3">
-                                            <h5 className="text-secondary">$99.94</h5>
-                                            <Link to="#">
-                                                <h6 className="fs-15 lh-base text-truncate mb-0">Half Sleeve T-Shirts (Blue)</h6>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            </Swiper>
-                        </CardBody>
-                    </Card>
-                </div>
+                            <div className="swiper-pagination swiper-pagination-dark"></div>
+                        </Row>
+                    </Swiper>
+                </Col>
 
             </div>
         </ParticlesAuth>

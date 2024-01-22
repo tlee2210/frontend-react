@@ -53,14 +53,14 @@ const MainPage = () => {
 
   return (
     <Card>
-      <CardBody>
+      <CardBody style={{ padding: 0 }}>
         <Nav
           tabs
           className="fs-5 nav nav-tabs nav-justified nav-border-top nav-border-top-success mb-3"
         >
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", padding: 20 }}
               className={classnames({ active: topBorderTab === "1" })}
               onClick={() => {
                 topBordertoggle("1");
@@ -71,7 +71,7 @@ const MainPage = () => {
           </NavItem>
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", padding: 20 }}
               className={classnames({ active: topBorderTab === "2" })}
               onClick={() => {
                 topBordertoggle("2");
@@ -83,7 +83,7 @@ const MainPage = () => {
           </NavItem>
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", padding: 20 }}
               className={classnames({ active: topBorderTab === "3" })}
               onClick={() => {
                 topBordertoggle("3");
@@ -95,7 +95,7 @@ const MainPage = () => {
           </NavItem>
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", padding: 20 }}
               className={classnames({ active: topBorderTab === "4" })}
               onClick={() => {
                 topBordertoggle("4");
@@ -107,7 +107,7 @@ const MainPage = () => {
           </NavItem>
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", padding: 20 }}
               className={classnames({ active: topBorderTab === "5" })}
               onClick={() => {
                 topBordertoggle("5");
@@ -260,7 +260,9 @@ const MainPage = () => {
                     <p>3400212531</p>
                   </div>
                 </div>
-                {/* Why Swinburne? */}
+              </div>
+              {/* Why Swinburne? */}
+              <div style={{ backgroundColor: 'red' }}>
                 <div className="why-swinburne-container-overview-WhySwinburne">
                   <h2 className="why-swinburne-heading-overview-WhySwinburne">
                     Why Swinburne?
@@ -317,7 +319,6 @@ const MainPage = () => {
                 </div>
               </div>
             </TabPane>
-
             {/* Entry requirements */}
             <TabPane tabId="2" id="nav-border-justified-profile">
               <div

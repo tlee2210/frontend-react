@@ -79,15 +79,14 @@ const Navdata = () => {
 
         //Course
         {
-            id: "coursespage",
             label: "Courses",
-            link: "/courses-page",
-
-            click: function (e) {
-                // e.preventDefault();
-                // updateIconSidebar(e);
-            },
+            link:".",
             subItems: [
+                {
+                    id: "coursespage",
+                    label: "Courses",
+                    link: "/courses-page",
+                },
                 {
                     id: "find-a-source",
                     label: "Find A Source",

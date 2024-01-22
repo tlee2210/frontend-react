@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
 import ParticlesAuth from '../../layouts/ParticlesAuth';
 import { Link } from "react-router-dom";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
+import "swiper/css/effect-fade";
+import "swiper/css/effect-flip";
+
+import img8 from "../../../assets/images/small/2.jpg";
+import img9 from "../../../assets/images/small/3.png";
+
+import { Pagination } from "swiper";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './NewsCss/NewsPage.css'
 import { FaGlobe, FaIndustry, FaBookOpen, FaLaptop, FaUserGraduate } from 'react-icons/fa';
@@ -34,13 +45,7 @@ const NewsCard = ({ news }) => (
         </Card>
     </Col>
 );
-// const NewsList = ({ newsList }) => (
-//     <div className="news-list">
-//         {newsList.map(news => (
-//             <NewsCard key={news.id} news={news} />
-//         ))}
-//     </div>
-// );
+
 function NewsPage() {
 
 
@@ -122,7 +127,12 @@ function NewsPage() {
         // You can implement your search logic here using the searchTerm state
         alert(`Searching for: ${searchTerm}`);
     };
-
+    const pagination = {
+        clickable: true,
+        renderBullet: function (index, className) {
+            return "";
+        },
+    };
 
     return (
         <ParticlesAuth>
@@ -229,53 +239,206 @@ function NewsPage() {
                         </div>
                     </div>
                 </Container>
-                {/* Top stories */}
-                <div>
-                    <div className="mt-5">
-                        <h1 className="container">Top stories</h1>
-                        <Card className="card-height-100">
-                            <CardBody style={{ backgroundColor: '#cbcbcb' }}>
-                                <Container>
-                                    <Swiper
-                                        direction={"horizontal"}
-                                        slidesPerView={1.5}
-                                        spaceBetween={50}
-                                        mousewheel={true}
-                                        loop={false}
-                                        modules={[Mousewheel]}
-                                        className="mySwiper vertical-swiper"
-                                    >
-                                        {
-                                            mockNewsData
-                                                .sort((a, b) => b.relevance - a.relevance)
-                                                .slice(0, 4)
-                                                .map(news => (
-                                                    <SwiperSlide key={news.id} style={{ maxWidth: "380px" }} className="card-item-News-Page">
-                                                        <div>
-                                                            <div className="bg-info-subtle rounded">
-                                                                <img src={news.imgage} alt="" style={{ maxHeight: "210px", maxWidth: "auto" }} />
-                                                            </div>
-                                                            <div className="pt-3" style={{
-                                                                paddingLeft: 10
-                                                            }}>
-                                                                <h5 className="text-secondary pb-3">{news.title}</h5>
-                                                                <h5 className="text-secondary pb-5">{news.category}</h5>
-                                                                <Link to="#">
-                                                                    <h6 className="fs-6 lh-base text-truncate mb-0 text-danger">Read more<i className="las la-long-arrow-alt-right" style={{ paddingLeft: 15 }}></i></h6>
-                                                                </Link>
-                                                                <h6 className="fs-6 lh-base text-truncate mb-0">{news.date}</h6>
-                                                            </div>
-                                                        </div>
-                                                    </SwiperSlide>
-                                                ))
-                                        }
-                                    </Swiper>
-                                </Container>
-                            </CardBody>
-                        </Card>
 
-                    </div>
-                </div>
+
+
+
+                {/* Top stories */}
+                <Col lg={12}>
+                   <Container>
+                   <h5 className="fs-1 mb-2 mt-5 pb-2">Featured news</h5>
+                   </Container>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={5}
+                        pagination={{
+                            el: ".swiper-pagination",
+                            clickable: true,
+                        }}
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 5,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                                spaceBetween: 10,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 15,
+                            },
+                        }}
+                        loop={true}
+                        modules={[Pagination]}
+                        className="mySwiper swiper responsive-swiper rounded gallery-light pb-4"
+                    >
+                        <Row>
+                            <div className="swiper-wrapper">
+                                <SwiperSlide >
+                                    <Card className="mb-4">
+                                        <img
+                                            className="card-img-top img-fluid"
+                                            src={img9}
+                                            alt="Card cap"
+                                        />
+                                        <CardBody>
+                                            <h4 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h4>
+                                            <p className="card-text">
+                                                This is a wider card with supporting text below as a natural
+                                                lead-in to additional content. This card has even longer
+                                                content than the first to show that equal height action.
+                                            </p>
+                                        </CardBody>
+                                        <div className="card-footer">
+                                            <p className="card-text">
+                                                <small className="text-muted">
+                                                    Last updated 3 mins ago
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide >
+                                    <Card className="mb-4">
+                                        <img
+                                            className="card-img-top img-fluid"
+                                            src={img8}
+                                            alt="Card cap"
+                                        />
+                                        <CardBody>
+                                            <h4 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h4>
+                                            <p className="card-text">
+                                                This is a wider card with supporting text below as a natural
+                                                lead-in to additional content. This card has even longer
+                                                content than the first to show that equal height action.
+                                            </p>
+                                        </CardBody>
+                                        <div className="card-footer">
+                                            <p className="card-text">
+                                                <small className="text-muted">
+                                                    Last updated 3 mins ago
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide >
+                                    <Card className="mb-4">
+                                        <img
+                                            className="card-img-top img-fluid"
+                                            src={img9}
+                                            alt="Card cap"
+                                        />
+                                        <CardBody>
+                                            <h4 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h4>
+                                            <p className="card-text">
+                                                This is a wider card with supporting text below as a natural
+                                                lead-in to additional content. This card has even longer
+                                                content than the first to show that equal height action.
+                                            </p>
+                                        </CardBody>
+                                        <div className="card-footer">
+                                            <p className="card-text">
+                                                <small className="text-muted">
+                                                    Last updated 3 mins ago
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide >
+                                    <Card className="mb-4">
+                                        <img
+                                            className="card-img-top img-fluid"
+                                            src={img8}
+                                            alt="Card cap"
+                                        />
+                                        <CardBody>
+                                            <h4 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h4>
+                                            <p className="card-text">
+                                                This is a wider card with supporting text below as a natural
+                                                lead-in to additional content. This card has even longer
+                                                content than the first to show that equal height action.
+                                            </p>
+                                        </CardBody>
+                                        <div className="card-footer">
+                                            <p className="card-text">
+                                                <small className="text-muted">
+                                                    Last updated 3 mins ago
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide >
+                                    <Card className="mb-4">
+                                        <img
+                                            className="card-img-top img-fluid"
+                                            src={img9}
+                                            alt="Card cap"
+                                        />
+                                        <CardBody>
+                                            <h4 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h4>
+                                            <p className="card-text">
+                                                This is a wider card with supporting text below as a natural
+                                                lead-in to additional content. This card has even longer
+                                                content than the first to show that equal height action.
+                                            </p>
+                                        </CardBody>
+                                        <div className="card-footer">
+                                            <p className="card-text">
+                                                <small className="text-muted">
+                                                    Last updated 3 mins ago
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </Card>
+                                </SwiperSlide>
+                                <SwiperSlide >
+                                    <Card className="mb-4">
+                                        <img
+                                            className="card-img-top img-fluid"
+                                            src={img8}
+                                            alt="Card cap"
+                                        />
+                                        <CardBody>
+                                            <h4 className="card-title">
+                                                Massachusetts Institute of Technology (MIT)
+                                            </h4>
+                                            <p className="card-text">
+                                                This is a wider card with supporting text below as a natural
+                                                lead-in to additional content. This card has even longer
+                                                content than the first to show that equal height action.
+                                            </p>
+                                        </CardBody>
+                                        <div className="card-footer">
+                                            <p className="card-text">
+                                                <small className="text-muted">
+                                                    Last updated 3 mins ago
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </Card>
+                                </SwiperSlide>
+                            </div>
+                            <div className="swiper-pagination swiper-pagination-dark"></div>
+                        </Row>
+                    </Swiper>
+                </Col>
+                
+
+
 
 
                 {/* Achievements and awards*/}

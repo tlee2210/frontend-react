@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
-// import { FaGlobe, FaIndustry, FaBookOpen, FaLaptop, FaUserGraduate } from 'react-icons/fa';
+import { FaGlobe, FaIndustry, FaBookOpen, FaLaptop, FaUserGraduate } from 'react-icons/fa';
 import { Row, Col, Button } from 'reactstrap';
 
 
@@ -22,23 +22,23 @@ const index = () => {
                 <h4 className='fs-2'>Why study with us?</h4>
                 <div className="features-courses-page row">
                     <div className="col-md-2 feature-courses-page">
-                        {/* <FaGlobe className="icon-courses-page " /> */}
+                        <FaGlobe className="icon-courses-page " />
                         <p className='feature-text-courses-page'>We are an internationally recognised university</p>
                     </div>
                     <div className="col-md-2 feature-courses-page">
-                        {/* <FaIndustry className="icon-courses-page" /> */}
+                        <FaIndustry className="icon-courses-page" />
                         <p className='feature-text-courses-page'>Guaranteed real industry experience in all bachelor degrees</p>
                     </div>
                     <div className="col-md-2 feature-courses-page">
-                        {/* <FaBookOpen className="icon-courses-page" /> */}
+                        <FaBookOpen className="icon-courses-page" />
                         <p className='feature-text-courses-page'>High-quality research and teaching</p>
                     </div>
                     <div className="col-md-2 feature-courses-page">
-                        {/* <FaLaptop className="icon-courses-page" /> */}
+                        <FaLaptop className="icon-courses-page" />
                         <p className='feature-text-courses-page'>Cutting-edge facilities that enhance learning</p>
                     </div>
                     <div className="col-md-2 feature-courses-page">
-                        {/* <FaUserGraduate className="icon-courses-page" /> */}
+                        <FaUserGraduate className="icon-courses-page" />
                         <p className='feature-text-courses-page'>Flexible study options available</p>
                     </div>
                 </div>
