@@ -75,6 +75,8 @@ const Navdata = () => {
 
         //     ],
         // },
+
+
         //Course
         {
             id: "coursespage",
@@ -97,6 +99,30 @@ const Navdata = () => {
                     link: "/courses-page/under-graduate-page",
                 },
             ],
+        },
+
+        //News
+        {
+            id: "news",
+            label: "News",
+            link: "/news",
+
+            click: function (e) {
+                e.preventDefault();
+                updateIconSidebar(e);
+            },
+        },
+
+        //New/Details
+        {
+            id: "news-details",
+            label: "News Details",
+            link: "/news/details",
+
+            click: function (e) {
+                e.preventDefault();
+                updateIconSidebar(e);
+            },
         },
 
         //contact

@@ -1,0 +1,190 @@
+.header-container-news-Header {
+    display: flex;
+    align-items: center;
+    background: url('../../../../assets/images/small/4.png') no-repeat center center;
+    background-size: cover;
+    padding: 79px;
+    padding-top: 50px;
+  }
+  
+  .header-content-news-Header {
+    max-width: 600px;
+    padding: 50px;
+    background: rgba(80, 79, 79, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+  }
+  
+  .change-news-Header-red{
+    color: red;
+    text-decoration: underline;
+  }
+  .header-code-news-Header {
+    font-size: 0.85rem;
+    color: #333;
+  }
+  
+  .header-title-news-Header {
+    font-size: 4rem;
+    color: #ffffff;
+    margin: 10px 0;
+  }
+  
+  .header-actions-news-Header {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .button-add-news-Header,
+  .button-change-news-Header {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-right: 109px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button-add-news-Header:hover,
+  .button-change-news-Header:hover {
+    background-color: #555;
+  }
+  
+  .student-status-news-Header {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .text-news-css {
+    color: white;
+  }
+
+
+  .details-container-news-Header {
+    padding: 40px;
+    display: flex;
+    justify-content: left; /* Distribute items evenly */
+    margin-top: 20px;
+  }
+  
+  .detail-news-Header {
+    width: 100%; /* Adjust the width as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align details to the left */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .detail-news-Header strong {
+    font-size: 1.2rem;
+    color: #000;
+  }
+  
+  .detail-news-Header span {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+
+
+  /* Card */
+  .news-card-image {
+    max-height: 200px; /* Set the maximum height for the image */
+}
+
+.news-card-title {
+    font-size: 1.2rem; /* Adjust the title font size */
+}
+
+.news-card-text {
+    font-size: 1rem; /* Adjust the text font size */
+    color: #333; /* Change the text color */
+}
+  
+
+
+
+
+.image-News-container-text {
+   
+    display: flex;
+    align-items: left;
+  }
+  
+  .image-News-container {
+    
+    left: 201px;
+  }
+  
+  .text-News-container {
+   
+    flex: 2;
+    padding: 20px;
+  }
+  
+  .img-container {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .border-shadow-news-page{
+    max-width: 1090px;
+    left: 263px;
+    border: 1px solid #e0e0e0; /* Customize the border color and thickness */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
+    padding: 20px; /* Optional: Adjust padding as needed */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+
+  }
+
+
+
+  /* Contact Form  */
+  .Socials-news-page {
+    background-color: #d0d0d0;
+    text-align: center;
+    max-width : 100%;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+  
+  .features-news-page {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Add some gap between feature items */
+    margin-bottom: 2rem;
+  }
+  
+  .feature-news-page {
+    
+    min-width: 150px; /* Smaller min-width for smaller screens */
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  .icon-news-page {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold; /* Only the icon in bold */
+    color: #e53e3e;
+  }
+  
+  .feature-text-news-page{
+    font-size: 12px;
+  }
+  .feature-ready-news-page{
+    font-size: 15px;
+  }
+
+.card-item-News-Page{
+    background-color: #ffffff; /* Background color for each card */
+    border-radius: 10px; /* Rounded corners for each card */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for each card */
+    margin-bottom: 20px; /* Spacing between cards */
+    padding: 15px; /* Padding inside each card */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for box shadow */
+}

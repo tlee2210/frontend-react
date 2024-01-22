@@ -20,6 +20,11 @@ import CoursesPage from "../home/pages/Courses/CoursesPage";
 import FindASource from "../home/pages/FindASource/FindASource";
 //Under Graduate Page
 import UnderGraduatePage from "../home/pages/UnderGraduate/UnderGraduatePage";
+//New Page
+import NewsPage from "../home/pages/News/NewsPage";
+//New Details Page
+import NewDetailsPage from "../home/pages/News/NewsDetailsPage";
+
 
 //Admin pages
 import Courses from "../dashboard/pages/Courses/index";
@@ -119,8 +124,14 @@ const publicHome = [
   { path: "/courses-page", component: <CoursesPage /> },
   { path: "/courses-page/find-a-source", component: <FindASource /> },
   {
-    path: "/courses-page/under-graduate-page",
-    component: <UnderGraduatePage />,
+    path: "/courses-page/under-graduate-page", component: <UnderGraduatePage />,
   },
+  {
+    path: "/news", component: <NewsPage />,
+  },
+  {
+    path: "/news/details", component: <NewDetailsPage />,
+  },
+  
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicRoutes, publicHome };
