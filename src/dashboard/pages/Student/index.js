@@ -159,7 +159,7 @@ const DepartmentTables = (props) => {
                       <div className="listjs-table" id="customerList">
                         <Row className="g-4 mb-3">
                           <Col className="col-sm-auto">
-                            <Link to="/dashboard/students/create">
+                            <Link to="/dashboard/student/create">
                               <Button
                                 color="success"
                                 className="add-btn me-1"

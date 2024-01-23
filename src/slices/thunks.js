@@ -21,3 +21,4 @@ export * from "./Facilities/thunk";
 export * from "./Staff/thunk";
 export * from "./Session/thunk";
 export * from "./Admission/thunk";
+export * from "./Student/thunk";
