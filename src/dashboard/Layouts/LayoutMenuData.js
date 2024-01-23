@@ -13,8 +13,9 @@ const Navdata = () => {
   const [isStudent, setisStudent] = useState(false);
   const [isfacilities, setIsfacilities] = useState(false);
   const [isSession, setIsSession] = useState(false);
+  const [isFeedback, setIsFeedback] = useState(false);
+  const [isAdmission, setIsAdmission] = useState(false);
   const [iscurrentState, setIscurrentState] = useState("Dashboard");
-
   function updateIconSidebar(e) {
     if (e && e.target && e.target.getAttribute("subitems")) {
       const ul = document.getElementById("two-column-menu");
@@ -58,6 +59,12 @@ const Navdata = () => {
     if (iscurrentState !== "Session") {
       setIsSession(false);
     }
+    if (iscurrentState !== "Feedback") {
+      setIsFeedback(false);
+    }
+    if (iscurrentState !== "Admission") {
+      setIsAdmission(false);
+    }
   }, [
     history,
     iscurrentState,
@@ -70,6 +77,8 @@ const Navdata = () => {
     isDepartment,
     isStudent,
     isSession,
+    isFeedback,
+    isAdmission,
   ]);
 
   const menuItems = [
@@ -208,6 +217,74 @@ const Navdata = () => {
           label: "Student list",
           link: "/dashboard/students",
           parentId: "student",
+        },
+      ],
+    },
+    {
+      label: "Admission",
+      isHeader: true,
+    },
+    {
+      id: "admission",
+      label: "Admission",
+      icon: "ri-file-list-fill",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsAdmission(!isAdmission);
+        setIscurrentState("Admission");
+        updateIconSidebar(e);
+      },
+      stateVariables: isAdmission,
+      subItems: [
+        {
+          id: "Proccess",
+          label: "Admission Proccess",
+          link: "/dashboard/admission/proccess",
+          parentId: "admission",
+        },
+        {
+          id: "Accept",
+          label: "Admission Accept",
+          link: "/dashboard/admission/accept",
+          parentId: "admission",
+        },
+        {
+          id: "Reject",
+          label: "Admission Reject",
+          link: "/dashboard/admission/reject",
+          parentId: "admission",
+        },
+      ],
+    },
+    {
+      label: "Student feedback",
+      isHeader: true,
+    },
+    {
+      id: "feedback",
+      label: "Feedback",
+      icon: "ri-message-fill",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsFeedback(!isFeedback);
+        setIscurrentState("Feedback");
+        updateIconSidebar(e);
+      },
+      stateVariables: isFeedback,
+      subItems: [
+        {
+          id: "feedbackId",
+          label: "feedback list",
+          link: "/#",
+          parentId: "feedback",
+        },
+        {
+          id: "feedbackId2",
+          label: "feedback list",
+          link: "/#",
+          parentId: "feedback",
         },
       ],
     },

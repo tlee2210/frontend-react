@@ -20,3 +20,4 @@ export * from "./Department/thunk";
 export * from "./Facilities/thunk";
 export * from "./Staff/thunk";
 export * from "./Session/thunk";
+export * from "./Admission/thunk";

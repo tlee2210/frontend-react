@@ -57,8 +57,11 @@ import DepartmentCreate from "../dashboard/pages/Department/create";
 import DepartmentEdit from "../dashboard/pages/Department/edit";
 // session
 import Sessions from "../dashboard/pages/session/index";
-import SessionCreate from "../dashboard/pages/session/create";
-import SessionEdit from "../dashboard/pages/session/edit";
+// Admission Proccess
+import AdmissionProccess from "../dashboard/pages/Admission/AdmissionProccess";
+import AdmissionAccept from "../dashboard/pages/Admission/AdmissionAccept";
+import AdmissionReject from "../dashboard/pages/Admission/AdmissionReject";
+import AdmissionDetail from "../dashboard/pages/Admission/AdmissionDetail";
 //404 pages
 import Basic404 from "../pages/AuthenticationInner/Errors/Basic404";
 import Cover404 from "../pages/AuthenticationInner/Errors/Cover404";
@@ -97,8 +100,11 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/staff/:id/edit", component: <StaffEdit /> },
   // sessions
   { path: "/dashboard/sessions", component: <Sessions /> },
-  { path: "/dashboard/session/create", component: <SessionCreate /> },
-  { path: "/dashboard/session/:id/edit", component: <SessionEdit /> },
+  // Admission
+  { path: "/dashboard/admission/proccess", component: <AdmissionProccess /> },
+  { path: "/dashboard/admission/accept", component: <AdmissionAccept /> },
+  { path: "/dashboard/admission/reject", component: <AdmissionReject /> },
+  { path: "/dashboard/admission/:id/detail", component: <AdmissionDetail /> },
 ];
 
 const authProtectedRoutes = [

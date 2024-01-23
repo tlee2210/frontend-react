@@ -1,5 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { GetSession, createSession } from "../../../slices/Session/thunk";
+import {
+  GetSession,
+  createSession,
+  UpdateSessions,
+} from "../../../slices/Session/thunk";
 
 import { createSelector } from "reselect";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,6 +19,7 @@ import {
   Col,
   Container,
   Row,
+  Badge,
 } from "reactstrap";
 import { message, Table } from "antd";
 
@@ -46,6 +51,36 @@ const SessionTables = (props) => {
     errorMessage,
   } = useSelector(SessionpageData);
 
+  const getStatusText = (statusCode) => {
+    const statusConfig = {
+      0: {
+        text: "Active",
+        color: "success",
+        className: "badge bg-secondary-subtle text-secondary  badge-border",
+      },
+      1: {
+        text: "Inactive",
+        color: "warning",
+        className: "badge bg-warning-subtle  text-warning badge-border",
+      },
+      2: {
+        text: "Completed",
+        color: "secondary",
+        className: "badge bg-success-subtle text-success badge-border",
+      },
+    };
+
+    const config = statusConfig[statusCode] || {
+      text: "Unknown",
+      className: "badge-unknown",
+    };
+    return (
+      <Badge color={config.color} className={config.className}>
+        {config.text}
+      </Badge>
+    );
+  };
+
   const columns = [
     {
       title: "Index",
@@ -73,6 +108,30 @@ const SessionTables = (props) => {
       dataIndex: "yearEnd",
       render: (text) => {
         return moment(text).format("MM/DD/YYYY");
+      },
+    },
+    {
+      title: "status",
+      key: "status",
+      dataIndex: "status",
+      render: (status) => {
+        return getStatusText(status);
+      },
+    },
+    {
+      title: "Is Current Year",
+      key: "isCurrentYear",
+      dataIndex: "isCurrentYear",
+      render: (isCurrentYear) => {
+        return isCurrentYear ? (
+          <Badge color="success" className="fs-5">
+            <i className="ri-checkbox-circle-line"></i>
+          </Badge>
+        ) : (
+          <Badge color="danger" className="fs-5">
+            <i className="ri-close-circle-line"></i>
+          </Badge>
+        );
       },
     },
   ];
@@ -121,12 +180,28 @@ const SessionTables = (props) => {
                           <Col className="col-sm-auto">
                             <Button
                               color="success"
-                              className="add-btn me-1"
+                              className="btn-animation me-2"
                               id="create-btn"
+                              data-text="Create"
                               onClick={() => dispatch(createSession())}
                             >
-                              <i className="ri-add-line align-bottom me-1"></i>{" "}
-                              Add
+                              <span>
+                                <i className="ri-add-line align-bottom me-1"></i>{" "}
+                                Create Next Session
+                              </span>
+                            </Button>
+
+                            <Button
+                              color="info"
+                              className="btn-animation me-2"
+                              data-text="Recalculate"
+                              id="create-btn"
+                              onClick={() => dispatch(UpdateSessions())}
+                            >
+                              <span>
+                                <i className="ri-refresh-fill me-2 fs-6"></i>
+                                Recalculate Current Sessions
+                              </span>
                             </Button>
                           </Col>
                           <Col className="col-sm">

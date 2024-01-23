@@ -11,11 +11,12 @@ const SessionSlice = createSlice({
     setSessionData(state, action) {
       state.SessionData = action.payload;
     },
+    addCSession(state, action) {
+      state.SessionData = [...state.SessionData, action.payload];
+    },
   },
 });
 
-export const {
-  setSessionData,
-} = SessionSlice.actions;
+export const { setSessionData, addCSession } = SessionSlice.actions;
 
 export default SessionSlice.reducer;
