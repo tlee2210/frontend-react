@@ -25,7 +25,6 @@ import NewsPage from "../home/pages/News/NewsPage";
 //New Details Page
 import NewDetailsPage from "../home/pages/News/NewsDetailsPage";
 
-
 //Admin pages
 import Courses from "../dashboard/pages/Courses/index";
 import Category from "../dashboard/pages/Article/Category/index";
@@ -56,6 +55,10 @@ import ContactUs from "../dashboard/pages/ContactUs/index";
 import Departments from "../dashboard/pages/Department/index";
 import DepartmentCreate from "../dashboard/pages/Department/create";
 import DepartmentEdit from "../dashboard/pages/Department/edit";
+// session
+import Sessions from "../dashboard/pages/session/index";
+import SessionCreate from "../dashboard/pages/session/create";
+import SessionEdit from "../dashboard/pages/session/edit";
 //404 pages
 import Basic404 from "../pages/AuthenticationInner/Errors/Basic404";
 import Cover404 from "../pages/AuthenticationInner/Errors/Cover404";
@@ -92,6 +95,10 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/staffs", component: <Staff /> },
   { path: "/dashboard/staff/create", component: <StaffCreate /> },
   { path: "/dashboard/staff/:id/edit", component: <StaffEdit /> },
+  // sessions
+  { path: "/dashboard/sessions", component: <Sessions /> },
+  { path: "/dashboard/session/create", component: <SessionCreate /> },
+  { path: "/dashboard/session/:id/edit", component: <SessionEdit /> },
 ];
 
 const authProtectedRoutes = [
@@ -124,14 +131,16 @@ const publicHome = [
   { path: "/courses-page", component: <CoursesPage /> },
   { path: "/courses-page/find-a-source", component: <FindASource /> },
   {
-    path: "/courses-page/under-graduate-page", component: <UnderGraduatePage />,
+    path: "/courses-page/under-graduate-page",
+    component: <UnderGraduatePage />,
   },
   {
-    path: "/news", component: <NewsPage />,
+    path: "/news",
+    component: <NewsPage />,
   },
   {
-    path: "/news/details", component: <NewDetailsPage />,
+    path: "/news/details",
+    component: <NewDetailsPage />,
   },
-  
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicRoutes, publicHome };

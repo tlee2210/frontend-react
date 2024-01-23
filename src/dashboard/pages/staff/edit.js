@@ -33,7 +33,7 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useNavigate } from "react-router-dom";
-import { GetEditstaff } from "../../../slices/Staff/thunk";
+import { GetEditstaff, UpdateStaff } from "../../../slices/Staff/thunk";
 //formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -56,7 +56,7 @@ const StaffEdit = (props) => {
   function handleAcceptedFiles(files) {
     files.map((file) =>
       Object.assign(file, {
-        preview: URL.EditObjectURL(file),
+        preview: URL.createObjectURL(file),
         formattedSize: formatBytes(file.size),
       })
     );
@@ -145,6 +145,7 @@ const StaffEdit = (props) => {
     onSubmit: (values) => {
       // console.log(values);
       const formData = new FormData();
+      formData.append("id", values.id);
       formData.append("FirstName", values.FirstName);
       formData.append("LastName", values.LastName);
       formData.append("Email", values.Email);
@@ -154,8 +155,10 @@ const StaffEdit = (props) => {
       formData.append("Password", values.Password);
       formData.append("Qualification", values.Qualification);
       formData.append("Experience", values.Experience);
-      formData.append("FileAvatar", values.files[0]);
-      dispatch(staffStore(formData, props.router.navigate));
+      if (values.files[0]) {
+        formData.append("FileAvatar", values.files[0]);
+      }
+      dispatch(UpdateStaff(formData, props.router.navigate));
       //   validation.resetForm();
     },
   });

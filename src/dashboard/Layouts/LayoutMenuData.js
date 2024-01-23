@@ -12,6 +12,7 @@ const Navdata = () => {
   const [isStaff, setIsStaff] = useState(false);
   const [isStudent, setisStudent] = useState(false);
   const [isfacilities, setIsfacilities] = useState(false);
+  const [isSession, setIsSession] = useState(false);
   const [iscurrentState, setIscurrentState] = useState("Dashboard");
 
   function updateIconSidebar(e) {
@@ -54,6 +55,9 @@ const Navdata = () => {
     if (iscurrentState !== "Student") {
       setisStudent(false);
     }
+    if (iscurrentState !== "Session") {
+      setIsSession(false);
+    }
   }, [
     history,
     iscurrentState,
@@ -65,6 +69,7 @@ const Navdata = () => {
     isfacilities,
     isDepartment,
     isStudent,
+    isSession,
   ]);
 
   const menuItems = [
@@ -136,7 +141,32 @@ const Navdata = () => {
       ],
     },
     {
-      label: "Staff Students",
+      label: "Session",
+      isHeader: true,
+    },
+    {
+      id: "session",
+      label: "Session",
+      icon: "bx bx-calendar",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsSession(!isSession);
+        setIscurrentState("Session");
+        updateIconSidebar(e);
+      },
+      stateVariables: isSession,
+      subItems: [
+        {
+          id: "Session",
+          label: "Session list",
+          link: "/dashboard/sessions",
+          parentId: "Session",
+        },
+      ],
+    },
+    {
+      label: "Staff and Students",
       isHeader: true,
     },
     {

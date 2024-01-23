@@ -15,6 +15,8 @@ import facultyReducer from "./Faculty/reducer";
 import DepartmentReducer from "./Department/reducer";
 import FacilitiesReducer from "./Facilities/reducer";
 import StaffReducer from "./Staff/reducer";
+import SessionReducer from "./Session/reducer";
+
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
   Login: LoginReducer,
@@ -29,6 +31,7 @@ const rootReducer = combineReducers({
   Facilitiesdashboard: FacilitiesReducer,
   Departmentdashboard: DepartmentReducer,
   Staffdashboard: StaffReducer,
+  Sessiondashboard: SessionReducer,
   Message: MessageReducer,
 });
 

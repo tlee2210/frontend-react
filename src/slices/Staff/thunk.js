@@ -42,25 +42,25 @@ export const GetEditstaff = (id) => async (dispatch) => {
       console.log(error);
     });
 };
-// export const UpdateArticle = (formData, history) => async (dispatch) => {
-//   axios
-//     .post("https://localhost:7112/api/dashboard/Article/update", formData, {
-//       headers: {
-//         "Content-Type": "multipart/form-data",
-//       },
-//     })
-//     .then((response) => {
-//       // console.log(response);
-//       if (response.data.message) {
-//         dispatch(setMessage(response.data.message));
-//       }
-//       history("/dashboard/article");
-//     })
-//     .catch((error) => {
-//       console.log(error.response.data);
-//       dispatch(errorMessage(error.response.data));
-//     });
-// };
+export const UpdateStaff = (formData, history) => async (dispatch) => {
+  axios
+    .post("https://localhost:7112/api/dashboard/staff/Update", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      // if (response.data.message) {
+      //   dispatch(setMessage(response.data.message));
+      // }
+      // history("/dashboard/article");
+    })
+    .catch((error) => {
+      console.log(error);
+      // dispatch(errorMessage(error.response.data));
+    });
+};
 export const Deletestaff = (id) => async (dispatch) => {
   axios
     .delete(`https://localhost:7112/api/dashboard/staff/${id}/delete`)
