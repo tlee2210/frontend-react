@@ -1,0 +1,9 @@
+.header-container-news-Header-facilities {
+    display: flex;
+    align-items: center;
+    background: url('../../../assets/images/small/2.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 79px;
+    padding-top: 50px;
+  }
+  

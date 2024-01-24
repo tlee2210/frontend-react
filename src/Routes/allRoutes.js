@@ -24,6 +24,8 @@ import UnderGraduatePage from "../home/pages/UnderGraduate/UnderGraduatePage";
 import NewsPage from "../home/pages/News/NewsPage";
 //New Details Page
 import NewDetailsPage from "../home/pages/News/NewsDetailsPage";
+//Facilities
+import FacilitiesPage from "../home/pages/Facilities/FacilitiesPage";
 
 //Admin pages
 import Courses from "../dashboard/pages/Courses/index";
@@ -147,6 +149,10 @@ const publicHome = [
   {
     path: "/news/details",
     component: <NewDetailsPage />,
+  },
+  {
+    path: "/facilities",
+    component: <FacilitiesPage />,
   },
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicRoutes, publicHome };

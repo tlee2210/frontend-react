@@ -112,6 +112,18 @@ const Navdata = () => {
             },
         },
 
+        //Facilities
+        {
+            id: "facilities",
+            label: "Facilities",
+            link: "/facilities",
+
+            click: function (e) {
+                e.preventDefault();
+                updateIconSidebar(e);
+            },
+        },
+
         //New/Details
         {
             id: "news-details",
