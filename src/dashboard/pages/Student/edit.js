@@ -7,7 +7,8 @@ import Flatpickr from "react-flatpickr";
 
 import Dropzone from "react-dropzone";
 import Select from "react-select";
-import { GetCreatestudent,studentStore } from "../../../slices/Student/thunk";
+// here
+import { getEditStudent, studentUpdate } from "../../../slices/Student/thunk";
 import {
   Card,
   CardBody,
@@ -36,26 +37,28 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useNavigate } from "react-router-dom";
-import { StudentStore } from "../../../slices/Student/thunk";
 //formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const StudentCreate = (props) => {
-  document.title = "Create Student";
+const StudentEdit = (props) => {
+  document.title = "Edit Student";
+  const id = props.router.params.id;
+
   const history = useNavigate();
   const dispatch = useDispatch();
-  const selectStudentCreateState = (state) => state;
-  const StudentCreatepageData = createSelector(
-    selectStudentCreateState,
+  const selectStudentEditState = (state) => state;
+  const StudentEditpageData = createSelector(
+    selectStudentEditState,
     (state) => ({
+      item: state.Studentsdashboard.item,
       SelectOption: state.Studentsdashboard.SelectOption,
       isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
       errorMessage: state.Message.errorMessage,
     })
   );
-  const { SelectOption, isErrorNotificationVisible, errorMessage } =
-    useSelector(StudentCreatepageData);
+  const { item, SelectOption, isErrorNotificationVisible, errorMessage } =
+    useSelector(StudentEditpageData);
   const [selectedFiles, setselectedFiles] = useState([]);
   function handleAcceptedFiles(files) {
     files.map((file) =>
@@ -98,26 +101,28 @@ const StudentCreate = (props) => {
     }),
   };
 
+  // here
   useEffect(() => {
-    dispatch(GetCreatestudent());
+    dispatch(getEditStudent(id));
   }, []);
 
   const validation = useFormik({
     enableReinitialize: true,
 
     initialValues: {
-      FirstName: "",
-      LastName: "",
-      Email: "",
-      Phone: "",
-      Address: "",
-      Gender: "",
-      Password: "",
-      FatherName: "",
-      MotherName: "",
+      id: item.id,
+      FirstName: item.firstName,
+      LastName: item.lastName,
+      Email: item.email,
+      Phone: item.phone,
+      Address: item.address,
+      Gender: item.gender === 0 ? "Male" : "Female",
+      FatherName: item.fatherName,
+      MotherName: item.motherName,
       files: [],
-      FacultyId: "",
-      dateOfBirth: "",
+      FacultyId: item.studentFacultySemesters?.studentId,
+      dateOfBirth: item.dateOfBirth,
+      image: item.avatar,
     },
     validationSchema: Yup.object({
       FirstName: Yup.string().required("Please Enter a First Name"),
@@ -140,22 +145,20 @@ const StudentCreate = (props) => {
       Phone: Yup.string()
         .required("Please Enter a Phone")
         .matches(/^\d{10}$/, "Phone number must be exactly 10 digits"),
-      Password: Yup.string().required("Please Enter a Password"),
       MotherName: Yup.string().required("Please Enter a Mother Name"),
       FatherName: Yup.string().required("Please Enter Father Name"),
-      files: Yup.array()
-        .of(
-          Yup.mixed().test(
-            "fileType",
-            "Unsupported File Format",
-            (value) => value && value.type.startsWith("image/")
-          )
+      files: Yup.array().of(
+        Yup.mixed().test(
+          "fileType",
+          "Unsupported File Format",
+          (value) => value && value.type.startsWith("image/")
         )
-        .min(1, "Please upload at least one avatar"),
+      ),
     }),
     onSubmit: (values) => {
       console.log(values);
       const formData = new FormData();
+      formData.append("id", values.id);
       formData.append("FirstName", values.FirstName);
       formData.append("LastName", values.LastName);
       formData.append("Email", values.Email);
@@ -174,10 +177,10 @@ const StudentCreate = (props) => {
 
         formData.append("DateOfBirth", formattedDate);
       }
-      formData.append("Avatar", values.files[0]);
-      formData.append("Password", values.Password);
-      formData.append("FacultyId", values.FacultyId);
-      dispatch(studentStore(formData, props.router.navigate));
+      if (values.files[0]) {
+        formData.append("Avatar", values.files[0]);
+      }
+      dispatch(studentUpdate(formData, props.router.navigate));
       //   validation.resetForm();
     },
   });
@@ -195,7 +198,7 @@ const StudentCreate = (props) => {
   return (
     <div className="page-content">
       <Container fluid>
-        <BreadCrumb title="Create Student" pageTitle="Student" />
+        <BreadCrumb title="Edit Student" pageTitle="Student" />
 
         <Row>
           <Col md={12}>
@@ -442,6 +445,7 @@ const StudentCreate = (props) => {
                           Faculty
                         </Label>
                         <Select
+                          isDisabled
                           name="FacultyId"
                           options={SelectOption}
                           classNamePrefix="select"
@@ -596,8 +600,8 @@ const StudentCreate = (props) => {
                         </div>
                       ) : null}
                       <div className="list-unstyled mb-0" id="file-previews">
-                        {selectedFiles.map((f, i) => {
-                          return (
+                        {selectedFiles.length > 0 ? (
+                          selectedFiles.map((f, i) => (
                             <Card
                               className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
                               key={i + "-file"}
@@ -627,8 +631,39 @@ const StudentCreate = (props) => {
                                 </Row>
                               </div>
                             </Card>
-                          );
-                        })}
+                          ))
+                        ) : (
+                          // <img
+                          //   height="80"
+                          //   className="avatar-sm rounded bg-light"
+                          //   alt="Default"
+                          //   src="https://localhost:7045/Image/Article/image2240112358.jpg"
+                          // />
+                          <Card
+                            className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                            // key={i + "-file"}
+                          >
+                            <div className="p-2">
+                              <Row className="align-items-center">
+                                <Col className="col-auto">
+                                  <img
+                                    src={validation.values.image}
+                                    height="80"
+                                    className="avatar-sm rounded bg-light"
+                                  />
+                                </Col>
+                                <Col>
+                                  <Link
+                                    to="#"
+                                    className="text-muted font-weight-bold"
+                                  >
+                                    {validation.values.FirstName}
+                                  </Link>
+                                </Col>
+                              </Row>
+                            </div>
+                          </Card>
+                        )}
                       </div>
                       {validation.touched.Category &&
                       validation.errors.Category ? (
@@ -654,4 +689,4 @@ const StudentCreate = (props) => {
   );
 };
 
-export default withRouter(StudentCreate);
+export default withRouter(StudentEdit);

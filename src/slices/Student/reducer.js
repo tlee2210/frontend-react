@@ -28,10 +28,10 @@ const StudentSlice = createSlice({
 });
 
 export const {
-  // setStudentData,
+  setStudentData,
   setSelectOption,
   // removeStudent,
-  // setEdit,
+  setEdit,
 } = StudentSlice.actions;
 
 export default StudentSlice.reducer;

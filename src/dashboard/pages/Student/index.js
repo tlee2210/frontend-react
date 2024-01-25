@@ -1,8 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  GetDepartment,
-  DeleteDepartment,
-} from "../../../slices/Department/thunk";
+import { GetStudent } from "../../../slices/Student/thunk";
 import { createSelector } from "reselect";
 import { ToastContainer, toast } from "react-toastify";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
@@ -24,7 +21,8 @@ import {
   FormFeedback,
   Badge,
 } from "reactstrap";
-import { message, Table } from "antd";
+import { message, Table, Image } from "antd";
+import moment from "moment";
 
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { Link } from "react-router-dom";
@@ -37,11 +35,11 @@ const DepartmentTables = (props) => {
   const [Id, setId] = useState("");
 
   useEffect(() => {
-    dispatch(GetDepartment());
+    dispatch(GetStudent());
   }, []);
 
   const DepartmentpageData = createSelector(selectDepartmentState, (state) => ({
-    DepartmentData: state.Departmentdashboard.DepartmentData,
+    StudentData: state.Studentsdashboard.StudentData,
     isNotificationVisible: state.Message.isNotificationVisible,
     notificationMessage: state.Message.notificationMessage,
     isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
@@ -49,7 +47,7 @@ const DepartmentTables = (props) => {
   }));
 
   const {
-    DepartmentData,
+    StudentData,
     isNotificationVisible,
     notificationMessage,
     isErrorNotificationVisible,
@@ -72,28 +70,92 @@ const DepartmentTables = (props) => {
       render: (text, record, index) => index + 1,
     },
     {
-      title: "code",
-      key: "code",
-      dataIndex: "code",
+      title: "avatar",
+      key: "avatar",
+      render: (record) => {
+        return (
+          <>
+            <Image src={record.avatar} alt={record.firstName} width={100} />
+          </>
+        );
+      },
     },
     {
-      title: "Subject",
-      key: "Subject",
-      dataIndex: "subject",
+      title: "student Code",
+      key: "studentCode",
+      dataIndex: "studentCode",
     },
     {
-      title: "Description",
-      key: "Description",
-      dataIndex: "description",
+      title: "first Name",
+      key: "firstName",
+      dataIndex: "firstName",
+    },
+    {
+      title: "last Name",
+      key: "lastName",
+      dataIndex: "lastName",
+    },
+    {
+      title: "email",
+      key: "email",
+      dataIndex: "email",
+    },
+    {
+      title: "date Of Birth",
+      key: "dateOfBirth",
+      dataIndex: "dateOfBirth",
+      render: (text) => {
+        return moment(text).format("MM/DD/YYYY");
+      },
+    },
+    {
+      title: "address",
+      key: "address",
+      dataIndex: "address",
+    },
+    {
+      title: "phone",
+      key: "phone",
+      dataIndex: "phone",
+    },
+    // {
+    //   title: "gender",
+    //   key: "gender",
+    //   dataIndex: "gender",
+    // },
+    {
+      title: "Gender",
+      key: "gender",
+      dataIndex: "gender",
+      render: (gender) =>
+        gender === 0 ? (
+          <span className="badge bg-secondary-subtle text-secondary badge-border">
+            Male
+          </span>
+        ) : (
+          <span className="badge bg-warning-subtle text-warning badge-border">
+            Female
+          </span>
+        ),
+    },
+    {
+      title: "father Name",
+      key: "fatherName",
+      dataIndex: "fatherName",
+    },
+    {
+      title: "mother Name",
+      key: "motherName",
+      dataIndex: "motherName",
     },
     {
       title: "Actions",
       fixed: "right",
-      width: 200,
+      width: 130,
       render: (record) => {
         return (
           <>
-            <Link to={`/dashboard/department/${record.id}/edit`}>
+            <Link to={`/dashboard/student/${record.id}/edit`}>
               <span className="bg-gradient me-3 fs-4 text-info">
                 <i className="ri-edit-2-fill"></i>
               </span>
@@ -111,18 +173,10 @@ const DepartmentTables = (props) => {
   ];
 
   useEffect(() => {
-    let timeoutId;
     if (isNotificationVisible && notificationMessage) {
       message.success(notificationMessage);
-      timeoutId = setTimeout(() => {
-        dispatch(clearNotificationMessage());
-      }, 5000);
+      dispatch(clearNotificationMessage());
     }
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
   }, [isNotificationVisible, notificationMessage, dispatch]);
 
   useEffect(() => {
@@ -134,8 +188,8 @@ const DepartmentTables = (props) => {
 
   function deleteitem(id) {
     if (id) {
-      // console.log(id);
-      dispatch(DeleteDepartment(id));
+      console.log(id);
+      // dispatch(DeleteDepartment(id));
     }
   }
 
@@ -185,7 +239,8 @@ const DepartmentTables = (props) => {
                         </Row>
                         <Table
                           columns={columns}
-                          dataSource={DepartmentData}
+                          dataSource={StudentData}
+                          scroll={{ x: 2000 }}
                           rowKey={"id"}
                         />
                       </div>

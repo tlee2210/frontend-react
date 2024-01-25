@@ -154,7 +154,7 @@ const StudentCreate = (props) => {
         .min(1, "Please upload at least one avatar"),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       const formData = new FormData();
       formData.append("FirstName", values.FirstName);
       formData.append("LastName", values.LastName);
