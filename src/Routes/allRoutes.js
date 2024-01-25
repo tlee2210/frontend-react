@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 
 //login
 import Login from "../pages/Authentication/Login";
+import StaffLogin from "../Login/StaffLogin";
 import ForgetPasswordPage from "../pages/Authentication/ForgetPassword";
 import Logout from "../pages/Authentication/Logout";
 import Register from "../pages/Authentication/Register";
@@ -47,6 +48,7 @@ import FacilitiesEdit from "../dashboard/pages/facilities/edit";
 import Student from "../dashboard/pages/Student/index";
 import StudentCreate from "../dashboard/pages/Student/create";
 import StudentEdit from "../dashboard/pages/Student/edit";
+import Studentdetail from "../dashboard/pages/Student/detail";
 // staff
 import Staff from "../dashboard/pages/staff/index";
 import StaffCreate from "../dashboard/pages/staff/create";
@@ -96,6 +98,7 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/students", component: <Student /> },
   { path: "/dashboard/student/create", component: <StudentCreate /> },
   { path: "/dashboard/student/:id/edit", component: <StudentEdit /> },
+  { path: "/dashboard/student/:id/detail", component: <Studentdetail /> },
   // Staff
   { path: "/dashboard/staffs", component: <Staff /> },
   { path: "/dashboard/staff/create", component: <StaffCreate /> },
@@ -154,5 +157,6 @@ const publicHome = [
     path: "/facilities",
     component: <FacilitiesPage />,
   },
+  { path: "/login/staff", component: <StaffLogin /> },
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicRoutes, publicHome };

@@ -9,23 +9,45 @@ import {
 
 export const loginUser = (user, history) => async (dispatch) => {
   return new Promise(async (resolve, reject) => {
-    await axios.post("https://localhost:7112/api/AdminLogin", user)
+    await axios
+      .post("https://localhost:7112/api/AdminLogin", user)
 
-      // .post("https://localhost:7112/api/AdminLogin", user)
       .then((response) => {
         // console.log(response);
         const { token, user: userLogin } = response;
         sessionStorage.setItem("authUser", JSON.stringify(response));
-        axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+        axios.defaults.headers["Authorization"] = `Bearer ${token}`;
         const tokenObj = { accessToken: token }; // Token Obj
         const validUserObj = { ...userLogin, ...tokenObj }; // validUser Obj
         dispatch(loginSuccess(userLogin));
-        history('/dashboard')
+        history("/dashboard");
         resolve([200, validUserObj]);
       })
       .catch((e) => {
         console.error(e);
         dispatch(apiError(e));
+      });
+  });
+};
+export const loginStaff = (user, history) => async (dispatch) => {
+  return new Promise(async (resolve, reject) => {
+    await axios
+      .post("https://localhost:7112/api/StaffLogin", user)
+
+      .then((response) => {
+        console.log(response);
+        // const { token, user: userLogin } = response;
+        // sessionStorage.setItem("authUser", JSON.stringify(response));
+        // axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+        // const tokenObj = { accessToken: token }; // Token Obj
+        // const validUserObj = { ...userLogin, ...tokenObj }; // validUser Obj
+        // dispatch(loginSuccess(userLogin));
+        // history("/dashboard");
+        // resolve([200, validUserObj]);
+      })
+      .catch((e) => {
+        console.error(e);
+        // dispatch(apiError(e));
       });
   });
 };

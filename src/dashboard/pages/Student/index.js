@@ -101,28 +101,10 @@ const DepartmentTables = (props) => {
       dataIndex: "email",
     },
     {
-      title: "date Of Birth",
-      key: "dateOfBirth",
-      dataIndex: "dateOfBirth",
-      render: (text) => {
-        return moment(text).format("MM/DD/YYYY");
-      },
-    },
-    {
-      title: "address",
-      key: "address",
-      dataIndex: "address",
-    },
-    {
       title: "phone",
       key: "phone",
       dataIndex: "phone",
     },
-    // {
-    //   title: "gender",
-    //   key: "gender",
-    //   dataIndex: "gender",
-    // },
     {
       title: "Gender",
       key: "gender",
@@ -139,16 +121,6 @@ const DepartmentTables = (props) => {
         ),
     },
     {
-      title: "father Name",
-      key: "fatherName",
-      dataIndex: "fatherName",
-    },
-    {
-      title: "mother Name",
-      key: "motherName",
-      dataIndex: "motherName",
-    },
-    {
       title: "Actions",
       fixed: "right",
       width: 130,
@@ -158,6 +130,11 @@ const DepartmentTables = (props) => {
             <Link to={`/dashboard/student/${record.id}/edit`}>
               <span className="bg-gradient me-3 fs-4 text-info">
                 <i className="ri-edit-2-fill"></i>
+              </span>
+            </Link>
+            <Link to={`/dashboard/student/${record.id}/detail`}>
+              <span className="bg-gradient me-3 fs-4 text-info">
+                <i className="ri-eye-fill"></i>
               </span>
             </Link>
             <span
