@@ -10,15 +10,31 @@ import {
   NavLink,
   Row,
   TabContent,
-  Table,
   TabPane,
+  FormFeedback,
+  Table,
+  Input,
+  Label,
+  Button,
+  Form,
 } from "reactstrap";
+import { message } from "antd";
+
 import moment from "moment";
 import { createSelector } from "reselect";
 import classnames from "classnames";
 import ParticlesAuth from "../../../layouts/ParticlesAuth";
-import { GetStudentProfile } from "../../../../slices/profile/thunk";
+import {
+  GetStudentProfile,
+  ChangePasswordStudent,
+} from "../../../../slices/profile/thunk";
 import { useSelector, useDispatch } from "react-redux";
+import { clearNotificationMessage } from "../../../../slices/message/reducer";
+
+import image from "../../../../assets/images/bg/1.jpg";
+
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 const SimplePage = () => {
   const dispatch = useDispatch();
@@ -43,6 +59,24 @@ const SimplePage = () => {
     dispatch(GetStudentProfile());
   }, []);
 
+  useEffect(() => {
+    if (errorMessage && isErrorNotificationVisible) {
+      message.error(errorMessage);
+      dispatch(clearNotificationMessage());
+    }
+  }, [errorMessage, isErrorNotificationVisible]);
+  useEffect(() => {
+    if (isNotificationVisible && notificationMessage) {
+      message.success(notificationMessage);
+      dispatch(clearNotificationMessage());
+      validation.resetForm();
+    }
+  }, [isNotificationVisible, notificationMessage]);
+
+  const [CurrentPasswordShow, setCurrentPasswordShow] = useState(false);
+  const [NewPasswordShow, setNewPasswordShow] = useState(false);
+  const [ConfirmPasswordShow, setConfirmPasswordShow] = useState(false);
+
   const [activeTab, setActiveTab] = useState("1");
   const [activityTab, setActivityTab] = useState("1");
 
@@ -57,7 +91,64 @@ const SimplePage = () => {
       setActivityTab(tab);
     }
   };
+  const validation = useFormik({
+    enableReinitialize: true,
 
+    initialValues: {
+      CurrentPassword: "",
+      NewPassword: "",
+      ConfirmPassword: "",
+    },
+    validationSchema: Yup.object({
+      CurrentPassword: Yup.string()
+        .required("Password is required")
+        .min(6, "Password must be at least 6 characters long")
+        .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .matches(/[0-9]/, "Password must contain at least one number")
+        .matches(
+          /^[A-Za-z0-9]*$/,
+          "Password must not contain special characters or spaces"
+        ),
+      NewPassword: Yup.string()
+        .required("Please Enter Your New Password")
+        .min(6, "New Password must be at least 6 characters long")
+        .matches(
+          /[A-Z]/,
+          "New Password must contain at least one uppercase letter"
+        )
+        .matches(/[0-9]/, "New Password must contain at least one number")
+        .matches(
+          /^[A-Za-z0-9]*$/,
+          "New Password must not contain special characters or spaces"
+        )
+        .notOneOf(
+          [Yup.ref("CurrentPassword")],
+          "New Password cannot be the same as the current password"
+        ),
+      ConfirmPassword: Yup.string()
+        .required("Please Enter Your Confirm Password")
+        .oneOf([Yup.ref("NewPassword"), null], "Confirm Password must match")
+        .min(6, "Password must be at least 6 characters long")
+        .matches(
+          /[A-Z]/,
+          "Confirm Password must contain at least one uppercase letter"
+        )
+        .matches(/[0-9]/, "Confirm Password must contain at least one number")
+        .matches(
+          /^[A-Za-z0-9]*$/,
+          "Confirm Password must not contain special characters or spaces"
+        ),
+    }),
+
+    onSubmit: (values) => {
+      // console.log(values);
+      const formData = new FormData();
+      formData.append("OldPassword", values.CurrentPassword);
+      formData.append("NewPassword", values.NewPassword);
+      formData.append("ConfirmPassword", values.ConfirmPassword);
+      dispatch(ChangePasswordStudent(formData));
+    },
+  });
   return (
     <React.Fragment>
       <ParticlesAuth>
@@ -65,11 +156,7 @@ const SimplePage = () => {
           <Container fluid>
             <div className="profile-foreground position-relative mx-n4 mt-n4">
               <div className="profile-wid-bg">
-                <img
-                  src="https://localhost:7112/Image/Student/1244434656.jpg"
-                  alt=""
-                  className="profile-wid-img"
-                />
+                <img src={image} alt="bg" className="profile-wid-img" />
               </div>
             </div>
             <div className="pt-4 mb-4 mb-lg-3 pb-lg-4">
@@ -329,6 +416,177 @@ const SimplePage = () => {
                                   </tbody>
                                 </Table>
                               </div>
+                            </CardBody>
+                          </Card>
+                          <Card>
+                            <CardBody>
+                              <Row>
+                                <h5 className="card-title mb-3">
+                                  change password
+                                </h5>
+                              </Row>
+                              <Form
+                                onSubmit={(e) => {
+                                  e.preventDefault();
+                                  validation.handleSubmit();
+                                  return false;
+                                }}
+                                action="#"
+                              >
+                                <div className="mb-3">
+                                  <Label
+                                    className="form-label"
+                                    htmlFor="password-input"
+                                  >
+                                    Current Password
+                                  </Label>
+                                  <div className="position-relative auth-pass-inputgroup mb-3">
+                                    <Input
+                                      name="CurrentPassword"
+                                      value={
+                                        validation.values.CurrentPassword || ""
+                                      }
+                                      type={
+                                        CurrentPasswordShow
+                                          ? "text"
+                                          : "password"
+                                      }
+                                      className="form-control pe-5"
+                                      placeholder="Enter Password"
+                                      onChange={validation.handleChange}
+                                      onBlur={validation.handleBlur}
+                                      invalid={
+                                        validation.touched.CurrentPassword &&
+                                        validation.errors.CurrentPassword
+                                          ? true
+                                          : false
+                                      }
+                                    />
+                                    {validation.touched.CurrentPassword &&
+                                    validation.errors.CurrentPassword ? (
+                                      <FormFeedback type="invalid">
+                                        {validation.errors.CurrentPassword}
+                                      </FormFeedback>
+                                    ) : null}
+                                    <button
+                                      className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted mr-3"
+                                      type="button"
+                                      id="CurrentPassword"
+                                      onClick={() =>
+                                        setCurrentPasswordShow(
+                                          !CurrentPasswordShow
+                                        )
+                                      }
+                                    >
+                                      <i className="ri-eye-fill align-middle"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className="mb-3">
+                                  <Label
+                                    className="form-label"
+                                    htmlFor="password-input"
+                                  >
+                                    New Password
+                                  </Label>
+                                  <div className="position-relative auth-pass-inputgroup mb-3">
+                                    <Input
+                                      name="NewPassword"
+                                      value={
+                                        validation.values.NewPassword || ""
+                                      }
+                                      type={
+                                        NewPasswordShow ? "text" : "password"
+                                      }
+                                      className="form-control pe-5"
+                                      placeholder="Enter Password"
+                                      onChange={validation.handleChange}
+                                      onBlur={validation.handleBlur}
+                                      invalid={
+                                        validation.touched.NewPassword &&
+                                        validation.errors.NewPassword
+                                          ? true
+                                          : false
+                                      }
+                                    />
+                                    {validation.touched.NewPassword &&
+                                    validation.errors.NewPassword ? (
+                                      <FormFeedback type="invalid">
+                                        {validation.errors.NewPassword}
+                                      </FormFeedback>
+                                    ) : null}
+                                    <button
+                                      className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
+                                      type="button"
+                                      id="NewPasswordShow"
+                                      onClick={() =>
+                                        setNewPasswordShow(!NewPasswordShow)
+                                      }
+                                    >
+                                      <i className="ri-eye-fill align-middle"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className="mb-3">
+                                  <Label
+                                    className="form-label"
+                                    htmlFor="password-input"
+                                  >
+                                    Password
+                                  </Label>
+                                  <div className="position-relative auth-pass-inputgroup mb-3">
+                                    <Input
+                                      name="ConfirmPassword"
+                                      value={
+                                        validation.values.ConfirmPassword || ""
+                                      }
+                                      type={
+                                        ConfirmPasswordShow
+                                          ? "text"
+                                          : "password"
+                                      }
+                                      className="form-control pe-5"
+                                      placeholder="Enter Password"
+                                      onChange={validation.handleChange}
+                                      onBlur={validation.handleBlur}
+                                      invalid={
+                                        validation.touched.ConfirmPassword &&
+                                        validation.errors.ConfirmPassword
+                                          ? true
+                                          : false
+                                      }
+                                    />
+                                    {validation.touched.ConfirmPassword &&
+                                    validation.errors.ConfirmPassword ? (
+                                      <FormFeedback type="invalid">
+                                        {validation.errors.ConfirmPassword}
+                                      </FormFeedback>
+                                    ) : null}
+                                    <button
+                                      className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"
+                                      type="button"
+                                      id="ConfirmPasswordShow"
+                                      onClick={() =>
+                                        setConfirmPasswordShow(
+                                          !ConfirmPasswordShow
+                                        )
+                                      }
+                                    >
+                                      <i className="ri-eye-fill align-middle"></i>
+                                    </button>
+                                  </div>
+                                </div>
+
+                                <div className="mt-4">
+                                  <Button
+                                    color="success"
+                                    className="btn btn-success w-100"
+                                    type="submit"
+                                  >
+                                    Change Password
+                                  </Button>
+                                </div>
+                              </Form>
                             </CardBody>
                           </Card>
                         </Col>

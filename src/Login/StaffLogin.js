@@ -52,7 +52,7 @@ const Login = (props) => {
 
     initialValues: {
       email: "thienle255@gmail.com" || "",
-      password: "tlee123" || "",
+      password: "Tlee2210" || "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),

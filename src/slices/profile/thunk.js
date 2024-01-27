@@ -23,20 +23,28 @@ export const GetStaffProfile = () => async (dispatch) => {
       console.log(error);
     });
 };
+export const ChangePasswordStaff = (formData) => async (dispatch) => {
+  await axios
+    .post("https://localhost:7112/api/ProfileStaff/ChangePassword", formData)
+    .then((response) => {
+      // console.log(response);
+      dispatch(setMessage(response.data.message));
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch(errorMessage(error.response.data.message));
+    });
+};
 
-// export const Deletestaff = (id) => async (dispatch) => {
-//   axios
-//     .delete(`https://localhost:7112/api/dashboard/staff/${id}/delete`)
-//     .then((response) => {
-//       console.log(response);
-//       if (response.data.message) {
-//         dispatch(setMessage(response.data.message));
-//       }
-//       if (response.data.data) {
-//         dispatch(removeStaff(response.data.data));
-//       }
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
+export const ChangePasswordStudent = (formData) => async (dispatch) => {
+  await axios
+    .post("https://localhost:7112/api/ProfileStudent/ChangePassword", formData)
+    .then((response) => {
+      // console.log(response);
+      dispatch(setMessage(response.data.message));
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch(errorMessage(error.response.data.message));
+    });
+};

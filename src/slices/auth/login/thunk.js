@@ -74,19 +74,19 @@ export const loginStudent = (user, history) => async (dispatch) => {
       });
   });
 };
-export const logoutUser = () => async (dispatch) => {
-  try {
-    sessionStorage.removeItem("authUser");
-    // let fireBaseBackend = getFirebaseBackend();
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      const response = fireBaseBackend.logout;
-      dispatch(logoutUserSuccess(response));
-    } else {
-      dispatch(logoutUserSuccess(true));
-    }
-  } catch (error) {
-    // dispatch(apiError(error));
-  }
+// export const logoutUser = () => async (dispatch) => {
+//   try {
+//     console.log("ok");
+//     sessionStorage.removeItem("authUser");
+//     // history("/home");
+//   } catch (error) {
+//     console.error(error);
+//     // dispatch(apiError(error));
+//   }
+// };
+export const logoutUser = () => {
+  sessionStorage.removeItem("authUser");
+  window.location.href = "/home";
 };
 
 // export const socialLogin = (type, history) => async (dispatch) => {

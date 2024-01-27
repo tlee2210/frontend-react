@@ -101,7 +101,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
             </div>
 
             <div className="d-flex align-items-center">
-              <div className="d-flex">aa</div>
+              {/* <div className="d-flex">aa</div> */}
               {authUser ? (
                 <ProfileDropdown />
               ) : (

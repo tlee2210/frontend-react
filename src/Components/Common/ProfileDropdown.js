@@ -7,9 +7,11 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { createSelector } from "reselect";
-import { useSelector } from "react-redux";
+import withRouter from "../Common/withRouter";
 
-const ProfileDropdown = () => {
+import { useSelector } from "react-redux";
+import { logoutUser } from "../../slices/auth/login/thunk";
+const ProfileDropdown = (props) => {
   const profiledropdownData = createSelector(
     (state) => state.Profile.user,
     (user) => user
@@ -84,15 +86,13 @@ const ProfileDropdown = () => {
           </DropdownItem>
           <div className="dropdown-divider"></div>
           <DropdownItem className="p-0">
-            <Link
-              to={process.env.PUBLIC_URL + "/pages-profile"}
-              className="dropdown-item"
-            >
-              <i className="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>{" "}
-              <span className="align-middle">
+            <a className="dropdown-item" onClick={() => logoutUser()}>
+              <i className=" ri-logout-box-r-fill text-muted fs-16 align-middle me-1"></i>{" "}
+              {/* <span className="align-middle">
                 Balance : <b>$5971.67</b>
-              </span>
-            </Link>
+              </span> */}
+              log Out
+            </a>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
@@ -100,4 +100,4 @@ const ProfileDropdown = () => {
   );
 };
 
-export default ProfileDropdown;
+export default withRouter(ProfileDropdown);
