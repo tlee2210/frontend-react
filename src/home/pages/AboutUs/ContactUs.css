@@ -3,11 +3,11 @@
     max-width: 1200px;
     margin: auto;
     padding: 40px;
-    color: #ffffff;
+    color: #000000;
     background: linear-gradient(to right, #fdfdfd, #ffffff); 
-    
+    padding-top: 240px;
   }
-  .contact-conten-contact-us{
+  .contact-content-contact-us{
     padding-top: 30px;
   }
  
@@ -48,4 +48,9 @@
 .button-showinformation:hover {
     background-color: #acadae; /* Change background color on hover */
     color: #0d0d0d; /* Change text color on hover */
+}
+ 
+.text-edit-contact-us{
+  padding-top: 10px;
+  padding-bottom: 30px;
 }

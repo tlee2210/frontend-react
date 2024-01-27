@@ -245,9 +245,9 @@ function NewsPage() {
 
                 {/* Top stories */}
                 <Col lg={12}>
-                   <Container>
-                   <h5 className="fs-1 mb-2 mt-5 pb-2">Featured news</h5>
-                   </Container>
+                    <Container>
+                        <h5 className="fs-1 mb-2 mt-5 pb-2">Featured news</h5>
+                    </Container>
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={5}
@@ -436,7 +436,7 @@ function NewsPage() {
                         </Row>
                     </Swiper>
                 </Col>
-                
+
 
 
 
@@ -465,13 +465,12 @@ function NewsPage() {
                     <div className="p-5">
                         <h1 className="pb-1">Find an expert for comment</h1>
                         <p className="pb-5">Search for a Swinburne researcher or academic expert who is available for media comment about their field of expertise.</p>
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            value={searchTerm}
-                            onChange={handleInputChange}
-                        />
-                        <button onClick={handleSearchClick}>Search</button>
+                        <div class="input-group mb-4">
+                            <input type="search" placeholder="Search here..." aria-describedby="button-addon5" class="form-control" />
+                            <div class="input-group-append">
+                                <button id="button-addon5" type="submit" class="btn btn-primary"> <i class="las la-search"> </i> </button>
+                            </div>
+                        </div>
                     </div>
                 </Container>
             </div>

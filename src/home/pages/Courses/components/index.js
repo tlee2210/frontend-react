@@ -75,7 +75,7 @@ const index = () => {
                             />
                             <div className="input-group-append">
                                 <button className="btn btn-primary" type="button" onClick={handleSearch}>
-                                    Search
+                                    <i class="las la-search"> </i>
                                 </button>
                             </div>
                         </div>
@@ -131,18 +131,18 @@ const index = () => {
 
 
             {/* Study online with Swinburne */}
-            <div style={{paddingBottom:100}}>
-            <header className="header-container-Sources-Header">
-                <div className="header-content-Sources-Header">
-                    <h1 className="header-title-Sources-Header" style={{ color: '#5a4f4f' }}>
-                    Study online with Swinburne
-                    </h1>
-                    <div className="header-actions-Sources-Header">
+            <div style={{ paddingBottom: 100 }}>
+                <header className="header-container-Sources-Header">
+                    <div className="header-content-Sources-Header">
+                        <h1 className="header-title-Sources-Header" style={{ color: '#5a4f4f' }}>
+                            Study online with Swinburne
+                        </h1>
+                        <div className="header-actions-Sources-Header">
+                        </div>
+                        <p className='mt-3 fs-6'>Swinburne is a world leader in online education by using interactive and innovative technologies to deliver our courses and degrees. From vocational education and undergraduate to postgraduate study, Swinburne has online study options at all levels.</p>
+                        <Button color='danger mt-3' outline> View Online Sources</Button>
                     </div>
-                    <p className='mt-3 fs-6'>Swinburne is a world leader in online education by using interactive and innovative technologies to deliver our courses and degrees. From vocational education and undergraduate to postgraduate study, Swinburne has online study options at all levels.</p>
-                    <Button color='danger mt-3' outline> View Online Sources</Button>
-                </div>
-            </header> 
+                </header>
             </div>
         </div>
     );
