@@ -3,7 +3,7 @@ import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { createSelector } from "reselect";
 import withRouter from "../../../Components/Common/withRouter";
 // here
-import { getEditStudent } from "../../../slices/Student/thunk";
+import { GetStaffProfile } from "../../../slices/profile/thunk";
 import { Card, CardBody, Col, Container, Row, Table } from "reactstrap";
 import { message } from "antd";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
@@ -15,8 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const Studentdetail = (props) => {
-  document.title = "detail Student";
-  const id = props.router.params.id;
+  document.title = "Profile";
 
   const history = useNavigate();
   const dispatch = useDispatch();
@@ -24,25 +23,19 @@ const Studentdetail = (props) => {
   const StudentdetailpageData = createSelector(
     selectStudentdetailState,
     (state) => ({
-      item: state.Studentsdashboard.item,
+      profileData: state.Profile.profileData,
       isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
       errorMessage: state.Message.errorMessage,
     })
   );
-  const { item, isErrorNotificationVisible, errorMessage } = useSelector(
+  const { profileData, isErrorNotificationVisible, errorMessage } = useSelector(
     StudentdetailpageData
   );
   // here
   useEffect(() => {
-    dispatch(getEditStudent(id));
+    dispatch(GetStaffProfile());
   }, []);
 
-  const formatDate = (dateString) => {
-    if (!dateString) return "";
-
-    const date = new Date(dateString);
-    return format(date, "MMMM do, yyyy");
-  };
   // useEffect(() => {
   //   console.log("Current validation errors:", validation.errors);
   // }, [validation.errors]);
@@ -57,7 +50,7 @@ const Studentdetail = (props) => {
   return (
     <div className="page-content">
       <Container fluid>
-        <BreadCrumb title="detail Student" pageTitle="Student" />
+        <BreadCrumb title="Profile" pageTitle="Profile" />
 
         <Row>
           <Col md={12}>
@@ -67,9 +60,9 @@ const Studentdetail = (props) => {
                   <Col xxl={12}>
                     <Col md={12}>
                       <img
-                        src={item.avatar}
+                        src={profileData.fileAvatar}
                         className="avatar-md rounded-top mb-4"
-                        alt={item.firstName}
+                        alt={profileData.firstName}
                       />
                     </Col>
                     <div className="table-responsive">
@@ -79,32 +72,42 @@ const Studentdetail = (props) => {
                             <th className="ps-0" scope="row">
                               First Name :
                             </th>
-                            <td className="text-muted">{item.firstName}</td>
+                            <td className="text-muted">
+                              {profileData.firstName}
+                            </td>
                             <th className="ps-0" scope="row">
                               Last Name :
                             </th>
-                            <td className="text-muted">{item.lastName}</td>
+                            <td className="text-muted">
+                              {profileData.lastName}
+                            </td>
                           </tr>
                           <tr>
                             <th className="ps-0" scope="row">
                               student Code :
                             </th>
-                            <td className="text-muted">{item.studentCode}</td>
+                            <td className="text-muted">
+                              {profileData.studentCode}
+                            </td>
                             <th className="ps-0" scope="row">
                               email :
                             </th>
-                            <td className="text-muted">{item.email}</td>
+                            <td className="text-muted">{profileData.email}</td>
                           </tr>
                           <tr>
                             <th className="ps-0" scope="row">
                               address :
                             </th>
-                            <td className="text-muted">{item.address}</td>
+                            <td className="text-muted">
+                              {profileData.address}
+                            </td>
                             <th className="ps-0" scope="row">
                               date Of Birth :
                             </th>
                             <td className="text-muted">
-                              {moment(item.dateOfBirth).format("DD-MM-YYYY")}
+                              {moment(profileData.dateOfBirth).format(
+                                "DD-MM-YYYY"
+                              )}
                             </td>
                           </tr>
                           <tr>
@@ -112,75 +115,25 @@ const Studentdetail = (props) => {
                               gender :
                             </th>
                             <td className="text-muted">
-                              {item.gender == 0 ? "Male" : "Female"}
+                              {profileData.gender == 0 ? "Male" : "Female"}
                             </td>
                             <th className="ps-0" scope="row">
                               phone :
                             </th>
-                            <td className="text-muted">{item.phone}</td>
+                            <td className="text-muted">{profileData.phone}</td>
                           </tr>
                           <tr>
                             <th className="ps-0" scope="row">
                               Father Name :
                             </th>
-                            <td className="text-muted">{item.fatherName}</td>
+                            <td className="text-muted">
+                              {profileData.fatherName}
+                            </td>
                             <th className="ps-0" scope="row">
                               Mother Name :
                             </th>
-                            <td className="text-muted">{item.motherName}</td>
-                          </tr>
-                          <tr>
-                            <th className="ps-0" scope="row">
-                              Faculty
-                            </th>
                             <td className="text-muted">
-                              {item.studentFacultySemesters?.faculty?.title}
-                            </td>
-                            <th className="ps-0" scope="row">
-                              code
-                            </th>
-                            <td className="text-muted">
-                              {item.studentFacultySemesters?.faculty?.code}
-                            </td>
-                          </tr>
-                          <tr>
-                            <th className="ps-0" scope="row">
-                              academic Year
-                            </th>
-                            <td className="text-muted">
-                              {
-                                item.studentFacultySemesters?.semester
-                                  ?.academicYear
-                              }
-                            </td>
-                            <th className="ps-0" scope="row">
-                              semester Number
-                            </th>
-                            <td className="text-muted">
-                              {
-                                item.studentFacultySemesters?.semester
-                                  ?.semesterNumber
-                              }
-                            </td>
-                          </tr>
-                          <tr>
-                            <th className="ps-0" scope="row">
-                              session code
-                            </th>
-                            <td className="text-muted">
-                              {item.studentFacultySemesters?.session?.code}
-                            </td>
-                            <th className="ps-0" scope="row">
-                              year
-                            </th>
-                            <td className="text-muted">
-                              {moment(
-                                item.studentFacultySemesters?.session?.yearStart
-                              ).format("YYYY")}
-                              -
-                              {moment(
-                                item.studentFacultySemesters?.session?.yearEnd
-                              ).format("YYYY")}
+                              {profileData.motherName}
                             </td>
                           </tr>
                         </tbody>

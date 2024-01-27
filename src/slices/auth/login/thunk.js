@@ -1,11 +1,12 @@
 import axios from "axios";
+import { setMessage, errorMessage } from "../../message/reducer";
 
-import {
-  loginSuccess,
-  logoutUserSuccess,
-  apiError,
-  reset_login_flag,
-} from "./reducer";
+// import {
+//   loginSuccess,
+//   logoutUserSuccess,
+//   apiError,
+//   reset_login_flag,
+// } from "./reducer";
 
 export const loginUser = (user, history) => async (dispatch) => {
   return new Promise(async (resolve, reject) => {
@@ -13,37 +14,15 @@ export const loginUser = (user, history) => async (dispatch) => {
       .post("https://localhost:7112/api/AdminLogin", user)
 
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         const { token, user: userLogin } = response;
         sessionStorage.setItem("authUser", JSON.stringify(response));
         axios.defaults.headers["Authorization"] = `Bearer ${token}`;
         const tokenObj = { accessToken: token }; // Token Obj
         const validUserObj = { ...userLogin, ...tokenObj }; // validUser Obj
-        dispatch(loginSuccess(userLogin));
-        history("/dashboard");
-        resolve([200, validUserObj]);
-      })
-      .catch((e) => {
-        console.error(e);
-        dispatch(apiError(e));
-      });
-  });
-};
-export const loginStaff = (user, history) => async (dispatch) => {
-  return new Promise(async (resolve, reject) => {
-    await axios
-      .post("https://localhost:7112/api/StaffLogin", user)
-
-      .then((response) => {
-        console.log(response);
-        // const { token, user: userLogin } = response;
-        // sessionStorage.setItem("authUser", JSON.stringify(response));
-        // axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-        // const tokenObj = { accessToken: token }; // Token Obj
-        // const validUserObj = { ...userLogin, ...tokenObj }; // validUser Obj
         // dispatch(loginSuccess(userLogin));
-        // history("/dashboard");
-        // resolve([200, validUserObj]);
+        history("/home");
+        resolve([200, validUserObj]);
       })
       .catch((e) => {
         console.error(e);
@@ -52,6 +31,49 @@ export const loginStaff = (user, history) => async (dispatch) => {
   });
 };
 
+//login Staff
+export const loginStaff = (user, history) => async (dispatch) => {
+  return new Promise(async (resolve, reject) => {
+    await axios
+      .post("https://localhost:7112/api/home/stafflogin", user)
+      .then((response) => {
+        console.log(response);
+        const { token, user: userLogin } = response;
+        sessionStorage.setItem("authUser", JSON.stringify(response.data));
+        axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+        const tokenObj = { accessToken: token }; // Token Obj
+        const validUserObj = { ...userLogin, ...tokenObj }; // validUser Obj
+        // dispatch(loginSuccess(userLogin));
+        history("/home");
+        resolve([200, validUserObj]);
+      })
+      .catch((e) => {
+        console.error(e);
+        dispatch(errorMessage(e.response.data.message));
+      });
+  });
+};
+export const loginStudent = (user, history) => async (dispatch) => {
+  return new Promise(async (resolve, reject) => {
+    await axios
+      .post("https://localhost:7112/api/StudentLogin", user)
+      .then((response) => {
+        console.log(response);
+        const { token, user: userLogin } = response;
+        sessionStorage.setItem("authUser", JSON.stringify(response.data));
+        axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+        const tokenObj = { accessToken: token }; // Token Obj
+        const validUserObj = { ...userLogin, ...tokenObj }; // validUser Obj
+        // dispatch(loginSuccess(userLogin));
+        history("/home");
+        resolve([200, validUserObj]);
+      })
+      .catch((e) => {
+        console.error(e);
+        dispatch(errorMessage(e.response.data.message));
+      });
+  });
+};
 export const logoutUser = () => async (dispatch) => {
   try {
     sessionStorage.removeItem("authUser");
@@ -63,7 +85,7 @@ export const logoutUser = () => async (dispatch) => {
       dispatch(logoutUserSuccess(true));
     }
   } catch (error) {
-    dispatch(apiError(error));
+    // dispatch(apiError(error));
   }
 };
 

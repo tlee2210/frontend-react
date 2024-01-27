@@ -87,6 +87,12 @@ const Navdata = () => {
       isHeader: true,
     },
     {
+      id: "Profile",
+      label: "profile",
+      icon: "ri-profile-line",
+      link: "/dashboard/Profile",
+    },
+    {
       id: "courses",
       label: "Courses",
       icon: "ri-apps-2-line",

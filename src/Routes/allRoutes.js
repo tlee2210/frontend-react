@@ -2,14 +2,12 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 //login
-import Login from "../pages/Authentication/Login";
 import StaffLogin from "../Login/StaffLogin";
-import ForgetPasswordPage from "../pages/Authentication/ForgetPassword";
-import Logout from "../pages/Authentication/Logout";
-import Register from "../pages/Authentication/Register";
+import StudentLogin from "../Login/StudentLogin";
 
 // User Profile
-import UserProfile from "../pages/Authentication/user-profile";
+import UserProfile from "../home/pages/Profile/SimplePage/SimplePage";
+import StaffProfile from "../dashboard/pages/profile/index";
 
 //home page
 import HomePage from "../home/pages/home/home";
@@ -66,11 +64,6 @@ import AdmissionProccess from "../dashboard/pages/Admission/AdmissionProccess";
 import AdmissionAccept from "../dashboard/pages/Admission/AdmissionAccept";
 import AdmissionReject from "../dashboard/pages/Admission/AdmissionReject";
 import AdmissionDetail from "../dashboard/pages/Admission/AdmissionDetail";
-//404 pages
-import Basic404 from "../pages/AuthenticationInner/Errors/Basic404";
-import Cover404 from "../pages/AuthenticationInner/Errors/Cover404";
-import Alt404 from "../pages/AuthenticationInner/Errors/Alt404";
-import Error500 from "../pages/AuthenticationInner/Errors/Error500";
 
 const AdminProtectedRoutes = [
   { path: "/dashboard/Courses", component: <Courses /> },
@@ -110,6 +103,7 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/admission/accept", component: <AdmissionAccept /> },
   { path: "/dashboard/admission/reject", component: <AdmissionReject /> },
   { path: "/dashboard/admission/:id/detail", component: <AdmissionDetail /> },
+  { path: "/dashboard/Profile/", component: <StaffProfile /> },
 ];
 
 const authProtectedRoutes = [
@@ -118,16 +112,18 @@ const authProtectedRoutes = [
 ];
 
 const publicRoutes = [
-  { path: "/logout", component: <Logout /> },
-  { path: "/login", component: <Login /> },
-  { path: "/forgot-password", component: <ForgetPasswordPage /> },
-  { path: "/register", component: <Register /> },
+  { path: "/login/staff", component: <StaffLogin /> },
+  { path: "/login/student", component: <StudentLogin /> },
+  //   { path: "/logout", component: <Logout /> },
+  //   { path: "/login", component: <Login /> },
+  //   { path: "/forgot-password", component: <ForgetPasswordPage /> },
+  //   { path: "/register", component: <Register /> },
 
-  //AuthenticationInner pages
-  { path: "/auth-404-basic", component: <Basic404 /> },
-  { path: "/auth-404-cover", component: <Cover404 /> },
-  { path: "/auth-404-alt", component: <Alt404 /> },
-  { path: "/auth-500", component: <Error500 /> },
+  //   //AuthenticationInner pages
+  //   { path: "/auth-404-basic", component: <Basic404 /> },
+  //   { path: "/auth-404-cover", component: <Cover404 /> },
+  //   { path: "/auth-404-alt", component: <Alt404 /> },
+  //   { path: "/auth-500", component: <Error500 /> },
 ];
 
 const publicHome = [
@@ -157,6 +153,5 @@ const publicHome = [
     path: "/facilities",
     component: <FacilitiesPage />,
   },
-  { path: "/login/staff", component: <StaffLogin /> },
 ];
-export { AdminProtectedRoutes, authProtectedRoutes, publicRoutes, publicHome };
+export { AdminProtectedRoutes, authProtectedRoutes, publicHome, publicRoutes };

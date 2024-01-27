@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 
 //Layouts
 import NonAuthLayout from "../dashboard/Layouts/NonAuthLayout";
-// import VerticalLayout from "../Layouts/index";
 import VerticalLayout from "../dashboard/Layouts/index";
 
 //routes
@@ -28,6 +27,21 @@ const Index = () => {
                 <AccessRoute>
                   <NonAuthLayout>{route.component}</NonAuthLayout>
                 </AccessRoute>
+              }
+              key={idx}
+              exact={true}
+            />
+          ))}
+        </Route>
+
+        <Route>
+          {authProtectedRoutes.map((route, idx) => (
+            <Route
+              path={route.path}
+              element={
+                <AuthProtected>
+                  <NonAuthLayout>{route.component}</NonAuthLayout>
+                </AuthProtected>
               }
               key={idx}
               exact={true}

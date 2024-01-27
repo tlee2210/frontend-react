@@ -58,7 +58,6 @@ export const getEditStudent = (id, history) => async (dispatch) => {
       // dispatch(errorMessage(error.response.data));
     });
 };
-// https://localhost:7112/api/dashboard/student/Update
 export const studentUpdate = (formData, history) => async (dispatch) => {
   // console.log(formData);
   axios

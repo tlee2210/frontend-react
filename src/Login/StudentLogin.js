@@ -25,7 +25,7 @@ import withRouter from "../Components/Common/withRouter";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 // actions
-import { loginStaff } from "../slices/auth/login/thunk";
+import { loginStudent } from "../slices/auth/login/thunk";
 import { message } from "antd";
 
 // import logoLight from "../../assets/images/logo-light.png";
@@ -52,7 +52,7 @@ const Login = (props) => {
 
     initialValues: {
       email: "thienle255@gmail.com" || "",
-      password: "tlee123" || "",
+      password: "123456" || "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
@@ -61,7 +61,7 @@ const Login = (props) => {
 
     onSubmit: (values) => {
       // console.log(values)
-      dispatch(loginStaff(values, props.router.navigate));
+      dispatch(loginStudent(values, props.router.navigate));
     },
   });
 
@@ -72,7 +72,7 @@ const Login = (props) => {
     }
   }, [isErrorNotificationVisible, errorMessage]);
 
-  document.title = "Staff login";
+  document.title = "Student login";
   return (
     <React.Fragment>
       <ParticlesAuth>
@@ -82,7 +82,7 @@ const Login = (props) => {
               <Col lg={12}>
                 <div className="text-center mt-sm-5 mb-4 text-white-50">
                   <div>{/* <img src={logoLight} alt="" height="20" /> */}</div>
-                  <p className="mt-3 fs-15 fw-medium">Staff login</p>
+                  <p className="mt-3 fs-15 fw-medium">Student login</p>
                 </div>
               </Col>
             </Row>
@@ -93,7 +93,7 @@ const Login = (props) => {
                   <CardBody className="p-4">
                     <div className="text-center mt-2">
                       <h5 className="text-primary">Welcome Back !</h5>
-                      <p className="text-muted">Staff login.</p>
+                      <p className="text-muted">Student login.</p>
                     </div>
                     <div className="p-2 mt-4">
                       <Form

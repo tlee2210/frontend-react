@@ -19,12 +19,11 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
-    // Retrieve the authentication user string from session storage
     const authUserString = sessionStorage.getItem("authUser");
-
-    // Check if authUserString exists and is not null
     if (authUserString) {
-      setAuthUser(authUserString);
+      const userObj = JSON.parse(authUserString);
+      setAuthUser(userObj.user);
+      // console.log(userObj.user);
     }
   }, []);
 
@@ -102,20 +101,30 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
             </div>
 
             <div className="d-flex align-items-center">
-            <div className="d-flex">aa</div>
+              <div className="d-flex">aa</div>
               {authUser ? (
                 <ProfileDropdown />
               ) : (
-                <Link to="/login" className="text-muted">
-                <Button
-                  color="success"
-                  className="btn-animation"
-                  data-text="Login"
-                >
-                  {" "}
-                  <span>Login</span>{" "}
-                </Button>
-                </Link>
+                <>
+                  <Link to="/login/staff" className="text-muted me-3">
+                    <Button
+                      color="success"
+                      className="btn-animation"
+                      data-text="staff"
+                    >
+                      <span>staff Login</span>
+                    </Button>
+                  </Link>
+                  <Link to="/login/student" className="text-muted">
+                    <Button
+                      color="success"
+                      className="btn-animation"
+                      data-text="student"
+                    >
+                      <span>student Login</span>
+                    </Button>
+                  </Link>
+                </>
               )}
             </div>
           </div>
