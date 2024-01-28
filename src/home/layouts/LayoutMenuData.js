@@ -80,7 +80,7 @@ const Navdata = () => {
         //Course
         {
             label: "Courses",
-            link:".",
+            link: ".",
             subItems: [
                 {
                     id: "coursespage",
