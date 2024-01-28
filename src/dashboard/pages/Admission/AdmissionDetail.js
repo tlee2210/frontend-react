@@ -10,11 +10,8 @@ import {
   Container,
   CardHeader,
   Row,
-  Input,
-  Label,
-  FormFeedback,
-  Form,
   Button,
+  Table,
 } from "reactstrap";
 import { message } from "antd";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
@@ -32,8 +29,6 @@ import {
 //formik
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
-import Select from "react-select";
 
 const AdmissionDetail = (props) => {
   // console.log(props.router.params.id);
@@ -54,29 +49,6 @@ const AdmissionDetail = (props) => {
   const { isErrorNotificationVisible, errorMessage, item } = useSelector(
     FacultyCreatepageData
   );
-
-  const validation = useFormik({
-    enableReinitialize: true,
-
-    initialValues: {
-      id: item.id,
-      firstName: item.firstName,
-      lastName: item.lastName,
-      email: item.email,
-      address: item.address,
-      dob: item.dob,
-      gender: item.gender == 0 ? "Male" : "Female",
-      phone: item.phone,
-      faculty: item.faculty,
-      facultycode: item.faculty?.code,
-      enrollmentNumber: item.enrollmentNumber,
-      fatherName: item.fatherName,
-      motherName: item.motherName,
-      gpa: item.gpa,
-      highSchool: item.highSchool,
-      status: item.status,
-    },
-  });
 
   useEffect(() => {
     if (errorMessage && isErrorNotificationVisible) {
@@ -99,210 +71,73 @@ const AdmissionDetail = (props) => {
             <Card>
               <CardBody>
                 <Row>
-                  <Col md={6}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        first Name
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.firstName || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        last Name
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.lastName || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        email
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.email || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        address
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.address || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={4}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        dob
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.dob || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={4}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        gender
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.gender || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={4}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        phone
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.phone || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={4}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        enrollmentNumber
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.enrollmentNumber || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={4}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        gpa
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.gpa || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={4}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        highSchool
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.highSchool || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        father Name
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.fatherName || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
-                  <Col md={6}>
-                    <div className="mb-3">
-                      <Label
-                        className="form-label"
-                        htmlFor="product-title-input"
-                      >
-                        mother Name
-                      </Label>
-                      <Input
-                        disabled
-                        type="text"
-                        className="form-control"
-                        value={validation.values.motherName || ""}
-                        readOnly={true}
-                      />
-                    </div>
-                  </Col>
+                  {/* here */}
+                  <Table className="table-borderless mb-0">
+                    <tbody>
+                      <tr>
+                        <th className="ps-0" scope="row">
+                          First Name :
+                        </th>
+                        <td className="text-muted">{item.firstName}</td>
+                        <th className="ps-0" scope="row">
+                          Last Name :
+                        </th>
+                        <td className="text-muted">{item.lastName}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-0" scope="row">
+                          email :
+                        </th>
+                        <td className="text-muted">{item.email}</td>
+                        <th className="ps-0" scope="row">
+                          phone :
+                        </th>
+                        <td className="text-muted">{item.phone}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-0" scope="row">
+                          address :
+                        </th>
+                        <td className="text-muted">{item.address}</td>
+                        <th className="ps-0" scope="row">
+                          gender :
+                        </th>
+                        <td className="text-muted">
+                          {item.gender == 0 ? "Male" : "Female"}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="ps-0" scope="row">
+                          DOB :
+                        </th>
+                        <td className="text-muted">{item.dob}</td>
+                        <th className="ps-0" scope="row">
+                          enrollment Number :
+                        </th>
+                        <td className="text-muted">{item.enrollmentNumber}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-0" scope="row">
+                          highSchool :
+                        </th>
+                        <td className="text-muted">{item.highSchool}</td>
+                        <th className="ps-0" scope="row">
+                          Gpa
+                        </th>
+                        <td className="text-muted">{item.gpa}</td>
+                      </tr>
+                      <tr>
+                        <th className="ps-0" scope="row">
+                          fatherName
+                        </th>
+                        <td className="text-muted">{item.fatherName}</td>
+                        <th className="ps-0" scope="row">
+                          mother Name :
+                        </th>
+                        <td className="text-muted">{item.motherName}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
                 </Row>
               </CardBody>
             </Card>
@@ -342,51 +177,28 @@ const AdmissionDetail = (props) => {
                 <h5 className="card-title mb-0">faculty admission</h5>
               </CardHeader>
               <CardBody>
-                <Col md={12}>
-                  <div className="mb-3">
-                    <Label className="form-label" htmlFor="product-title-input">
-                      faculty title
-                    </Label>
-                    <Input
-                      disabled
-                      type="text"
-                      className="form-control"
-                      name="faculty"
-                      readOnly={true}
-                      value={validation.values.faculty?.title || ""}
-                    />
-                  </div>
-                </Col>{" "}
-                <Col md={12}>
-                  <div className="mb-3">
-                    <Label className="form-label" htmlFor="product-title-input">
-                      faculty code
-                    </Label>
-                    <Input
-                      disabled
-                      type="text"
-                      className="form-control"
-                      name="faculty"
-                      readOnly={true}
-                      value={validation.values.faculty?.code || ""}
-                    />
-                  </div>
-                </Col>
-                <Col md={12}>
-                  <div className="mb-3">
-                    <Label className="form-label" htmlFor="product-title-input">
-                      entry Score
-                    </Label>
-                    <Input
-                      disabled
-                      type="text"
-                      className="form-control"
-                      name="faculty"
-                      readOnly={true}
-                      value={validation.values.faculty?.entryScore || ""}
-                    />
-                  </div>
-                </Col>
+                <Table className="table-borderless mb-0">
+                  <tbody>
+                    <tr>
+                      <th className="ps-0" scope="row">
+                        faculty :
+                      </th>
+                      <td className="text-muted">{item.faculty?.title}</td>
+                    </tr>
+                    <tr>
+                      <th className="ps-0" scope="row">
+                        code :
+                      </th>
+                      <td className="text-muted">{item.faculty?.code}</td>
+                    </tr>
+                    <tr>
+                      <th className="ps-0" scope="row">
+                        entryScore :
+                      </th>
+                      <td className="text-muted">{item.faculty?.entryScore}</td>
+                    </tr>
+                  </tbody>
+                </Table>
               </CardBody>
             </Card>
           </Col>

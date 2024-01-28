@@ -19,11 +19,11 @@ import SessionReducer from "./Session/reducer";
 import AdmissionReducer from "./Admission/reducer";
 import StudentsReducer from "./Student/reducer";
 import ProfileReducer from "./profile/reducer";
+import SemesterReducer from "./Semester/reducer";
 
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
   Login: LoginReducer,
-  // Profile: ProfileReducer,
   // ForgetPassword: ForgetPasswordReducer,
   Profile: ProfileReducer,
   CategoryReducer: CategoryReducer,
@@ -37,6 +37,7 @@ const rootReducer = combineReducers({
   Studentsdashboard: StudentsReducer,
   Sessiondashboard: SessionReducer,
   Admissiondashboard: AdmissionReducer,
+  Semesterdashboard: SemesterReducer,
   Message: MessageReducer,
 });
 

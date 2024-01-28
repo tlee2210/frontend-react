@@ -181,6 +181,12 @@ const Navdata = () => {
       ],
     },
     {
+      id: "Semester",
+      label: "Semester",
+      icon: "bx bx-calendar",
+      link: "/dashboard/Semester/create",
+    },
+    {
       label: "Staff and Students",
       isHeader: true,
     },

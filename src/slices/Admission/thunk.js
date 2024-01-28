@@ -38,7 +38,7 @@ export const GetDetailadmission = (id) => async (dispatch) => {
   axios
     .get(`https://localhost:7112/api/dashboard/admission/${id}`)
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       dispatch(setEdit(response.data));
     })
     .catch((error) => {
