@@ -151,18 +151,10 @@ const ArticleTables = (props) => {
   ];
 
   useEffect(() => {
-    let timeoutId;
     if (isNotificationVisible && notificationMessage) {
       message.success(notificationMessage);
-      timeoutId = setTimeout(() => {
-        dispatch(clearNotificationMessage());
-      }, 5000);
+      dispatch(clearNotificationMessage());
     }
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
   }, [isNotificationVisible, notificationMessage, dispatch]);
 
   useEffect(() => {

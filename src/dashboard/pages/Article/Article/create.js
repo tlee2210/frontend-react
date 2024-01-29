@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createSelector } from "reselect";
-import { ToastContainer, toast } from "react-toastify";
 import Dropzone from "react-dropzone";
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
@@ -12,6 +11,7 @@ import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import { message } from "antd";
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -102,20 +102,14 @@ const ArticleCreate = (props) => {
       },
     }),
   };
+
   useEffect(() => {
     if (isErrorNotificationVisible && errorMessage) {
-      errornotify(errorMessage);
+      message.error(errorMessage);
       dispatch(clearNotificationMessage());
     }
   }, [isErrorNotificationVisible, errorMessage]);
 
-  const errornotify = (errorMessage) =>
-    toast(String(errorMessage), {
-      position: "top-center",
-      hideProgressBar: true,
-      closeOnClick: false,
-      className: "bg-danger text-white",
-    });
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -176,8 +170,6 @@ const ArticleCreate = (props) => {
               <Row>
                 <Col lg={12}>
                   <Card>
-                    <ToastContainer />
-
                     <CardBody>
                       <div className="listjs-table" id="customerList">
                         <Row className="g-4 mb-3">

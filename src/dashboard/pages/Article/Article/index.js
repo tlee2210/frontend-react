@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { GetArticle, DeleteArticle } from "../../../../slices/Article/thunk";
 import { createSelector } from "reselect";
-import { ToastContainer, toast } from "react-toastify";
 import { clearNotificationMessage } from "../../../../slices/message/reducer";
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -21,7 +20,7 @@ import {
   FormFeedback,
   Badge,
 } from "reactstrap";
-import { Image, Table } from "antd";
+import { Image, Table, message } from "antd";
 
 import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 import { Link } from "react-router-dom";
@@ -125,19 +124,16 @@ const ArticleTables = (props) => {
       },
     },
   ];
-
   useEffect(() => {
-    let timeoutId;
-
     if (isNotificationVisible && notificationMessage) {
-      successnotify(notificationMessage);
+      message.success(notificationMessage);
       dispatch(clearNotificationMessage());
     }
   }, [isNotificationVisible, notificationMessage, dispatch]);
 
   useEffect(() => {
     if (isErrorNotificationVisible && errorMessage) {
-      errornotify(errorMessage);
+      message.error(errorMessage);
       dispatch(clearNotificationMessage());
     }
   }, [isErrorNotificationVisible, errorMessage]);
@@ -148,21 +144,7 @@ const ArticleTables = (props) => {
       dispatch(DeleteArticle(id));
     }
   }
-  const successnotify = (Msg) =>
-    toast(String(Msg), {
-      position: "top-center",
-      hideProgressBar: true,
-      closeOnClick: false,
-      className: "bg-success text-white",
-    });
 
-  const errornotify = (errMsg) =>
-    toast(String(errMsg), {
-      position: "top-center",
-      hideProgressBar: true,
-      closeOnClick: false,
-      className: "bg-danger text-white",
-    });
   document.title = "Article List";
 
   return (
@@ -176,7 +158,6 @@ const ArticleTables = (props) => {
                 <Col lg={12}>
                   <Card>
                     <CardHeader>
-                      <ToastContainer />
                       <h4 className="card-title mb-0">Article list</h4>
                     </CardHeader>
                     <CardBody>

@@ -67,7 +67,7 @@ const Navdata = () => {
       setIsAdmission(false);
     }
     if (iscurrentState !== "Study") {
-      setIsAdmission(false);
+      setIsstudy(false);
     }
   }, [
     history,
@@ -394,8 +394,6 @@ const Navdata = () => {
       link: "/dashboard/contactus",
       click: function (e) {
         e.preventDefault();
-        setIsArticle(!isArticle);
-        setIsContact(!isContact);
         setIscurrentState("Contact");
         updateIconSidebar(e);
       },

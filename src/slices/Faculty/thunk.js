@@ -45,7 +45,7 @@ export const FacultyStore = (formData, history) => async (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      // dispatch(errorMessage(error.response.data));
+      dispatch(errorMessage(error.response.data.message));
     });
 };
 export const GetEditFaculty = (id) => async (dispatch) => {
@@ -76,7 +76,7 @@ export const UpdateFaculty = (formData, history) => async (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      // dispatch(errorMessage(error.response.data));
+      dispatch(errorMessage(error.response.data.message));
     });
 };
 export const DeleteFaculty = (id) => async (dispatch) => {

@@ -27,6 +27,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 import { Space, Table, Tag } from "antd";
+import { message } from "antd";
 
 // Formik validation
 import * as Yup from "yup";
@@ -96,7 +97,7 @@ const CategoryTables = (props) => {
   const columns = [
     {
       title: "Index",
-      fixed: 'left',
+      fixed: "left",
       width: 100,
       render: (text, record, index) => index + 1,
     },
@@ -106,7 +107,7 @@ const CategoryTables = (props) => {
     },
     {
       title: "Actions",
-      fixed: 'right',
+      fixed: "right",
       width: 200,
       render: (record) => {
         return (
@@ -125,7 +126,10 @@ const CategoryTables = (props) => {
               className="fs-4 text-danger"
               onClick={() => tog_togdelete(record.id)}
             >
-              <i className="ri-delete-bin-5-line"  onClick={() => tog_togdelete(record.id)}></i>
+              <i
+                className="ri-delete-bin-5-line"
+                onClick={() => tog_togdelete(record.id)}
+              ></i>
             </span>
           </>
         );
@@ -136,24 +140,6 @@ const CategoryTables = (props) => {
   useEffect(() => {
     dispatch(GetCategories());
   }, []);
-
-  useEffect(() => {
-    if (notification && Msg) {
-      validation.resetForm();
-      setmodal_togFirst(false);
-      successnotify(Msg);
-      dispatch(clearNotification());
-    }
-  }, [notification, Msg]);
-
-  useEffect(() => {
-    if (errorNotification && errMsg) {
-      validation.resetForm();
-      setmodal_togFirst(false);
-      errornotify(errMsg);
-      dispatch(clearNotification());
-    }
-  }, [errorNotification, errMsg]);
 
   function settitle(type) {
     if (!type) {
@@ -180,21 +166,22 @@ const CategoryTables = (props) => {
     setmodal_togFirst(!modal_togFirst);
   };
 
-  const successnotify = (Msg) =>
-    toast(String(Msg), {
-      position: "top-center",
-      hideProgressBar: true,
-      closeOnClick: false,
-      className: "bg-success text-white",
-    });
+  useEffect(() => {
+    if (notification && Msg) {
+      setmodal_togFirst(false);
+      message.success(Msg);
+      dispatch(clearNotification());
+    }
+  }, [notification, Msg, dispatch]);
 
-  const errornotify = (errMsg) =>
-    toast(String(errMsg), {
-      position: "top-center",
-      hideProgressBar: true,
-      closeOnClick: false,
-      className: "bg-danger text-white",
-    });
+  useEffect(() => {
+    if (errorNotification && errMsg) {
+      validation.resetForm();
+      setmodal_togFirst(false);
+      message.error(errMsg);
+      dispatch(clearNotification());
+    }
+  }, [errorNotification, errMsg]);
 
   function tog_togdelete(id) {
     setmodal_detele(!modal_togFirst);
@@ -251,7 +238,11 @@ const CategoryTables = (props) => {
                             </div>
                           </Col>
                         </Row>
-                      <Table columns={columns} dataSource={CategoryData} rowKey={"id"}/>
+                        <Table
+                          columns={columns}
+                          dataSource={CategoryData}
+                          rowKey={"id"}
+                        />
                       </div>
                     </CardBody>
                   </Card>
