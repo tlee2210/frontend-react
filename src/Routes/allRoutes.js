@@ -25,6 +25,10 @@ import NewsPage from "../home/pages/News/NewsPage";
 import NewDetailsPage from "../home/pages/News/NewsDetailsPage";
 //Facilities
 import FacilitiesPage from "../home/pages/Facilities/FacilitiesPage";
+//Unit Page
+import UnitPage from "../home/pages/UnitPage/UnitPage";
+//test Pagr
+
 
 //Admin pages
 import Courses from "../dashboard/pages/Courses/index";
@@ -158,5 +162,10 @@ const publicHome = [
     path: "/facilities",
     component: <FacilitiesPage />,
   },
+  {
+    path: "/unit-page",
+    component: <UnitPage />,
+  },
+
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicHome, publicRoutes };

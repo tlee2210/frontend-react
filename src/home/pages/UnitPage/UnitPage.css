@@ -1,0 +1,87 @@
+.header-container-unit-page-Header {
+    display: flex;
+    align-items: center;
+    background: url('../../../assets/images/small/2.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 79px;
+  }
+  
+  .header-content-unit-page-Header {
+    max-width: 600px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+  }
+  
+  .change-unit-page-Header-red{
+    color: red;
+    text-decoration: underline;
+  }
+  .header-code-unit-page-Header {
+    font-size: 0.85rem;
+    color: #333;
+  }
+  
+  .header-title-unit-page-Header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0;
+  }
+  
+  .header-actions-unit-page-Header {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .button-add-unit-page-Header,
+  .button-change-unit-page-Header {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-right: 109px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button-add-unit-page-Header:hover,
+  .button-change-unit-page-Header:hover {
+    background-color: #555;
+  }
+  
+  .student-status-unit-page-Header {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .details-container-unit-page-Header {
+    
+    display: flex;
+    justify-content: left; /* Distribute items evenly */
+    margin-top: 20px;
+  }
+  
+  .detail-unit-page-Header {
+    max-width: 124px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align details to the left */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .detail-unit-page-Header strong {
+    font-size: 1.2rem;
+    color: #000;
+  }
+  
+  .detail-unit-page-Header span {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* background: url('../../../../../assets/images/banner/cq5dam.web.1920.1080.jpeg') no-repeat center center; */

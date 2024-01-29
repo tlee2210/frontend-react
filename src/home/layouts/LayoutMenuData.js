@@ -97,6 +97,17 @@ const Navdata = () => {
                     label: "Under Graduate",
                     link: "/courses-page/under-graduate-page",
                 },
+                {
+                    id: "under-graduate",
+                    label: "Course Details",
+                    link: ".",
+                },
+                //Unit
+                {
+                    id: "unit",
+                    label: "Unit",
+                    link: "/unit-page",
+                },
             ],
         },
 
@@ -136,6 +147,7 @@ const Navdata = () => {
             },
         },
 
+
         //contact
         {
             id: "contact-us",
@@ -147,6 +159,7 @@ const Navdata = () => {
                 updateIconSidebar(e);
             },
         },
+
 
     ];
     return <React.Fragment>{menuItems}</React.Fragment>;
