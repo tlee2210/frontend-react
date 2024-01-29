@@ -31,7 +31,11 @@ export const GetCreateFaculty = () => async (dispatch) => {
 };
 export const FacultyStore = (formData, history) => async (dispatch) => {
   axios
-    .post("https://localhost:7112/api/dashboard/Faculty/Store", formData)
+    .post("https://localhost:7112/api/dashboard/Faculty/Store", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
     .then((response) => {
       // console.log(response);
       if (response.data.message) {
@@ -40,15 +44,15 @@ export const FacultyStore = (formData, history) => async (dispatch) => {
       history("/dashboard/faculty");
     })
     .catch((error) => {
-      // console.log(error);
-      dispatch(errorMessage(error.response.data));
+      console.log(error);
+      // dispatch(errorMessage(error.response.data));
     });
 };
 export const GetEditFaculty = (id) => async (dispatch) => {
   axios
     .get(`https://localhost:7112/api/dashboard/Faculty/${id}/edit`)
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       dispatch(setEdit(response.data.model));
       dispatch(setSelectOption(response.data.selectOption));
     })
@@ -58,7 +62,11 @@ export const GetEditFaculty = (id) => async (dispatch) => {
 };
 export const UpdateFaculty = (formData, history) => async (dispatch) => {
   axios
-    .post("https://localhost:7112/api/dashboard/Faculty/update", formData)
+    .post("https://localhost:7112/api/dashboard/Faculty/update", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
     .then((response) => {
       // console.log(response);
       if (response.data.message) {
@@ -67,8 +75,8 @@ export const UpdateFaculty = (formData, history) => async (dispatch) => {
       history("/dashboard/faculty");
     })
     .catch((error) => {
-      // console.log(error.response.data);
-      dispatch(errorMessage(error.response.data));
+      console.log(error);
+      // dispatch(errorMessage(error.response.data));
     });
 };
 export const DeleteFaculty = (id) => async (dispatch) => {
@@ -84,7 +92,7 @@ export const DeleteFaculty = (id) => async (dispatch) => {
       }
     })
     .catch((error) => {
-      // console.log(error);
+      console.log(error);
       dispatch(errorMessage(error.response.data.message));
     });
 };

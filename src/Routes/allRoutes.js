@@ -61,7 +61,7 @@ import DepartmentEdit from "../dashboard/pages/Department/edit";
 import Sessions from "../dashboard/pages/session/index";
 // Semester
 import SemesterCreate from "../dashboard/pages/Semester/create";
-
+import Semester from "../dashboard/pages/Semester/index";
 // Admission Proccess
 import AdmissionProccess from "../dashboard/pages/Admission/AdmissionProccess";
 import AdmissionAccept from "../dashboard/pages/Admission/AdmissionAccept";
@@ -108,7 +108,8 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/admission/:id/detail", component: <AdmissionDetail /> },
   { path: "/dashboard/Profile/", component: <StaffProfile /> },
   // Semester
-  { path: "/dashboard/Semester/create", component: <SemesterCreate /> },
+  { path: "/dashboard/study/create", component: <SemesterCreate /> },
+  { path: "/dashboard/study", component: <Semester /> },
 ];
 const authProtectedRoutes = [
   //User Profile

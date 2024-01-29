@@ -4,7 +4,10 @@ import { createSelector } from "reselect";
 import withRouter from "../../../Components/Common/withRouter";
 
 import Select from "react-select";
-import { GetCreateSemester } from "../../../slices/Semester/thunk";
+import {
+  GetCreateSemester,
+  SemesterStore,
+} from "../../../slices/Semester/thunk";
 import {
   Card,
   CardBody,
@@ -74,11 +77,14 @@ const SemesterCreate = (props) => {
       sessionId: Yup.string().required("Please Enter a session"),
     }),
     onSubmit: (values) => {
-      console.log(values);
-      // const formData = new FormData();
-      // formData.append("MotherName", values.MotherName);
+      // console.log(values);
+      const formData = new FormData();
+      formData.append("facultyId", values.facultyId);
+      formData.append("departmentId", values.departmentId);
+      formData.append("semesterId", values.semesterId);
+      formData.append("sessionId", values.sessionId);
 
-      // dispatch(SemesterStore(formData, props.router.navigate));
+      dispatch(SemesterStore(formData, props.router.navigate));
       //   validation.resetForm();
     },
   });
@@ -96,7 +102,7 @@ const SemesterCreate = (props) => {
   return (
     <div className="page-content">
       <Container fluid>
-        <BreadCrumb title="Create department Semester" pageTitle="Semester" />
+        <BreadCrumb title="study program Create" pageTitle="study" />
 
         <Row>
           <Col md={12}>

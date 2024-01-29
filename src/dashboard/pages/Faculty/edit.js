@@ -15,10 +15,21 @@ import {
   FormFeedback,
   Form,
   Button,
+  FormGroup,
 } from "reactstrap";
 import { message } from "antd";
 import { clearNotificationMessage } from "../../../slices/message/reducer";
+import Dropzone from "react-dropzone";
+import { FilePond, registerPlugin } from "react-filepond";
 
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 // import { addNewProduct as onAddNewProduct } from "../../../slices/thunks";
@@ -54,6 +65,48 @@ const FacultyEdit = (props) => {
   const { SelectOption, isErrorNotificationVisible, errorMessage, item } =
     useSelector(FacultyCreatepageData);
 
+  const [selectedFiles, setselectedFiles] = useState([]);
+  function handleAcceptedFiles(files) {
+    files.map((file) =>
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+        formattedSize: formatBytes(file.size),
+      })
+    );
+    setselectedFiles(files);
+  }
+  function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  }
+  const customStyles = {
+    multiValue: (styles, { data }) => {
+      return {
+        ...styles,
+        backgroundColor: "#1fe6f0",
+      };
+    },
+    multiValueLabel: (styles, { data }) => ({
+      ...styles,
+      backgroundColor: "#1fe6f0",
+      color: "white",
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: "white",
+      backgroundColor: "#1fe6f0",
+      ":hover": {
+        backgroundColor: "#405189",
+        color: "white",
+      },
+    }),
+  };
+
   const validation = useFormik({
     enableReinitialize: true,
 
@@ -66,16 +119,14 @@ const FacultyEdit = (props) => {
       Opportunities: item.opportunities ? item.opportunities.split(",") : [],
       EntryScore: item.entryScore,
       Course_id: item.course_id,
+      image: item.image,
+      files: [],
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Please Enter a faculty Title"),
       Code: Yup.string()
         .required("Please Enter a Code")
-        .matches(
-          /^[A-Z]{3}\d{3}$/,
-          "Code must be 3 uppercase letters followed by 3 numbers"
-        ),
-
+        .matches(/^\d{10}$/, "Phone number must be exactly 10 digits"),
       Description: Yup.string().required("Please Enter a Description"),
       Skill: Yup.array()
         .of(Yup.string().trim().required("Please Enter a Skill"))
@@ -116,6 +167,13 @@ const FacultyEdit = (props) => {
         .min(0, "EntryScore must be greater than or equal to 0")
         .max(100, "EntryScore must be less than or equal to 100"),
       Course_id: Yup.string().required("Please Enter an Course"),
+      files: Yup.array().of(
+        Yup.mixed().test(
+          "fileType",
+          "Unsupported File Format",
+          (value) => value && value.type.startsWith("image/")
+        )
+      ),
     }),
     onSubmit: (values) => {
       // console.log(values);
@@ -128,6 +186,9 @@ const FacultyEdit = (props) => {
       formData.append("Opportunities", values.Opportunities.join(","));
       formData.append("EntryScore", values.EntryScore);
       formData.append("Course_id", values.Course_id);
+      if (values.files[0]) {
+        formData.append("Image", values.files[0]);
+      }
       dispatch(UpdateFaculty(formData, props.router.navigate));
       // validation.resetForm();
     },
@@ -315,6 +376,108 @@ const FacultyEdit = (props) => {
                       </div>
                     ) : null}
                   </div>
+                  <Col md="12">
+                    <FormGroup className="mb-3">
+                      <Label htmlFor="validationCustom02">avatar</Label>
+                      <Dropzone
+                        onDrop={(acceptedFiles) => {
+                          handleAcceptedFiles(acceptedFiles);
+                          validation.setFieldValue("files", acceptedFiles);
+                        }}
+                      >
+                        {({ getRootProps, getInputProps }) => (
+                          <div className="dropzone dz-clickable">
+                            <div
+                              className="dz-message needsclick"
+                              {...getRootProps()}
+                            >
+                              <div className="mb-3">
+                                <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                              </div>
+                              <h4>upload avatar</h4>
+                            </div>
+                          </div>
+                        )}
+                      </Dropzone>
+                      {validation.touched.files && validation.errors.files ? (
+                        <div className="invalid-feedback d-block">
+                          {validation.errors.files}
+                        </div>
+                      ) : null}
+                      <div className="list-unstyled mb-0" id="file-previews">
+                        {selectedFiles.length > 0 ? (
+                          selectedFiles.map((f, i) => (
+                            <Card
+                              className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                              key={i + "-file"}
+                            >
+                              <div className="p-2">
+                                <Row className="align-items-center">
+                                  <Col className="col-auto">
+                                    <img
+                                      data-dz-thumbnail=""
+                                      height="80"
+                                      className="avatar-sm rounded bg-light"
+                                      alt={f.name}
+                                      src={f.preview}
+                                    />
+                                  </Col>
+                                  <Col>
+                                    <Link
+                                      to="#"
+                                      className="text-muted font-weight-bold"
+                                    >
+                                      {f.name}
+                                    </Link>
+                                    <p className="mb-0">
+                                      <strong>{f.formattedSize}</strong>
+                                    </p>
+                                  </Col>
+                                </Row>
+                              </div>
+                            </Card>
+                          ))
+                        ) : (
+                          // <img
+                          //   height="80"
+                          //   className="avatar-sm rounded bg-light"
+                          //   alt="Default"
+                          //   src="https://localhost:7045/Image/Article/image2240112358.jpg"
+                          // />
+                          <Card
+                            className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                            // key={i + "-file"}
+                          >
+                            <div className="p-2">
+                              <Row className="align-items-center">
+                                <Col className="col-auto">
+                                  <img
+                                    src={validation.values.image}
+                                    height="80"
+                                    className="avatar-sm rounded bg-light"
+                                  />
+                                </Col>
+                                <Col>
+                                  <Link
+                                    to="#"
+                                    className="text-muted font-weight-bold"
+                                  >
+                                    {validation.values.name}
+                                  </Link>
+                                </Col>
+                              </Row>
+                            </div>
+                          </Card>
+                        )}
+                      </div>
+                      {validation.touched.Category &&
+                      validation.errors.Category ? (
+                        <FormFeedback type="invalid">
+                          {validation.errors.Category}
+                        </FormFeedback>
+                      ) : null}
+                    </FormGroup>
+                  </Col>
                 </CardBody>
               </Card>
 

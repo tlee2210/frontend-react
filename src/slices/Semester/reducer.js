@@ -25,8 +25,8 @@ const SemesterSlice = createSlice({
     //   state.item = action.payload;
     // },
     setSelectOption(state, action) {
-      state.departmentOptions = action.payload.departmentOptions;
       state.facultyOptions = action.payload.facultyOptions;
+      state.departmentOptions = action.payload.departmentOptions;
       state.semesterOptions = action.payload.semesterOptions;
       state.sessionOptions = action.payload.sessionOptions;
     },

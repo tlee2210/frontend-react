@@ -5,33 +5,50 @@ export const GetCreateSemester = () => async (dispatch) => {
   await axios
     .get("https://localhost:7112/api/dashboard/Semester/GetCreate")
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       dispatch(setSelectOption(response.data));
     })
     .catch((error) => {
       console.log(error);
     });
 };
-// export const studentStore = (formData, history) => async (dispatch) => {
-//   // console.log(formData);
-//   axios
-//     .post("https://localhost:7112/api/dashboard/student/Create", formData, {
-//       headers: {
-//         "Content-Type": "multipart/form-data",
-//       },
-//     })
-//     .then((response) => {
-//       console.log(response);
-//       if (response.data.message) {
-//         dispatch(setMessage(response.data.message));
-//       }
-//       history("/dashboard/students");
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       dispatch(errorMessage(error.response.data.message));
-//     });
-// };
+export const GetParameters = () => async (dispatch) => {
+  await axios
+    .get("https://localhost:7112/api/dashboard/Semester/GetParameters")
+    .then((response) => {
+      // console.log(response);
+      dispatch(setSelectOption(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export const GetSearch = (values) => async (dispatch) => {
+  await axios
+    .get("https://localhost:7112/api/dashboard/Semester", { params: values })
+    .then((response) => {
+      console.log(response);
+      // dispatch(setSelectOption(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export const SemesterStore = (formData, history) => async (dispatch) => {
+  axios
+    .post("https://localhost:7112/api/dashboard/Semester", formData)
+    .then((response) => {
+      console.log(response);
+      // if (response.data.message) {
+      //   dispatch(setMessage(response.data.message));
+      // }
+      // history("/dashboard/students");
+    })
+    .catch((error) => {
+      // console.log(error);
+      dispatch(errorMessage(error.response.data.message));
+    });
+};
 // export const GetStudent = () => async (dispatch) => {
 //   axios
 //     .get(`https://localhost:7112/api/dashboard/student/GetList`)

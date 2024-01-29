@@ -174,7 +174,7 @@ const ArticleTables = (props) => {
 
   function deleteitem(id) {
     if (id) {
-      //   console.log(id);
+      // console.log(id);
       dispatch(DeleteFaculty(id));
     }
   }

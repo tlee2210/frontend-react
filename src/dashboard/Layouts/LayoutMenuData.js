@@ -15,6 +15,7 @@ const Navdata = () => {
   const [isSession, setIsSession] = useState(false);
   const [isFeedback, setIsFeedback] = useState(false);
   const [isAdmission, setIsAdmission] = useState(false);
+  const [isstudy, setIsstudy] = useState(false);
   const [iscurrentState, setIscurrentState] = useState("Dashboard");
   function updateIconSidebar(e) {
     if (e && e.target && e.target.getAttribute("subitems")) {
@@ -65,6 +66,9 @@ const Navdata = () => {
     if (iscurrentState !== "Admission") {
       setIsAdmission(false);
     }
+    if (iscurrentState !== "Study") {
+      setIsAdmission(false);
+    }
   }, [
     history,
     iscurrentState,
@@ -79,6 +83,7 @@ const Navdata = () => {
     isSession,
     isFeedback,
     isAdmission,
+    isstudy,
   ]);
 
   const menuItems = [
@@ -181,10 +186,31 @@ const Navdata = () => {
       ],
     },
     {
-      id: "Semester",
-      label: "Semester",
-      icon: "bx bx-calendar",
-      link: "/dashboard/Semester/create",
+      id: "study",
+      label: "study program",
+      icon: "bx bx-pencil",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsstudy(!isstudy);
+        setIscurrentState("Study");
+        updateIconSidebar(e);
+      },
+      stateVariables: isstudy,
+      subItems: [
+        {
+          id: "study",
+          label: "study program Create",
+          link: "/dashboard/study/create",
+          parentId: "study",
+        },
+        {
+          id: "study",
+          label: "study program list",
+          link: "/dashboard/study",
+          parentId: "Semester",
+        },
+      ],
     },
     {
       label: "Staff and Students",

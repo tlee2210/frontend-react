@@ -353,7 +353,7 @@ const ContactUs = (props) => {
                               color="warning"
                               className="btn-label"
                               onClick={() => {
-                                dispatch(GetContactUs());
+                                validation.resetForm();
                               }}
                             >
                               {" "}
