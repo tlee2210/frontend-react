@@ -38,7 +38,7 @@ const AdminProtected = (props) => {
     );
   } else {
     const user = userProfile.user;
-    if (user && user.role !== "Admin") {
+    if (user && user.role !== "Admin" && user.role !== "Teach") {
       return (
         <Navigate to={{ pathname: "/home", state: { from: props.location } }} />
       );
