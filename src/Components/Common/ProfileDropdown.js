@@ -72,15 +72,15 @@ const ProfileDropdown = (props) => {
         <DropdownMenu className="dropdown-menu-end">
           <h6 className="dropdown-header">Welcome {userName} !</h6>
           <DropdownItem className="p-0">
-            {role === "Admin" ? (
-              <a href="/dashboard/Courses" className="dropdown-item">
-                <i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
-                <span className="align-middle">Dashboard</span>
-              </a>
-            ) : (
+            {role !== "Admin" ? (
               <a href="/profile" className="dropdown-item">
                 <i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
                 <span className="align-middle">Profile</span>
+              </a>
+            ) : (
+              <a href="/dashboard/Courses" className="dropdown-item">
+                <i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
+                <span className="align-middle">Dashboard</span>
               </a>
             )}
           </DropdownItem>
