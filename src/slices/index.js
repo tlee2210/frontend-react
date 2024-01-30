@@ -23,6 +23,7 @@ import SemesterReducer from "./Semester/reducer";
 import HomeReducer from "./home/home/reducer";
 import HomeFacilitiesReducer from "./home/facilities/reducer";
 import HomenewsReducer from "./home/news/reducer";
+import HomecoursesReducer from "./home/courses/reducer";
 
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   Home: HomeReducer,
   Facilities: HomeFacilitiesReducer,
   New: HomenewsReducer,
+  Courses: HomecoursesReducer,
   //Message
   Message: MessageReducer,
 });

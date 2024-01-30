@@ -79,19 +79,9 @@ const Navdata = () => {
           link: "/courses-page",
         },
         {
-          id: "find-a-source",
-          label: "Find A Source",
-          link: "/courses-page/find-a-source",
-        },
-        {
           id: "under-graduate",
           label: "Under Graduate",
           link: "/courses-page/under-graduate-page",
-        },
-        {
-          id: "under-graduate",
-          label: "Course Details",
-          link: ".",
         },
         //Unit
         {

@@ -21,3 +21,4 @@ export * from "./Semester/thunk";
 export * from "./home/home/thunk";
 export * from "./home/facilities/thunk";
 export * from "./home/news/thunk";
+export * from "./home/courses/thunk";

@@ -17,6 +17,7 @@ import ContactUsPage from "../home/pages/AboutUs/ContactUs";
 import CoursesPage from "../home/pages/Courses/CoursesPage";
 //Find A Sourse Page
 import FindASource from "../home/pages/FindASource/FindASource";
+import FindASourceSearch from "../home/pages/FindASource/FindASourceSearch";
 //Under Graduate Page
 import UnderGraduatePage from "../home/pages/UnderGraduate/UnderGraduatePage";
 //New Page
@@ -143,15 +144,17 @@ const publicHome = [
   },
   { path: "*", component: <HomePage /> },
   { path: "/contact-us", component: <ContactUsPage /> },
-  { path: "/courses-page", component: <CoursesPage /> },
-  { path: "/courses-page/find-a-source", component: <FindASource /> },
+  { path: "/unit-page", component: <UnitPage /> },
   {
     path: "/courses-page/under-graduate-page",
     component: <UnderGraduatePage />,
   },
+
+  { path: "/courses-page", component: <CoursesPage /> },
+  { path: "/courses-page/:title/search", component: <FindASourceSearch /> },
+  { path: "/courses-page/:slug", component: <FindASource /> },
   { path: "/news", component: <NewsPage /> },
   { path: "/news/:id/details", component: <NewDetailsPage /> },
   { path: "/facilities", component: <FacilitiesPage /> },
-  { path: "/unit-page", component: <UnitPage /> },
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicHome, publicRoutes };

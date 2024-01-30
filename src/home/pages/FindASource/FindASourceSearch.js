@@ -17,18 +17,18 @@ import {
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { createSelector } from "reselect";
-import { GetFacultyByCourseSlug } from "../../../slices/home/courses/thunk";
+import { SearchFacultyByTitle } from "../../../slices/home/courses/thunk";
 
 const FindASource = (props) => {
   // console.log(props);
-  const slug = props.router.params.slug;
+  const title = props.router.params.title;
 
   const dispatch = useDispatch();
   const selecthomeState = (state) => state;
   useEffect(() => {
-    dispatch(GetFacultyByCourseSlug(slug));
+    dispatch(SearchFacultyByTitle(title));
     // console.log(id);
-  }, [slug]);
+  }, [title]);
 
   const homepageData = createSelector(selecthomeState, (state) => ({
     coursesData: state.Courses.coursesData,
