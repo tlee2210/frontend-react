@@ -29,7 +29,6 @@ import FacilitiesPage from "../home/pages/Facilities/FacilitiesPage";
 import UnitPage from "../home/pages/UnitPage/UnitPage";
 //test Pagr
 
-
 //Admin pages
 import Courses from "../dashboard/pages/Courses/index";
 import Category from "../dashboard/pages/Article/Category/index";
@@ -150,22 +149,9 @@ const publicHome = [
     path: "/courses-page/under-graduate-page",
     component: <UnderGraduatePage />,
   },
-  {
-    path: "/news",
-    component: <NewsPage />,
-  },
-  {
-    path: "/news/details",
-    component: <NewDetailsPage />,
-  },
-  {
-    path: "/facilities",
-    component: <FacilitiesPage />,
-  },
-  {
-    path: "/unit-page",
-    component: <UnitPage />,
-  },
-
+  { path: "/news", component: <NewsPage /> },
+  { path: "/news/:id/details", component: <NewDetailsPage /> },
+  { path: "/facilities", component: <FacilitiesPage /> },
+  { path: "/unit-page", component: <UnitPage /> },
 ];
 export { AdminProtectedRoutes, authProtectedRoutes, publicHome, publicRoutes };

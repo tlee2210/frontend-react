@@ -1,19 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  facilitiesData: [],
+  articalData: [],
+  CategoryData: [],
+  item: {},
 };
 
 const homeSlice = createSlice({
   name: "homeSlice",
   initialState,
   reducers: {
-    setfacilitiesData(state, action) {
-      state.facilitiesData = action.payload;
+    setarticalData(state, action) {
+      state.articalData = action.payload;
+    },
+    setCategoryData(state, action) {
+      state.CategoryData = action.payload;
+    },
+    setItemData(state, action) {
+      state.item = action.payload;
     },
   },
 });
 
-export const { setfacilitiesData } = homeSlice.actions;
+export const { setarticalData, setCategoryData, setItemData } =
+  homeSlice.actions;
 
 export default homeSlice.reducer;

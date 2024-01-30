@@ -68,33 +68,35 @@ const News = ({ data }) => {
           <div className="swiper-wrapper">
             {data.map((News, index) => (
               <SwiperSlide key={index}>
-                <Card
-                  className="mb-4"
-                  style={{ minHeight: "500px", maxHeight: "500px" }}
-                >
-                  <img
-                    className="card-img-top img-fluid"
-                    src={News.image}
-                    alt={News.title}
-                    style={{ minHeight: "300px", maxHeight: "300px" }}
-                  />
-                  <CardBody>
-                    <h4 className="card-title">{News.title}</h4>
-                    <p
-                      className="card-text"
-                      dangerouslySetInnerHTML={{
-                        __html: News.content,
-                      }}
-                    ></p>
-                  </CardBody>
-                  <div className="card-footer">
-                    <p className="card-text">
-                      <small className="text-muted">
-                        {moment(News.publishDate).format("MM/DD/YYYY HH:mm")}
-                      </small>
-                    </p>
-                  </div>
-                </Card>
+                <Link to={`/news/${News.id}/details`}>
+                  <Card
+                    className="mb-4"
+                    style={{ minHeight: "500px", maxHeight: "500px" }}
+                  >
+                    <img
+                      className="card-img-top img-fluid"
+                      src={News.image}
+                      alt={News.title}
+                      style={{ minHeight: "300px", maxHeight: "300px" }}
+                    />
+                    <CardBody>
+                      <h4 className="card-title">{News.title}</h4>
+                      <p
+                        className="card-text"
+                        dangerouslySetInnerHTML={{
+                          __html: News.content,
+                        }}
+                      ></p>
+                    </CardBody>
+                    <div className="card-footer">
+                      <p className="card-text">
+                        <small className="text-muted">
+                          {moment(News.publishDate).format("MM/DD/YYYY HH:mm")}
+                        </small>
+                      </p>
+                    </div>
+                  </Card>
+                </Link>
               </SwiperSlide>
             ))}
           </div>
