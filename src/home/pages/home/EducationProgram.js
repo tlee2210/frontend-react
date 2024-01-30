@@ -29,7 +29,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/effect-flip";
 import { Pagination } from "swiper";
 
-const EducationProgram = (props) => {
+const EducationProgram = ({ data }) => {
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -39,7 +39,7 @@ const EducationProgram = (props) => {
 
   return (
     <Col lg={12}>
-      <h5 className="fs-3 mb-2 mt-5">Education program</h5>
+      <h5 className="fs-3 mb-2 mt-5">Training program</h5>
       <Swiper
         slidesPerView={1}
         spaceBetween={5}
@@ -67,7 +67,40 @@ const EducationProgram = (props) => {
       >
         <Row>
           <div className="swiper-wrapper">
-            <SwiperSlide>
+            {data.map(
+              (
+                program,
+                index // Sử dụng data từ props để tạo các SwiperSlide
+              ) => (
+                <SwiperSlide key={index}>
+                  <Card style={{ minHeight: "500px", maxHeight: "500px" }}>
+                    <img
+                      src={program.image}
+                      className="card-img-top"
+                      alt={program.title}
+                      style={{ maxHeight: "300px" }}
+                    />
+                    <CardBody>
+                      <h5 className="card-title">{program.title}</h5>
+                      {/* <p className="card-text">{program.description}</p> */}
+                      <p
+                        className="card-text"
+                        dangerouslySetInnerHTML={{
+                          __html: program.description,
+                        }}
+                      ></p>
+                      <Link
+                        to={program.link || "#"}
+                        className="btn btn-primary stretched-link"
+                      >
+                        Go somewhere
+                      </Link>
+                    </CardBody>
+                  </Card>
+                </SwiperSlide>
+              )
+            )}
+            {/* <SwiperSlide>
               <Card>
                 <img src={img9} className="card-img-top" alt="..." />
                 <CardBody>
@@ -82,87 +115,7 @@ const EducationProgram = (props) => {
                   </Link>
                 </CardBody>
               </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card>
-                <img src={img8} className="card-img-top" alt="..." />
-                <CardBody>
-                  <h5 className="card-title">
-                    Massachusetts Institute of Technology (MIT)
-                  </h5>
-                  <p className="card-text">
-                    e Computer Science and Artificial Intelligence Lab (CSAIL)
-                  </p>
-                  <Link to="#" className="btn btn-primary stretched-link">
-                    Go somewhere
-                  </Link>
-                </CardBody>
-              </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card>
-                <img src={img9} className="card-img-top" alt="..." />
-                <CardBody>
-                  <h5 className="card-title">
-                    Massachusetts Institute of Technology (MIT)
-                  </h5>
-                  <p className="card-text">
-                    e Computer Science and Artificial Intelligence Lab (CSAIL)
-                  </p>
-                  <Link to="#" className="btn btn-primary stretched-link">
-                    Go somewhere
-                  </Link>
-                </CardBody>
-              </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card>
-                <img src={img8} className="card-img-top" alt="..." />
-                <CardBody>
-                  <h5 className="card-title">
-                    Massachusetts Institute of Technology (MIT)
-                  </h5>
-                  <p className="card-text">
-                    e Computer Science and Artificial Intelligence Lab (CSAIL)
-                  </p>
-                  <Link to="#" className="btn btn-primary stretched-link">
-                    Go somewhere
-                  </Link>
-                </CardBody>
-              </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card>
-                <img src={img9} className="card-img-top" alt="..." />
-                <CardBody>
-                  <h5 className="card-title">
-                    Massachusetts Institute of Technology (MIT)
-                  </h5>
-                  <p className="card-text">
-                    e Computer Science and Artificial Intelligence Lab (CSAIL)
-                  </p>
-                  <Link to="#" className="btn btn-primary stretched-link">
-                    Go somewhere
-                  </Link>
-                </CardBody>
-              </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card>
-                <img src={img8} className="card-img-top" alt="..." />
-                <CardBody>
-                  <h5 className="card-title">
-                    Massachusetts Institute of Technology (MIT)
-                  </h5>
-                  <p className="card-text">
-                    e Computer Science and Artificial Intelligence Lab (CSAIL)
-                  </p>
-                  <Link to="#" className="btn btn-primary stretched-link">
-                    Go somewhere
-                  </Link>
-                </CardBody>
-              </Card>
-            </SwiperSlide>
+            </SwiperSlide> */}
           </div>
           <div className="swiper-pagination swiper-pagination-dark"></div>
         </Row>

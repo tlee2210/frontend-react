@@ -32,6 +32,7 @@ const mockNewsData = [
 ];
 const imageUrl = 'https://vcdn-vnexpress.vnecdn.net/2018/04/05/Ngan-ha-7187-1522903770.jpg';
 const mockCategories = ['Sports', 'Technology', 'Entertainment', 'Politics'];
+
 const NewsCard = ({ news }) => (
     <Col sm="12" md="6" lg="4">
         <Card className="mb-4">
@@ -47,8 +48,6 @@ const NewsCard = ({ news }) => (
 );
 
 function NewsPage() {
-
-
     const [searchTerm, setSearchTerm] = useState('');
     const [isCategoryTableVisible, setIsCategoryTableVisible] = useState(false);
     const [tempCategories, setTempCategories] = useState(new Set());
@@ -57,8 +56,6 @@ function NewsPage() {
     const [selectedSort, setSelectedSort] = useState('date'); // Default sort by date
     const [sortOrder, setSortOrder] = useState('asc'); // Default ascending order
     const [dropdownOpenSort, setDropdownOpenSort] = useState(false);
-    //News
-
     // Function to show/hide the category table
     const toggleCategoryTable = () => {
         setIsCategoryTableVisible(!isCategoryTableVisible);

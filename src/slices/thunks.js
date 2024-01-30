@@ -18,3 +18,5 @@ export * from "./Admission/thunk";
 export * from "./Student/thunk";
 export * from "./profile/thunk";
 export * from "./Semester/thunk";
+export * from "./home/home/thunk";
+export * from "./home/facilities/thunk";

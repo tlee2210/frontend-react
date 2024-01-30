@@ -31,6 +31,9 @@ import img3 from "../../../assets/images/small/2.jpg";
 import img2 from "../../../assets/images/small/3.png";
 import img1 from "../../../assets/images/small/1.jpg";
 import img4 from "../../../assets/images/small/4.png";
+import { createSelector } from "reselect";
+
+import { Gethome } from "../../../slices/home/home/thunk";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -38,10 +41,35 @@ import { useSelector, useDispatch } from "react-redux";
 import withRouter from "../../../Components/Common/withRouter";
 
 const home = (props) => {
+  const dispatch = useDispatch();
+  const selecthomeState = (state) => state;
+  const homepageData = createSelector(selecthomeState, (state) => ({
+    SelectOption: state.Home.SelectOption,
+    facultyData: state.Home.facultyData,
+    articleData: state.Home.articleData,
+    isNotificationVisible: state.Message.isNotificationVisible,
+    notificationMessage: state.Message.notificationMessage,
+    isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
+    errorMessage: state.Message.errorMessage,
+  }));
+  const {
+    SelectOption,
+    facultyData,
+    articleData,
+    isNotificationVisible,
+    notificationMessage,
+    isErrorNotificationVisible,
+    errorMessage,
+  } = useSelector(homepageData);
+
+  useEffect(() => {
+    dispatch(Gethome());
+  }, []);
+
   const imageStyle = {
-    height: "500px", // 100% of the viewport height
-    width: "100%", // 100% of the parent container width
-    objectFit: "cover", // Make the image cover the entire container
+    height: "500px",
+    width: "100%",
+    objectFit: "cover",
   };
 
   const pagination = {
@@ -51,7 +79,6 @@ const home = (props) => {
     },
   };
 
-  const dispatch = useDispatch();
   document.title = "home";
   return (
     <React.Fragment>
@@ -85,11 +112,11 @@ const home = (props) => {
               <Card>
                 <CardBody>
                   {/* Education Program */}
-                  <EducationProgram />
+                  <EducationProgram data={facultyData} />
                   {/* JoinUs */}
-                  <JoinUs />
+                  <JoinUs data={SelectOption} />
                   {/* News */}
-                  <News />
+                  <News data={articleData} />
                 </CardBody>
               </Card>
             </Col>

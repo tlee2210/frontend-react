@@ -20,11 +20,14 @@ import AdmissionReducer from "./Admission/reducer";
 import StudentsReducer from "./Student/reducer";
 import ProfileReducer from "./profile/reducer";
 import SemesterReducer from "./Semester/reducer";
+import HomeReducer from "./home/home/reducer";
+import HomeFacilitiesReducer from "./home/facilities/reducer";
 
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
   Login: LoginReducer,
   // ForgetPassword: ForgetPasswordReducer,
+  // dashboard
   Profile: ProfileReducer,
   CategoryReducer: CategoryReducer,
   Articledashboard: ArticleReducer,
@@ -38,6 +41,10 @@ const rootReducer = combineReducers({
   Sessiondashboard: SessionReducer,
   Admissiondashboard: AdmissionReducer,
   Semesterdashboard: SemesterReducer,
+  //home
+  Home: HomeReducer,
+  Facilities: HomeFacilitiesReducer,
+  //Message
   Message: MessageReducer,
 });
 

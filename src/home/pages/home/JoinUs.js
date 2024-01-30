@@ -15,6 +15,7 @@ import {
   Spinner,
 } from "reactstrap";
 import Select from "react-select";
+import Flatpickr from "react-flatpickr";
 
 // Formik validation
 import * as Yup from "yup";
@@ -28,43 +29,49 @@ const GroupOptions2 = [
   { value: "Four", label: "Four" },
 ];
 
-const JoinUs = (props) => {
-  const [form, setform] = useState([]);
-  const [selectedGroup2, setSelectedGroup2] = useState(null);
-
-  function handleSelectGroups2(selectedGroup2, action) {
-    if (action.action === "clear") {
-      setSelectedGroup2(null);
-      validation.setFieldValue("currernt", "");
-    } else {
-      setSelectedGroup2(selectedGroup2);
-      validation.setFieldValue(
-        "currernt",
-        selectedGroup2 ? selectedGroup2.value : ""
-      );
-    }
-  }
-
+const JoinUs = ({ data }) => {
   const validation = useFormik({
     enableReinitialize: true,
 
     initialValues: {
-      FirstName: setform.FirstName || "aaa",
-      LastName: setform.LastName || "",
-      email: setform.email || "",
-      Country: setform.Country || "",
-      Mobile: setform.Mobile || "",
-      Nationality: setform.Nationality || "",
-      currernt: setform.currernt || "",
+      FirstName: "",
+      LastName: "",
+      email: "",
+      dateOfBirth: "",
+      Phone: "",
+      Address: "",
+      Gender: "",
+      FacultyId: "",
+      FatherName: "",
+      MotherName: "",
+      HighSchool: "",
+      GPA: "",
     },
     validationSchema: Yup.object({
       FirstName: Yup.string().required("Please Enter Your First Name"),
       LastName: Yup.string().required("Please Enter Your Last Name"),
-      email: Yup.string().required("Please Enter Your Email"),
-      Country: Yup.string().required("Please Enter Your Country"),
-      Mobile: Yup.string().required("Please Enter Your Country"),
-      Nationality: Yup.string().required("Please Enter Your Nationality"),
-      currernt: Yup.string().required("Please Enter Your currernt"),
+      email: Yup.string()
+        .email("Invalid email format")
+        .required("Please Enter a Email"),
+      dateOfBirth: Yup.date()
+        .min(new Date().fp_incr(-30 * 365), "Minimum age is 30 years")
+        .max(new Date().fp_incr(-18 * 365), "Maximum age is 18 years")
+        .required("Please select a date of birth"),
+      Phone: Yup.string()
+        .required("Please Enter a Phone")
+        .matches(/^\d{10}$/, "Phone number must be exactly 10 digits"),
+      Address: Yup.string().required("Please Enter a Address"),
+      Gender: Yup.string()
+        .oneOf(
+          ["Male", "Female"],
+          "Invalid gender. Please choose either Male or Female."
+        )
+        .required("Please Enter a Gender"),
+      MotherName: Yup.string().required("Please Enter a Mother Name"),
+      FatherName: Yup.string().required("Please Enter Father Name"),
+      HighSchool: Yup.string().required("Please Enter High School"),
+      GPA: Yup.string().required("Please Enter GPA"),
+      FacultyId: Yup.string().required("Please Enter a Faculty"),
     }),
 
     onSubmit: (values) => {
@@ -75,21 +82,50 @@ const JoinUs = (props) => {
   return (
     <Row className="bg-danger-subtle">
       <Col lg={7}>
-        <h5 className="fs-3 mb-2 mt-5">Join us at Taylors College Sydney</h5>
-        <h5>
-          At Taylor's College Sydney, your gateway to the globally renowned
-          University of Sydney—ranked 19th worldwide—begins. Unleash your
-          potential and gain excellent career opportunities with a globally
-          recognised degree. Your Pathway to the University of Sydney Taylor's
-          College Sydney serves as your direct path to the University of Sydney.
-          Experience comprehensive academic support and English language
-          proficiency programs. Join a vibrant community of students while being
-          conveniently close to the city and all its adventurous offerings.
-          Apply Now Begin your academic journey towards the University of
-          Sydney. Don't miss the chance for a world-class education and an
-          exciting future. Contact us today by completing the form and kickstart
-          your pathway to success Taylor's College Sydney
-        </h5>
+        <div>
+          <h5 className="fs-3 mb-2 mt-5">
+            Welcome to a world of endless possibilities and unparalleled
+            education at College Sydney
+          </h5>
+          <p className="text-muted">
+            where the keys to excellence and a promising future are at your
+            fingertips. This is the place where education transcends the
+            confines of textbooks, offering a holistic experience that nurtures
+            growth and maturity in one of the most diverse and vibrant cities in
+            the world.
+          </p>
+          <p className="text-muted">
+            With a proud history of cultivating future leaders, College Sydney
+            offers a spectrum of academic programs designed to challenge and
+            inspire students. Whether your passion lies in liberal arts, natural
+            sciences, business, or information technology, our wide range of
+            subjects is tailored to discover your passions and pursue your
+            dreams.
+          </p>
+          <p className="text-muted">
+            We take pride in our dynamic and diverse academic community, where
+            students from every cultural background learn, innovate, and thrive
+            together. Supported by a team of renowned faculty members and
+            industry experts, you are fully equipped to succeed in today's
+            globalized environment.
+          </p>
+          <p className="text-muted">
+            Beyond classroom education, College Sydney opens doors to
+            internships, research opportunities, and professional networking –
+            all meticulously designed to give you a competitive edge in the job
+            market. With a prime location, state-of-the-art facilities, and an
+            array of student clubs and organizations, you will live every moment
+            of your university life to the fullest.
+          </p>
+          <p className="text-muted">
+            We invite you to embark on this academic adventure, where you will
+            author your own story, master knowledge, and make a difference.
+            Register today and let College Sydney be the solid launchpad for
+            your brilliant career. Contact us or visit online to learn more
+            about how we can support you on this journey – a journey full of
+            promise and success.
+          </p>
+        </div>
       </Col>
       <Col lg={5}>
         <h5 className="fs-3 mb-2 mt-5">All fields are required.</h5>
@@ -181,122 +217,252 @@ const JoinUs = (props) => {
                 ) : null}
               </div>
             </Col>
-            <Col xxl={6} md={6}>
-              <div className="mb-3">
-                <Label htmlFor="email" className="form-label">
-                  Country
-                </Label>
-                <Input
-                  name="Country"
-                  className="form-control"
-                  placeholder="Enter Country"
-                  type="text"
-                  onChange={validation.handleChange}
-                  onBlur={validation.handleBlur}
-                  value={validation.values.Country || ""}
-                  invalid={
-                    validation.touched.Country && validation.errors.Country
-                      ? true
-                      : false
-                  }
-                />
-                {validation.touched.Country && validation.errors.Country ? (
-                  <FormFeedback type="invalid">
-                    {validation.errors.Country}
-                  </FormFeedback>
-                ) : null}
-              </div>
-            </Col>
-            <Col xxl={6} md={6}>
-              <div className="mb-3">
-                <Label htmlFor="email" className="form-label">
-                  Mobile
-                </Label>
-                <Input
-                  name="Mobile"
-                  className="form-control"
-                  placeholder="Enter Mobile"
-                  type="text"
-                  onChange={validation.handleChange}
-                  onBlur={validation.handleBlur}
-                  value={validation.values.Mobile || ""}
-                  invalid={
-                    validation.touched.Mobile && validation.errors.Mobile
-                      ? true
-                      : false
-                  }
-                />
-                {validation.touched.Mobile && validation.errors.Mobile ? (
-                  <FormFeedback type="invalid">
-                    {validation.errors.Mobile}
-                  </FormFeedback>
-                ) : null}
-              </div>
-            </Col>
-            <Col xxl={12} md={12}>
-              <div className="mb-3">
-                <Label htmlFor="Nationality" className="form-label">
-                  Nationality
-                </Label>
-                <Input
-                  name="Nationality"
-                  className="form-control"
-                  placeholder="Enter Nationality"
-                  type="text"
-                  onChange={validation.handleChange}
-                  onBlur={validation.handleBlur}
-                  value={validation.values.Nationality || ""}
-                  invalid={
-                    validation.touched.Nationality &&
-                    validation.errors.Nationality
-                      ? true
-                      : false
-                  }
-                />
-                {validation.touched.Nationality &&
-                validation.errors.Nationality ? (
-                  <FormFeedback type="invalid">
-                    {validation.errors.Nationality}
-                  </FormFeedback>
-                ) : null}
-              </div>
-            </Col>
             <Col xxl={12} md={12}>
               <div className="mb-3">
                 <Label htmlFor="currernt" className="form-label">
-                  currernt
+                  Faculty
+                </Label>
+                <Select
+                  name="FacultyId"
+                  options={data}
+                  classNamePrefix="select"
+                  onChange={(option) => {
+                    validation.setFieldValue("FacultyId", option.value);
+                    validation.setFieldTouched("FacultyId", true);
+                  }}
+                  onBlur={() => validation.setFieldTouched("FacultyId", true)}
+                  value={data.find(
+                    (opt) => opt.value === validation.values.FacultyId
+                  )}
+                  className={
+                    validation.errors.FacultyId && validation.touched.FacultyId
+                      ? "is-invalid"
+                      : ""
+                  }
+                />
+                {validation.errors.FacultyId &&
+                  validation.touched.FacultyId && (
+                    <div className="invalid-feedback">
+                      {validation.errors.FacultyId}
+                    </div>
+                  )}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label htmlFor="email" className="form-label">
+                  dateOfBirth
+                </Label>
+                <Flatpickr
+                  className="form-control"
+                  value={validation.values.dateOfBirth}
+                  onChange={([selectedDate]) => {
+                    validation.setFieldValue("dateOfBirth", selectedDate);
+                  }}
+                  options={{
+                    minDate: new Date().fp_incr(-30 * 365),
+                    maxDate: new Date().fp_incr(-18 * 365),
+                  }}
+                />
+                {validation.errors.dateOfBirth &&
+                validation.touched.dateOfBirth ? (
+                  <div className="text-danger">
+                    {validation.errors.dateOfBirth}
+                  </div>
+                ) : null}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label htmlFor="email" className="form-label">
+                  Phone
                 </Label>
                 <Input
-                  hidden
-                  name="currernt"
-                  className="form-control"
-                  placeholder="Enter currernt level"
                   type="text"
+                  className="form-control"
+                  id="product-title-input"
+                  placeholder="Enter Phone"
+                  name="Phone"
+                  value={validation.values.Phone || ""}
+                  onBlur={validation.handleBlur}
                   onChange={validation.handleChange}
-                  onBlur={validation.handleBlur}
-                  value={validation.values.currernt || ""}
                   invalid={
-                    validation.touched.currernt && validation.errors.currernt
+                    validation.errors.Phone && validation.touched.Phone
                       ? true
                       : false
                   }
                 />
-                <Select
-                  name="currernt"
-                  isClearable={true}
-                  value={selectedGroup2}
-                  onChange={handleSelectGroups2}
-                  onBlur={validation.handleBlur}
-                  options={GroupOptions2}
-                  invalid={
-                    validation.touched.currernt && validation.errors.currernt
-                      ? true
-                      : false
-                  }
-                />
-                {validation.touched.currernt && validation.errors.currernt ? (
+                {validation.touched.Phone && validation.errors.Phone ? (
                   <FormFeedback type="invalid">
-                    {validation.errors.currernt}
+                    {validation.errors.Phone}
+                  </FormFeedback>
+                ) : null}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label className="form-label" htmlFor="product-title-input">
+                  Father Name
+                </Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="product-title-input"
+                  placeholder="Enter Father Name"
+                  name="FatherName"
+                  value={validation.values.FatherName || ""}
+                  onBlur={validation.handleBlur}
+                  onChange={validation.handleChange}
+                  invalid={
+                    validation.errors.FatherName &&
+                    validation.touched.FatherName
+                      ? true
+                      : false
+                  }
+                />
+                {validation.errors.FatherName &&
+                validation.touched.FatherName ? (
+                  <FormFeedback type="invalid">
+                    {validation.errors.FatherName}
+                  </FormFeedback>
+                ) : null}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label className="form-label" htmlFor="product-title-input">
+                  Mother Name
+                </Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="product-title-input"
+                  placeholder="Enter Mother Name"
+                  name="MotherName"
+                  value={validation.values.MotherName || ""}
+                  onBlur={validation.handleBlur}
+                  onChange={validation.handleChange}
+                  invalid={
+                    validation.errors.MotherName &&
+                    validation.touched.MotherName
+                      ? true
+                      : false
+                  }
+                />
+                {validation.errors.MotherName &&
+                validation.touched.MotherName ? (
+                  <FormFeedback type="invalid">
+                    {validation.errors.MotherName}
+                  </FormFeedback>
+                ) : null}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label htmlFor="Nationality" className="form-label">
+                  Address
+                </Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="product-title-input"
+                  placeholder="Enter Address"
+                  name="Address"
+                  value={validation.values.Address || ""}
+                  onBlur={validation.handleBlur}
+                  onChange={validation.handleChange}
+                  invalid={
+                    validation.errors.Address && validation.touched.Address
+                      ? true
+                      : false
+                  }
+                />
+                {validation.errors.Address && validation.touched.Address ? (
+                  <FormFeedback type="invalid">
+                    {validation.errors.Address}
+                  </FormFeedback>
+                ) : null}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label htmlFor="Nationality" className="form-label">
+                  Gender
+                </Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="product-title-input"
+                  placeholder="Enter Gender"
+                  name="Gender"
+                  value={validation.values.Gender || ""}
+                  onBlur={validation.handleBlur}
+                  onChange={validation.handleChange}
+                  invalid={
+                    validation.errors.Gender && validation.touched.Gender
+                      ? true
+                      : false
+                  }
+                />
+                {validation.errors.Gender && validation.touched.Gender ? (
+                  <FormFeedback type="invalid">
+                    {validation.errors.Gender}
+                  </FormFeedback>
+                ) : null}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label htmlFor="Nationality" className="form-label">
+                  High School
+                </Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="product-title-input"
+                  placeholder="Enter Gender"
+                  name="HighSchool"
+                  value={validation.values.HighSchool || ""}
+                  onBlur={validation.handleBlur}
+                  onChange={validation.handleChange}
+                  invalid={
+                    validation.errors.HighSchool &&
+                    validation.touched.HighSchool
+                      ? true
+                      : false
+                  }
+                />
+                {validation.errors.HighSchool &&
+                validation.touched.HighSchool ? (
+                  <FormFeedback type="invalid">
+                    {validation.errors.HighSchool}
+                  </FormFeedback>
+                ) : null}
+              </div>
+            </Col>
+            <Col xxl={6} md={6}>
+              <div className="mb-3">
+                <Label htmlFor="Nationality" className="form-label">
+                  GPA
+                </Label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="product-title-input"
+                  placeholder="Enter GPA"
+                  name="GPA"
+                  value={validation.values.GPA || ""}
+                  onBlur={validation.handleBlur}
+                  onChange={validation.handleChange}
+                  invalid={
+                    validation.errors.GPA && validation.touched.GPA
+                      ? true
+                      : false
+                  }
+                />
+                {validation.errors.GPA && validation.touched.GPA ? (
+                  <FormFeedback type="invalid">
+                    {validation.errors.GPA}
                   </FormFeedback>
                 ) : null}
               </div>
