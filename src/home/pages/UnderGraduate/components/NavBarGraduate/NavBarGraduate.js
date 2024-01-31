@@ -8,6 +8,8 @@ import {
   TabContent,
   Container,
   TabPane,
+  Col,
+  Row,
 } from "reactstrap";
 import "./NavBarGraduate.css";
 import classnames from "classnames";
@@ -30,7 +32,7 @@ const unitsOfStudy3 = [
   { name: "Integrated Professional Placement B - Business", code: "BUS20011" },
 ];
 
-const MainPage = () => {
+const MainPage = ({ data }) => {
   const [showBusinessUnits, setShowBusinessUnits] = useState(false);
   const [showInnovationUnits, setShowInnovationUnits] = useState(false);
   const [ShowOptionalProfessional, setShowOptionalProfessional] =
@@ -96,18 +98,6 @@ const MainPage = () => {
           <NavItem>
             <NavLink
               style={{ cursor: "pointer", padding: 20 }}
-              className={classnames({ active: topBorderTab === "4" })}
-              onClick={() => {
-                topBordertoggle("4");
-              }}
-            >
-              <i className="ri-home-5-line align-middle me-1"></i> Fees &
-              Scholarships
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              style={{ cursor: "pointer", padding: 20 }}
               className={classnames({ active: topBorderTab === "5" })}
               onClick={() => {
                 topBordertoggle("5");
@@ -131,78 +121,10 @@ const MainPage = () => {
                   </div>
                   {/* Study Expo Container */}
                   <div className="col-sm-8">
-                    <p className="fs-5">
-                      Anyone can enter the world of business, but not everyone
-                      will succeed. Learn essential management skills to carve
-                      out career success with a Bachelor of Business / Bachelor
-                      of Applied Innovation. You'll collaborate and solve
-                      complex problems in a creative way and be able to develop
-                      and deliver projects that adapt to uncertain and changing
-                      contexts. Prepare to be job-ready.
-                    </p>
-                    <a
-                      href="#"
-                      className="course-handbook-link-overview-Graduated"
-                    >
-                      View Bachelor of Business / Bachelor of Applied Innovation
-                      course handbook
-                    </a>
-                    <a
-                      href="#"
-                      className="course-guide-link-overview-Graduated text-Entry-requiment"
-                    >
-                      Get a copy of our course guide
-                    </a>
-                    <blockquote className="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
-                      <p className="text-body mb-2 fw-bold">
-                        Thinking about applying for 2024?
-                      </p>
-                      <p className="study-expo-text-overview-Graduated">
-                        Swinburne’s 2024 Study Expo is your one-stop-shop for
-                        information and assistance. Chat to academics and
-                        admissions staff, browse study areas and course options,
-                        get tailored advice and more.
-                      </p>
-                      <a
-                        href="#"
-                        className="register-link-overview-Graduated"
-                        style={{ color: "red" }}
-                      >
-                        Register now
-                      </a>
-                    </blockquote>
+                    <p className="fs-5">{data.description}</p>
                   </div>
                 </div>
-                {/* Your industry experience */}
-                <div className="row">
-                  {/* Overview Container */}
-                  <div className="col-sm-4">
-                    <div className="overview-container-overview-Graduated">
-                      <h2 className="overview-title-overview-Graduated">
-                        Your industry experience
-                      </h2>
-                    </div>
-                  </div>
-                  {/* Study Expo Container */}
-                  <div className="col-sm-8">
-                    <div>
-                      <p className="overview-text-overview-Graduated">
-                        We offer hands-on learning that mirrors the industry –
-                        it’s just like working in an innovation lab. You’ll take
-                        part in industry projects, design challenges, innovation
-                        sprints, and hackathons. This double degree teaches you
-                        how the industry does innovation.
-                      </p>
-                      <a
-                        href="#"
-                        className="course-handbook-link-overview-Graduated"
-                        style={{ color: "red" }}
-                      >
-                        Explore Work Integrated Learning
-                      </a>
-                    </div>
-                  </div>
-                </div>
+
                 {/* Skills you’ll learn */}
                 <div className="row">
                   {/* Overview Container */}
@@ -214,14 +136,14 @@ const MainPage = () => {
                     </div>
                   </div>
                   <div className="col-sm-8">
-                    <ul className="overview-text-overview-Graduated-column">
-                      <li>Communication skills</li>
-                      <li>Teamwork skills</li>
-                      <li>Broad business knowledge</li>
-                      <li>Broad business knowledge</li>
-                      <li>Broad business knowledge</li>
-                      <li>Broad business knowledge</li>
-                    </ul>
+                    <Row>
+                      {data?.skill_learn?.split(",").map((item, index) => (
+                        // <li key={index}>{opportunity.trim()}</li>
+                        <Col className="mb-2" key={index} md={6}>
+                          {item.trim()}
+                        </Col>
+                      ))}
+                    </Row>
                   </div>
                 </div>
                 {/* Your career opportunities */}
@@ -234,14 +156,15 @@ const MainPage = () => {
                     </div>
                   </div>
                   <div className="col-sm-8">
-                    <ul className="overview-text-overview-Graduated-column">
-                      <li> Innovation manager 1</li>
-                      <li> Innovation manager 2</li>
-                      <li> Innovation manager 3</li>
-                      <li> Innovation manager 4</li>
-                      <li> Innovation manager 5</li>
-                      <li> Innovation manager 6</li>
-                    </ul>
+                    <Row>
+                      {data?.opportunities
+                        ?.split(",")
+                        .map((opportunity, index) => (
+                          <Col className="mb-2" key={index} md={6}>
+                            {opportunity.trim()}
+                          </Col>
+                        ))}
+                    </Row>
                   </div>
                 </div>
                 {/* Key Codes */}
@@ -257,12 +180,12 @@ const MainPage = () => {
                     <p className="overview-text-overview-Graduated">
                       VTAC Code (CSP)
                     </p>
-                    <p>3400212531</p>
+                    <p>{data.code}</p>
                   </div>
                 </div>
               </div>
               {/* Why Swinburne? */}
-              <div style={{ backgroundColor: 'red' }}>
+              <div style={{ backgroundColor: "red" }}>
                 <div className="why-swinburne-container-overview-WhySwinburne">
                   <h2 className="why-swinburne-heading-overview-WhySwinburne">
                     Why Swinburne?
@@ -372,21 +295,7 @@ const MainPage = () => {
                               className="fs-1 fw-bold"
                               style={{ color: "black" }}
                             >
-                              60
-                            </p>
-                          </div>
-                        </div>
-                        <div className="col-md-4 d-flex align-items-left ">
-                          <div>
-                            <p className="mb-1">
-                              2023 lowest rank to receive an offer [before
-                              adjustment pts.]
-                            </p>
-                            <p
-                              className="fs-1 fw-bold"
-                              style={{ color: "black" }}
-                            >
-                              65.1
+                              {data.entryScore}
                             </p>
                           </div>
                         </div>
@@ -406,11 +315,8 @@ const MainPage = () => {
                   {/* Content */}
                   <div className="col-sm-8">
                     <ul className="text-Entry-requiment">
-                      <li>
-                        VCE Units 3 and 4: a minimum study score of 25 in any
-                        English (except EAL) or 30 in English as Alternate
-                        Language (EAL) or equivalent
-                      </li>
+                      <li>{data?.courses?.name}</li>
+                      <li>{data.courses?.description}</li>
                     </ul>
                     <blockquote className="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
                       <p className="text-body mb-2 fw-bold">
@@ -430,28 +336,6 @@ const MainPage = () => {
                         View Source HandBook
                       </a>
                     </blockquote>
-                  </div>
-                </div>
-
-                {/* Credit transfer */}
-                <div className="row" style={{ paddingTop: 70 }}>
-                  {/* Title */}
-                  <div className="col-sm-4">
-                    <h2 className="overview-title-overview-Graduated">
-                      Credit transfer
-                    </h2>
-                  </div>
-                  {/* Content */}
-                  <div className="col-sm-8">
-                    <p className="text-Entry-requiment">
-                      Credit is granted in recognition of previous study and/or
-                      experience and allows students to gain advanced standing
-                      towards their course. Applicants are assessed on a
-                      case-by-case basis.
-                    </p>
-                    <a style={{ color: "red" }} href="#">
-                      Learn more about credit
-                    </a>
                   </div>
                 </div>
 
@@ -486,25 +370,6 @@ const MainPage = () => {
             {/* Study Structure */}
             <TabPane tabId="3" id="nav-border-justified-messages">
               <div className="StudyStructureContent" style={{ paddingTop: 50 }}>
-                {/* Add Major */}
-                <div className="row">
-                  <div className="col-sm-4"></div>
-                  <div className="col-sm-8">
-                    <blockquote className="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
-                      <p className="text-body mb-2 fw-bold">Add your major</p>
-                      <p className="study-expo-text-overview-Graduated">
-                        Add your major for a more personalized experience.
-                      </p>
-                      <button className="button-add-graduate-Header">
-                        Add major{" "}
-                        <i
-                          style={{ marginLeft: 30 }}
-                          className="bx bx-plus"
-                        ></i>
-                      </button>
-                    </blockquote>
-                  </div>
-                </div>
                 {/* how Credit Work */}
                 <div className="row" style={{ paddingTop: 70 }}>
                   <div className="col-sm-4 align-self-end">
@@ -714,319 +579,8 @@ const MainPage = () => {
               </div>
             </TabPane>
 
-            {/*  Fees & Scholarships */}
-            <TabPane tabId="4" id="nav-border-justified-messages">
-              <div style={{ paddingTop: 0 }}>
-                <div
-                  className="FeesScholarshipsContent"
-                  style={{ paddingTop: 50 }}
-                >
-                  {/* 2024 fees */}
-                  <div className="row">
-                    <div className="col-sm-4">
-                      <h1 className="overview-title-overview-Graduated">
-                        2024 fees
-                      </h1>
-                    </div>
-                    <div className="col-sm-8">
-                      <div className="row">
-                        <div className="col-sm-3">
-                          {" "}
-                          Yearly fee* ($AUD)
-                          <p
-                            className="fs-2 fw-bold"
-                            style={{ color: "black" }}
-                          >
-                            $16,323
-                          </p>
-                        </div>
-                        <div className="col-sm-2">
-                          {" "}
-                          Total fee* ($AUD)
-                          <p
-                            className="fs-2 fw-bold"
-                            style={{ color: "black" }}
-                          >
-                            $65,292
-                          </p>
-                        </div>
-                      </div>
-                      <blockquote className="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
-                        <p className="text-body mb-2 fw-bold">
-                          Fees are estimates only
-                        </p>
-                        <p className="study-expo-text-overview-Graduated">
-                          The student tuition fees as published are subject to
-                          change given individual circumstances at enrolment.
-                          These fees apply to 2024 unit enrolments for HE
-                          Commonwealth Supported Place (CSP) and Undergraduate
-                          Full Fee Paying (FFP) only and may change for units
-                          studied in future years. If part-time study is
-                          permitted, annual fees will be proportionally lower
-                          based on the number of units taken per semester.
-                        </p>
-                      </blockquote>
-                    </div>
-                  </div>
-
-                  {/* How do I pay my fees? */}
-                  <div className="row" style={{ paddingTop: 70 }}>
-                    <div className="col-sm-4">
-                      <h2 className="verview-title-overview-Graduated">
-                        How do I pay my fees?
-                      </h2>
-                    </div>
-                    <div className="col-sm-8">
-                      <p className="overview-text-overview-Graduated">
-                        HECS-HELP is a loan and discount scheme available to you
-                        if you are eligible and enrolled in a Commonwealth
-                        supported place. A HECS-HELP loan can cover all or part
-                        of your contribution amount. You can also choose to pay
-                        your fees up front.
-                      </p>
-                      <a style={{ color: "red" }} href="#">
-                        Find out more fee{" "}
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Eligibility for HECS-HELP */}
-                  <div className="row" style={{ paddingTop: 70 }}>
-                    <div className="col-sm-4">
-                      <h2 className="verview-title-overview-Graduated">
-                        Eligibility for HECS-HELP
-                      </h2>
-                    </div>
-                    <div className="col-sm-8">
-                      <div>
-                        <ul className="list-unstyled">
-                          <li className="overview-text-overview-Graduated">
-                            You are eligible for a HECS-HELP loan if you have
-                            been offered a Commonwealth Supported Place (CSP)
-                            for an undergraduate degree at Swinburne or a
-                            UniLink course, and you:
-                          </li>
-                          <ul>
-                            <li className="overview-text-overview-Graduated">
-                              are an Australian citizen and doing at least one
-                              unit of your course in Australia; or
-                            </li>
-                            <li className="overview-text-overview-Graduated">
-                              hold a permanent humanitarian visa and will be
-                              living in Australia for the duration of your
-                              course; or
-                            </li>
-                            <li className="overview-text-overview-Graduated">
-                              hold a New Zealand Special Category visa and meet
-                              the special eligibility requirements for New
-                              Zealand citizens.
-                            </li>
-                          </ul>
-                        </ul>
-                        <a style={{ color: "red" }} href="#">
-                          Learn more about HECS-HELP{" "}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Student services and amenities fee */}
-                <div className="row" style={{ paddingTop: 70 }}>
-                  <div className="col-sm-4">
-                    <h1 className="overview-title-overview-Graduated">
-                      Student services and amenities fee
-                    </h1>
-                  </div>
-                  <div className="col-sm-8">
-                    <p className="study-expo-text-overview-Graduated">
-                      This funding serves to improve the student experience at
-                      Swinburne. You may use many or just some of the services
-                      and amenities that the fee provides.
-                    </p>
-                    <p className="study-expo-text-overview-Graduated">
-                      The fee shown in the capped amount for 2024.
-                    </p>
-                    <div className="row">
-                      <div className="col-sm-2 fs-4">
-                        {" "}
-                        SSAF fee* ($AUD)
-                        <p className="fs-1 fw-bold" style={{ color: "black" }}>
-                          $16,323
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Scholarships */}
-                <div className="row" style={{ paddingTop: 70 }}>
-                  <div className="col-sm-4">
-                    <h2 className="verview-title-overview-Graduated">
-                      How do I pay my fees?
-                    </h2>
-                  </div>
-                  <div className="col-sm-8">
-                    <p className="overview-text-overview-Graduated">
-                      Scholarship applications for 2023 are open. Scholarships
-                      at Swinburne are about providing opportunity, promoting
-                      equity and recognising excellence and achievement. We want
-                      you to reach your potential and achieve your life and
-                      career goals.
-                    </p>
-                    <p className="overview-text-overview-Graduated">
-                      Our handy guide will assist you to gather documents for
-                      your application.
-                    </p>
-                    <a style={{ color: "red" }} href="#">
-                      Find out more fee{" "}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Professional placement fees */}
-                <div className="row" style={{ paddingTop: 70 }}>
-                  <div className="col-sm-4">
-                    <h2 className="verview-title-overview-Graduated">
-                      Professional placement fees
-                    </h2>
-                  </div>
-                  <div className="col-sm-8">
-                    <p className="overview-text-overview-Graduated">
-                      Students who participate in a six- or 12-month
-                      professional placement will be subject to an increase in
-                      total course fees.
-                    </p>
-                    <a style={{ color: "red" }} href="#">
-                      Find out more fee{" "}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </TabPane>
-
-            {/*  How To Apply */}
             <TabPane tabId="5" id="nav-border-justified-messages">
-              <div className="HowToApplyContent" style={{ paddingTop: 50 }}>
-                {/* Apply directly */}
-                <div className="row">
-                  <div className="col-sm-3">
-                    <div className="fees-scholarships-container-how-to-apply">
-                      <div className="title-container-how-to-apply">
-                        <h2>Apply directly</h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="description-container-how-to-apply">
-                      <p>
-                        Ready to take on a new challenge and reach your academic
-                        goals? If you already know which course you want to
-                        study and understand the entry requirements, what are
-                        you waiting for? Apply online! Remember, you cannot
-                        apply directly if you have an active VTAC application.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-sm-2 ">
-                    <Card
-                      className="card-body"
-                      style={{
-                        left: 110,
-                        maxWidth: 243,
-                      }}
-                    >
-                      <h4 className="card-title text-center">Course code</h4>
-                      <p className="card-text text-muted text-center">
-                        BB-BUSAIN1
-                      </p>
-                      <button className="apply-button-how-to-apply">
-                        Apply directly
-                      </button>
-                    </Card>
-                  </div>
-                </div>
-                {/* Apply through VTAC */}
-                <div className="row">
-                  <div className="col-sm-3">
-                    <div className="fees-scholarships-container-how-to-apply">
-                      <div className="title-container-how-to-apply">
-                        <h2>Apply through VTAC</h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="description-container-how-to-apply">
-                      <p>
-                        VTAC is the central office that administers the
-                        application processes for places in tertiary courses,
-                        scholarships and the Special Entry Access Scheme at
-                        universities, TAFEs and independent tertiary colleges in
-                        Victoria.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-sm-2 ">
-                    <Card
-                      className="card-body"
-                      style={{
-                        left: 110,
-                        maxWidth: 243,
-                      }}
-                    >
-                      <h4 className="card-title text-center">
-                        VTAC Code (CSP)
-                      </h4>
-                      <p className="card-text text-muted text-center">
-                        3400212531
-                      </p>
-                      <button className="apply-button-how-to-apply">
-                        Apply directly
-                      </button>
-                    </Card>
-                  </div>
-                </div>
-              </div>
-
-              {/* Table */}
-              <div className="dates-container-how-to-apply">
-                <section className="start-dates-how-to-apply">
-                  <h2 className="heading-how-to-apply">Start dates</h2>
-                  <div className="table-how-to-apply">
-                    {/* Rows for Semester start dates */}
-                    <div className="row-how-to-apply">
-                      <div className="semester-how-to-apply">Semester 1</div>
-                      <div className="location-how-to-apply">Hawthorn</div>
-                      <div className="apply-date-how-to-apply">
-                        21-February-2024
-                      </div>
-                      <div className="start-date-how-to-apply">
-                        26-February-2024
-                      </div>
-                    </div>
-                    <div className="row-how-to-apply">
-                      <div className="semester-how-to-apply">Semester 2</div>
-                      <div className="location-how-to-apply">Hawthorn</div>
-                      <div className="apply-date-how-to-apply">
-                        24-July-2024
-                      </div>
-                      <div className="start-date-how-to-apply">
-                        29-July-2024
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section className="upcoming-events-how-to-apply">
-                  <h2 className="heading-how-to-apply">Upcoming events</h2>
-                  <div className="event-how-to-apply">
-                    <div className="event-name-how-to-apply">
-                      2024 Study Expo
-                    </div>
-                    <div className="event-date-how-to-apply">
-                      23-January-2024
-                    </div>
-                  </div>
-                </section>
-              </div>
+              <Container>here</Container>
             </TabPane>
           </TabContent>
         </Container>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setcoursesData } from "./reducer";
+import { setcoursesData, SetDetail } from "./reducer";
 import { setMessage, errorMessage } from "../../message/reducer";
 export const Gethomecourses = () => async (dispatch) => {
   await axios
@@ -32,6 +32,17 @@ export const SearchFacultyByTitle = (slug) => async (dispatch) => {
     .then((response) => {
       console.log(response);
       dispatch(setcoursesData(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export const GetFacultyDetails = (slug) => async (dispatch) => {
+  await axios
+    .get(`https://localhost:7112/api/home/courses/GetFacultyDetails/${slug}`)
+    .then((response) => {
+      console.log(response);
+      dispatch(SetDetail(response.data));
     })
     .catch((error) => {
       console.log(error);

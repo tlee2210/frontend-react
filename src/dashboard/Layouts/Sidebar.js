@@ -75,7 +75,7 @@ const Sidebar = ({ layoutType }) => {
                   />
                 </Col>
                 <Col xs={9} md={9} xxl={9}>
-                  <span className="d-none d-xl-block ms-1 fs-18 text-muted user-name-sub-text">
+                  <span className="d-none ms-1 fs-16 text-muted user-name-sub-text">
                     {userName} - {role}
                   </span>
                 </Col>

@@ -1,7 +1,7 @@
 .header-container-graduate-Header {
     display: flex;
     align-items: center;
-    background: url('../../../../../assets/images/small/1.jpg') no-repeat center center;
+    /* background: url('../../../../../assets/images/small/1.jpg') no-repeat center center; */
     background-size: cover;
     padding: 79px;
   }

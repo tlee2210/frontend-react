@@ -5,7 +5,7 @@ export const initialState = {
   facultyOptions: [],
   semesterOptions: [],
   sessionOptions: [],
-  // SemesterData: [],
+  SemesterData: [],
   item: {},
 };
 
@@ -21,9 +21,9 @@ const SemesterSlice = createSlice({
     //     (Semester) => Semester.id !== action.payload
     //   );
     // },
-    // setEdit(state, action) {
-    //   state.item = action.payload;
-    // },
+    setSemesterData(state, action) {
+      state.SemesterData = action.payload;
+    },
     setSelectOption(state, action) {
       state.facultyOptions = action.payload.facultyOptions;
       state.departmentOptions = action.payload.departmentOptions;
@@ -36,6 +36,7 @@ const SemesterSlice = createSlice({
 export const {
   // setSemesterData,
   setSelectOption,
+  setSemesterData,
   // removeSemester,
   // setEdit,
 } = SemesterSlice.actions;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setSelectOption, setStudentData, setEdit } from "./reducer";
+import { setSelectOption, setSemesterData } from "./reducer";
 import { setMessage, errorMessage } from "../message/reducer";
 export const GetCreateSemester = () => async (dispatch) => {
   await axios
@@ -28,7 +28,7 @@ export const GetSearch = (values) => async (dispatch) => {
     .get("https://localhost:7112/api/dashboard/Semester", { params: values })
     .then((response) => {
       console.log(response);
-      // dispatch(setSelectOption(response.data));
+      dispatch(setSemesterData(response.data));
     })
     .catch((error) => {
       console.log(error);

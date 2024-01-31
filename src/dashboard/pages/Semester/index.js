@@ -14,8 +14,10 @@ import {
   Label,
   Form,
   Button,
+  CardHeader,
 } from "reactstrap";
-import { message } from "antd";
+import { message, Table } from "antd";
+
 import { clearNotificationMessage } from "../../../slices/message/reducer";
 
 // Redux
@@ -36,6 +38,7 @@ const SemesterCreate = (props) => {
     selectSemesterCreateState,
     (state) => ({
       departmentOptions: state.Semesterdashboard.departmentOptions,
+      SemesterData: state.Semesterdashboard.SemesterData,
       facultyOptions: state.Semesterdashboard.facultyOptions,
       semesterOptions: state.Semesterdashboard.semesterOptions,
       sessionOptions: state.Semesterdashboard.sessionOptions,
@@ -44,6 +47,7 @@ const SemesterCreate = (props) => {
     })
   );
   const {
+    SemesterData,
     departmentOptions,
     facultyOptions,
     semesterOptions,
@@ -51,6 +55,56 @@ const SemesterCreate = (props) => {
     isErrorNotificationVisible,
     errorMessage,
   } = useSelector(SemesterCreateCreatepageData);
+
+  const columns = [
+    {
+      title: "Index",
+      key: "Index",
+      fixed: "left",
+      width: 100,
+      render: (text, record, index) => index + 1,
+    },
+    {
+      title: "code",
+      key: "code",
+      render: (text, record) => {
+        const department = record.department;
+
+        return <>{department.code}</>;
+      },
+    },
+    {
+      title: "subject",
+      key: "subject",
+      dataIndex: "subject",
+      render: (text, record) => {
+        const department = record.department;
+
+        return <>{department.subject}</>;
+      },
+    },
+    {
+      title: "Actions",
+      fixed: "right",
+      render: (record) => {
+        return (
+          <>
+            <Link to={`/dashboard/faculty/${record.id}/edit`}>
+              <span className="bg-gradient me-3 fs-4 text-info">
+                <i className="ri-edit-2-fill"></i>
+              </span>
+            </Link>
+            <span
+              className="fs-4 text-danger"
+              onClick={() => tog_togdelete(record.id)}
+            >
+              <i className="ri-delete-bin-5-line"></i>
+            </span>
+          </>
+        );
+      },
+    },
+  ];
 
   useEffect(() => {
     dispatch(GetParameters());
@@ -117,7 +171,7 @@ const SemesterCreate = (props) => {
               <Card>
                 <CardBody>
                   <Row>
-                    <Col md={12}>
+                    <Col md={6}>
                       <div className="mb-3">
                         <Label
                           className="form-label"
@@ -134,29 +188,6 @@ const SemesterCreate = (props) => {
                             setFacultySelectValue(option);
                           }}
                           value={facultySelectValue}
-                        />
-                      </div>
-                    </Col>
-                    <Col md={6}>
-                      <div className="mb-3">
-                        <Label
-                          className="form-label"
-                          htmlFor="product-title-input"
-                        >
-                          semester
-                        </Label>
-                        <Select
-                          name="semesterId"
-                          options={semesterOptions}
-                          classNamePrefix="select"
-                          onChange={(option) => {
-                            validation.setFieldValue(
-                              "semesterId",
-                              option.value
-                            );
-                            setSemesterSelectValue(option);
-                          }}
-                          value={semesterSelectValue}
                         />
                       </div>
                     </Col>
@@ -212,6 +243,14 @@ const SemesterCreate = (props) => {
                   </Row>
                 </CardBody>
               </Card>
+              {SemesterData.map((semester, index) => (
+                <Card key={index}>
+                  <CardHeader>{`Year ${Math.floor(index / 2) + 1}, Semester ${
+                    (index % 2) + 1
+                  }`}</CardHeader>
+                  <Table columns={columns} dataSource={semester} rowKey="id" />
+                </Card>
+              ))}
             </Form>
           </Col>
         </Row>

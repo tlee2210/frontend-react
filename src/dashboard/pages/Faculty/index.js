@@ -129,7 +129,6 @@ const ArticleTables = (props) => {
     {
       title: "Actions",
       fixed: "right",
-      width: 200,
       render: (record) => {
         return (
           <>
@@ -214,12 +213,12 @@ const ArticleTables = (props) => {
                               </div>
                             </div>
                           </Col>
+                          <Table
+                            columns={columns}
+                            dataSource={FacultyData}
+                            rowKey={"id"}
+                          />
                         </Row>
-                        <Table
-                          columns={columns}
-                          dataSource={FacultyData}
-                          rowKey={"id"}
-                        />
                       </div>
                     </CardBody>
                   </Card>

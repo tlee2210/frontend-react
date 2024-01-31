@@ -128,43 +128,45 @@ const FindASource = (props) => {
         </div>
 
         {/* Table */}
-        <div style={{ paddingTop: 30, paddingBottom: 30 }}>
-          <h1>Course Search</h1>
-          <Row>
-            <Col xl={12}>
-              <Card>
-                <CardBody>
-                  <div className="live-preview">
-                    <div className="table-responsive table-card">
-                      <table className="table align-middle table-nowrap table-striped-columns mb-0">
-                        <thead className="table-light">
-                          <tr>
-                            <th scope="col" style={{ width: "700px" }}>
-                              Course Title
-                            </th>
-                            <th scope="col">Course code</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {coursesData.map((item, index) => (
-                            <tr key={index}>
-                              <td>
-                                <Link to="#" className="fw-medium">
-                                  {item.title}
-                                </Link>
-                              </td>
-                              <td>{item.code}</td>
+        <Container>
+          <div style={{ paddingTop: 30, paddingBottom: 30 }}>
+            <h1>Course Search</h1>
+            <Row>
+              <Col xl={12}>
+                <Card>
+                  <CardBody>
+                    <div className="live-preview">
+                      <div className="table-responsive table-card">
+                        <table className="table align-middle table-nowrap table-striped-columns mb-0">
+                          <thead className="table-light">
+                            <tr>
+                              <th scope="col" style={{ width: "700px" }}>
+                                Course Title
+                              </th>
+                              <th scope="col">Course code</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                          </thead>
+                          <tbody>
+                            {coursesData.map((item, index) => (
+                              <tr key={index}>
+                                <td>
+                                  <Link to="#" className="fw-medium">
+                                    {item.title}
+                                  </Link>
+                                </td>
+                                <td>{item.code}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </div>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        </Container>
 
         {/* Want to graduate ready to be the innovator your industry needs? */}
         <div style={{ paddingBottom: 100 }}>

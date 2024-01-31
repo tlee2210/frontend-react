@@ -146,10 +146,10 @@ const publicHome = [
   { path: "/contact-us", component: <ContactUsPage /> },
   { path: "/unit-page", component: <UnitPage /> },
   {
-    path: "/courses-page/under-graduate-page",
+    path: "/courses-page/undergraduate/:slug",
     component: <UnderGraduatePage />,
   },
-
+  // undergraduate
   { path: "/courses-page", component: <CoursesPage /> },
   { path: "/courses-page/:title/search", component: <FindASourceSearch /> },
   { path: "/courses-page/:slug", component: <FindASource /> },
