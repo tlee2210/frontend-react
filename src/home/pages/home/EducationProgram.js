@@ -90,10 +90,10 @@ const EducationProgram = ({ data }) => {
                         }}
                       ></p>
                       <Link
-                        to={program.link || "#"}
+                        to={`/courses-page/undergraduate/${program.slug}`}
                         className="btn btn-primary stretched-link"
                       >
-                        Go somewhere
+                        Go
                       </Link>
                     </CardBody>
                   </Card>

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const initialState = {
   coursesData: [],
   item: {},
+  SemesterGrouped: [],
 };
 
 const homeSlice = createSlice({
@@ -15,9 +16,13 @@ const homeSlice = createSlice({
     SetDetail(state, action) {
       state.item = action.payload;
     },
+    setSessionsGrouped(state, action) {
+      state.SemesterGrouped = action.payload;
+    },
   },
 });
 
-export const { setcoursesData, SetDetail } = homeSlice.actions;
+export const { setcoursesData, SetDetail, setSessionsGrouped } =
+  homeSlice.actions;
 
 export default homeSlice.reducer;

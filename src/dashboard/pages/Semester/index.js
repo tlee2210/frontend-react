@@ -4,7 +4,11 @@ import { createSelector } from "reselect";
 import withRouter from "../../../Components/Common/withRouter";
 
 import Select from "react-select";
-import { GetParameters, GetSearch } from "../../../slices/Semester/thunk";
+import {
+  GetParameters,
+  GetSearch,
+  deleteSemester,
+} from "../../../slices/Semester/thunk";
 import {
   Card,
   CardBody,
@@ -44,6 +48,8 @@ const SemesterCreate = (props) => {
       sessionOptions: state.Semesterdashboard.sessionOptions,
       isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
       errorMessage: state.Message.errorMessage,
+      isNotificationVisible: state.Message.isNotificationVisible,
+      notificationMessage: state.Message.notificationMessage,
     })
   );
   const {
@@ -54,6 +60,8 @@ const SemesterCreate = (props) => {
     sessionOptions,
     isErrorNotificationVisible,
     errorMessage,
+    isNotificationVisible,
+    notificationMessage,
   } = useSelector(SemesterCreateCreatepageData);
 
   const columns = [
@@ -89,14 +97,12 @@ const SemesterCreate = (props) => {
       render: (record) => {
         return (
           <>
-            <Link to={`/dashboard/faculty/${record.id}/edit`}>
-              <span className="bg-gradient me-3 fs-4 text-info">
-                <i className="ri-edit-2-fill"></i>
-              </span>
-            </Link>
             <span
               className="fs-4 text-danger"
-              onClick={() => tog_togdelete(record.id)}
+              onClick={() => {
+                dispatch(deleteSemester(record.id));
+                validation.handleSubmit();
+              }}
             >
               <i className="ri-delete-bin-5-line"></i>
             </span>
@@ -154,7 +160,12 @@ const SemesterCreate = (props) => {
       dispatch(clearNotificationMessage());
     }
   }, [errorMessage, isErrorNotificationVisible]);
-
+  useEffect(() => {
+    if (isNotificationVisible && notificationMessage) {
+      message.success(notificationMessage);
+      dispatch(clearNotificationMessage());
+    }
+  }, [isNotificationVisible, notificationMessage, dispatch]);
   return (
     <div className="page-content">
       <Container fluid>

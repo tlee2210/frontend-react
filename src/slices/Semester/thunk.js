@@ -49,17 +49,18 @@ export const SemesterStore = (formData, history) => async (dispatch) => {
       dispatch(errorMessage(error.response.data.message));
     });
 };
-// export const GetStudent = () => async (dispatch) => {
-//   axios
-//     .get(`https://localhost:7112/api/dashboard/student/GetList`)
-//     .then((response) => {
-//       console.log(response);
-//       dispatch(setStudentData(response.data));
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
+//localhost:7112/api/dashboard/Semester/1//delete
+export const deleteSemester = (id) => async (dispatch) => {
+  axios
+    .delete(`https://localhost:7112/api/dashboard/Semester/${id}/delete`)
+    .then((response) => {
+      console.log(response);
+      dispatch(setMessage(response.data.message));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 // export const getEditStudent = (id, history) => async (dispatch) => {
 //   axios
 //     .get(`https://localhost:7112/api/dashboard/student/${id}/GetEdit`)

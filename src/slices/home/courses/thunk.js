@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setcoursesData, SetDetail } from "./reducer";
+import { setcoursesData, SetDetail, setSessionsGrouped } from "./reducer";
 import { setMessage, errorMessage } from "../../message/reducer";
 export const Gethomecourses = () => async (dispatch) => {
   await axios
@@ -42,7 +42,10 @@ export const GetFacultyDetails = (slug) => async (dispatch) => {
     .get(`https://localhost:7112/api/home/courses/GetFacultyDetails/${slug}`)
     .then((response) => {
       console.log(response);
-      dispatch(SetDetail(response.data));
+      dispatch(SetDetail(response.data.faculty));
+      dispatch(
+        setSessionsGrouped(response.data.departmentSemesterSessionsGrouped)
+      );
     })
     .catch((error) => {
       console.log(error);

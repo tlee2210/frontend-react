@@ -14,14 +14,16 @@ function UnderGraduatePage(props) {
 
   const homepageData = createSelector(selecthomeState, (state) => ({
     item: state.Courses.item,
+    SemesterGrouped: state.Courses.SemesterGrouped,
     isNotificationVisible: state.Message.isNotificationVisible,
     notificationMessage: state.Message.notificationMessage,
     isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
     errorMessage: state.Message.errorMessage,
   }));
-  
+
   const {
     item,
+    SemesterGrouped,
     isNotificationVisible,
     notificationMessage,
     isErrorNotificationVisible,
@@ -39,7 +41,7 @@ function UnderGraduatePage(props) {
     <div style={{ paddingTop: 150 }}>
       <ParticlesAuth>
         <HeaderGraduate data={item} />
-        <NavBarGraduate data={item} />
+        <NavBarGraduate data={item} data2={SemesterGrouped} />
       </ParticlesAuth>
     </div>
   );

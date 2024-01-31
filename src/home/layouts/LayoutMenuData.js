@@ -79,12 +79,6 @@ const Navdata = () => {
           link: "/courses-page",
         },
         {
-          id: "under-graduate",
-          label: "Under Graduate",
-          link: "/courses-page/under-graduate-page",
-        },
-        //Unit
-        {
           id: "unit",
           label: "Unit",
           link: "/unit-page",

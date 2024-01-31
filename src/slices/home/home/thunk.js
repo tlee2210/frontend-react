@@ -15,3 +15,26 @@ export const Gethome = () => async (dispatch) => {
       console.log(error);
     });
 };
+
+// Content-Type: application/json
+
+export const admission = (values) => async (dispatch) => {
+  console.log(values);
+  axios
+    .post("https://localhost:7112/api/home/admission", values, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      // if (response.data.message) {
+      // dispatch(setMessage(response.data.message));
+      // }
+      // history("/dashboard/staffs");
+    })
+    .catch((error) => {
+      console.log(error);
+      // dispatch(errorMessage(error.response.data));
+    });
+};

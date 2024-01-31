@@ -32,8 +32,12 @@ const unitsOfStudy3 = [
   { name: "Integrated Professional Placement B - Business", code: "BUS20011" },
 ];
 
-const MainPage = ({ data }) => {
-  const [showBusinessUnits, setShowBusinessUnits] = useState(false);
+const MainPage = ({ data, data2 }) => {
+  // console.log(data2);
+  // const [showBusinessUnits, setShowBusinessUnits] = useState(false);
+  const [showBusinessUnits, setShowBusinessUnits] = useState(
+    new Array(data2.length).fill(false)
+  );
   const [showInnovationUnits, setShowInnovationUnits] = useState(false);
   const [ShowOptionalProfessional, setShowOptionalProfessional] =
     useState(false);
@@ -93,17 +97,6 @@ const MainPage = ({ data }) => {
             >
               <i className="ri-question-answer-line align-middle me-1"></i>Study
               structure
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              style={{ cursor: "pointer", padding: 20 }}
-              className={classnames({ active: topBorderTab === "5" })}
-              onClick={() => {
-                topBordertoggle("5");
-              }}
-            >
-              <i className="ri-home-5-line align-middle me-1"></i> How to apply
             </NavLink>
           </NavItem>
         </Nav>
@@ -366,7 +359,6 @@ const MainPage = ({ data }) => {
                 </div>
               </div>
             </TabPane>
-
             {/* Study Structure */}
             <TabPane tabId="3" id="nav-border-justified-messages">
               <div className="StudyStructureContent" style={{ paddingTop: 50 }}>
@@ -445,142 +437,54 @@ const MainPage = ({ data }) => {
                       in which you commenced your course.
                     </p>
                     {/* Bachelor of Business */}
+
                     <div className="bachelor-container">
-                      <div
-                        className="bachelor-header"
-                        onClick={() => setShowBusinessUnits(!showBusinessUnits)}
-                      >
-                        <h1>Bachelor of Business</h1>
-                        {/* Toggle Icon */}
-                        {showBusinessUnits ? (
-                          /* Replace with an actual minus icon */
-                          // <MinusIcon className="icon" />
-                          <span className="icon">-</span>
-                        ) : (
-                          /* Replace with an actual plus icon */
-                          // <PlusIcon className="icon" />
-                          <span className="icon">+</span>
-                        )}
-                      </div>
-                      {showBusinessUnits && (
-                        <div className="units-table">
-                          <div className="table-header">
-                            <span>Units of study</span>
-                            <span>Unit code</span>
+                      {data2.map((semesterSessions, semesterIndex) => (
+                        <div key={semesterIndex} className="mb-4">
+                          <div
+                            className="bachelor-header"
+                            onClick={() => {
+                              const updatedShowBusinessUnits = [
+                                ...showBusinessUnits,
+                              ];
+                              updatedShowBusinessUnits[semesterIndex] =
+                                !updatedShowBusinessUnits[semesterIndex];
+                              setShowBusinessUnits(updatedShowBusinessUnits);
+                            }}
+                          >
+                            <h1>{`Bachelor of Business - Semester ${
+                              semesterIndex + 1
+                            }`}</h1>
+                            {/* Toggle Icon */}
+                            {showBusinessUnits[semesterIndex] ? (
+                              <span className="icon">-</span>
+                            ) : (
+                              <span className="icon">+</span>
+                            )}
                           </div>
-                          {unitsOfStudy.map((unit, index) => (
-                            <div key={index} className="table-row">
-                              <span>{unit.name}</span>
-                              <span>{unit.code}</span>
+                          {showBusinessUnits[semesterIndex] && (
+                            <div className="units-table">
+                              <div className="table-header">
+                                <span>Units of study</span>
+                                <span>Unit code</span>
+                              </div>
+                              {semesterSessions.map((session, sessionIndex) => (
+                                <div key={sessionIndex} className="table-row">
+                                  <span>{session.department?.subject}</span>{" "}
+                                  <span>{session.department?.code}</span>{" "}
+                                  {/* Replace departmentName with the actual property name */}
+                                  <span>{session.code}</span>{" "}
+                                  {/* Replace code with the actual property name */}
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                          )}
                         </div>
-                      )}
-                    </div>
-                    {/* Bachelor of Applied Innovation */}
-                    <div className="bachelor-container">
-                      <div
-                        className="bachelor-header"
-                        onClick={() =>
-                          setShowInnovationUnits(!showInnovationUnits)
-                        }
-                      >
-                        <h1>Bachelor of Applied Innovation</h1>
-                        {/* Toggle Icon */}
-                        {showInnovationUnits ? (
-                          /* Replace with an actual minus icon */
-                          // <MinusIcon className="icon" />
-                          <span className="icon">-</span>
-                        ) : (
-                          /* Replace with an actual plus icon */
-                          // <PlusIcon className="icon" />
-                          <span className="icon">+</span>
-                        )}
-                      </div>
-                      {showInnovationUnits && (
-                        <div className="units-table">
-                          <div className="table-header">
-                            <span>Units of study</span>
-                            <span>Unit code</span>
-                          </div>
-                          {unitsOfStudy2.map((unit, index) => (
-                            <div key={index} className="table-row">
-                              <span>{unit.name}</span>
-                              <span>{unit.code}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    <p
-                      style={{ paddingTop: 20 }}
-                      className="text-Entry-requiment"
-                    >
-                      *Upon enrolment you will choose your Business Practice
-                      electives; these include Sustainable Business Practice,
-                      Future Work Skills, internships, and study tours.
-                    </p>
-                    <blockquote className="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
-                      <p className="text-body mb-2 fw-bold">
-                        Want to learn more about the available majors?
-                      </p>
-                      <p className="study-expo-text-overview-Graduated">
-                        Learn about all the units you can take in each available
-                        major from the course handbook.
-                      </p>
-                      <a
-                        href="#"
-                        className="register-link-overview-Graduated"
-                        style={{ color: "red" }}
-                      >
-                        View Source handbook
-                      </a>
-                    </blockquote>
-                    {/* Optional professional work placement  */}
-                    <div
-                      className="bachelor-container"
-                      style={{ paddingTop: 30 }}
-                    >
-                      <div
-                        className="bachelor-header"
-                        onClick={() =>
-                          setShowOptionalProfessional(!ShowOptionalProfessional)
-                        }
-                      >
-                        <h1>Bachelor of Business</h1>
-                        {/* Toggle Icon */}
-                        {ShowOptionalProfessional ? (
-                          /* Replace with an actual minus icon */
-                          // <MinusIcon className="icon" />
-                          <span className="icon">-</span>
-                        ) : (
-                          /* Replace with an actual plus icon */
-                          // <PlusIcon className="icon" />
-                          <span className="icon">+</span>
-                        )}
-                      </div>
-                      {ShowOptionalProfessional && (
-                        <div className="units-table">
-                          <div className="table-header">
-                            <span>Units of study</span>
-                            <span>Unit code</span>
-                          </div>
-                          {unitsOfStudy3.map((unit, index) => (
-                            <div key={index} className="table-row">
-                              <span>{unit.name}</span>
-                              <span>{unit.code}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
-            </TabPane>
-
-            <TabPane tabId="5" id="nav-border-justified-messages">
-              <Container>here</Container>
             </TabPane>
           </TabContent>
         </Container>

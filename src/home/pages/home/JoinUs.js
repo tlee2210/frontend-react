@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { admission } from "../../../slices/home/home/thunk";
 import {
   Card,
   CardBody,
@@ -16,6 +17,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 import Flatpickr from "react-flatpickr";
+import { useDispatch, useSelector } from "react-redux";
 
 // Formik validation
 import * as Yup from "yup";
@@ -30,22 +32,24 @@ const GroupOptions2 = [
 ];
 
 const JoinUs = ({ data }) => {
+  const dispatch = useDispatch();
+
   const validation = useFormik({
     enableReinitialize: true,
 
     initialValues: {
-      FirstName: "",
-      LastName: "",
-      email: "",
+      FirstName: "Thaddeus",
+      LastName: "Holden",
+      email: "mytoma@mailinator.com",
       dateOfBirth: "",
-      Phone: "",
-      Address: "",
-      Gender: "",
-      FacultyId: "",
-      FatherName: "",
-      MotherName: "",
-      HighSchool: "",
-      GPA: "",
+      Phone: "1231231232",
+      Address: "123",
+      Gender: "Male",
+      FacultyId: "1",
+      FatherName: "1",
+      MotherName: "2",
+      HighSchool: "3",
+      GPA: "12",
     },
     validationSchema: Yup.object({
       FirstName: Yup.string().required("Please Enter Your First Name"),
@@ -75,8 +79,31 @@ const JoinUs = ({ data }) => {
     }),
 
     onSubmit: (values) => {
-      console.log(values);
-      // dispatch(loginUser(values, props.router.navigate));
+      // console.log(values);
+      const formData = new FormData();
+      formData.append("firstName", values.FirstName);
+      formData.append("lastName", values.LastName);
+      formData.append("fatherName", values.FatherName);
+      formData.append("motherName", values.MotherName);
+      formData.append("email", values.email);
+      formData.append("phone", values.Phone);
+      if (values.dateOfBirth) {
+        const dob = new Date(values.dateOfBirth);
+        const formattedDate = [
+          dob.getFullYear(),
+          ("0" + (dob.getMonth() + 1)).slice(-2),
+          ("0" + dob.getDate()).slice(-2),
+        ].join("-"); // Format: YYYY-MM-DD
+
+        formData.append("dob", formattedDate);
+      }
+      formData.append("gender", values.Gender);
+      formData.append("address", values.Address);
+      formData.append("highSchool", values.HighSchool);
+      formData.append("gpa", values.GPA);
+      formData.append("facultyId", values.FacultyId);
+
+      dispatch(admission(formData));
     },
   });
   return (
