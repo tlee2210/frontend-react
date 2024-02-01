@@ -150,7 +150,10 @@ const FindASource = (props) => {
                             {coursesData.map((item, index) => (
                               <tr key={index}>
                                 <td>
-                                  <Link to="#" className="fw-medium">
+                                  <Link
+                                    to={`/courses-page/undergraduate/${item.slug}`}
+                                    className="fw-medium"
+                                  >
                                     {item.title}
                                   </Link>
                                 </td>

@@ -38,18 +38,18 @@ const JoinUs = ({ data }) => {
     enableReinitialize: true,
 
     initialValues: {
-      FirstName: "Thaddeus",
-      LastName: "Holden",
-      email: "mytoma@mailinator.com",
+      FirstName: "",
+      LastName: "",
+      email: "",
       dateOfBirth: "",
-      Phone: "1231231232",
-      Address: "123",
-      Gender: "Male",
-      FacultyId: "1",
-      FatherName: "1",
-      MotherName: "2",
-      HighSchool: "3",
-      GPA: "12",
+      Phone: "",
+      Address: "",
+      Gender: "",
+      FacultyId: "",
+      FatherName: "",
+      MotherName: "",
+      HighSchool: "",
+      GPA: "",
     },
     validationSchema: Yup.object({
       FirstName: Yup.string().required("Please Enter Your First Name"),
@@ -79,14 +79,14 @@ const JoinUs = ({ data }) => {
     }),
 
     onSubmit: (values) => {
-      // console.log(values);
+      console.log(values);
       const formData = new FormData();
-      formData.append("firstName", values.FirstName);
-      formData.append("lastName", values.LastName);
-      formData.append("fatherName", values.FatherName);
-      formData.append("motherName", values.MotherName);
-      formData.append("email", values.email);
-      formData.append("phone", values.Phone);
+      formData.append("FirstName", values.FirstName);
+      formData.append("LastName", values.LastName);
+      formData.append("FatherName", values.FatherName);
+      formData.append("MotherName", values.MotherName);
+      formData.append("Email", values.email);
+      formData.append("Phone", values.Phone);
       if (values.dateOfBirth) {
         const dob = new Date(values.dateOfBirth);
         const formattedDate = [
@@ -95,13 +95,13 @@ const JoinUs = ({ data }) => {
           ("0" + dob.getDate()).slice(-2),
         ].join("-"); // Format: YYYY-MM-DD
 
-        formData.append("dob", formattedDate);
+        formData.append("DOB", formattedDate);
       }
-      formData.append("gender", values.Gender);
-      formData.append("address", values.Address);
-      formData.append("highSchool", values.HighSchool);
-      formData.append("gpa", values.GPA);
-      formData.append("facultyId", values.FacultyId);
+      formData.append("Gender", values.Gender);
+      formData.append("Address", values.Address);
+      formData.append("HighSchool", values.HighSchool);
+      formData.append("GPA", values.GPA);
+      formData.append("FacultyId", values.FacultyId);
 
       dispatch(admission(formData));
     },

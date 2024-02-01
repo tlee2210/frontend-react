@@ -17,8 +17,10 @@ import {
   Label,
   Button,
   Form,
+  CardHeader,
 } from "reactstrap";
-import { message } from "antd";
+import { message, Table as AntTable } from "antd";
+import axios from "axios";
 
 import moment from "moment";
 import { createSelector } from "reselect";
@@ -38,17 +40,37 @@ import { useFormik } from "formik";
 
 const SimplePage = () => {
   const dispatch = useDispatch();
+  const [Description, setDescription] = useState("");
+  const handleSearchChange = (event) => {
+    setDescription(event.target.value);
+  };
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if (Description != null) {
+      console.log(Description);
+      axios
+        .post(`https://localhost:7112/api/home/feedback?Description=${Description}`)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   document.title = "Student Profile";
   const selectprofileState = (state) => state;
   const profilepageData = createSelector(selectprofileState, (state) => ({
     profileData: state.Profile.profileData,
+    SemesterGrouped: state.Profile.SemesterGrouped,
     isNotificationVisible: state.Message.isNotificationVisible,
     notificationMessage: state.Message.notificationMessage,
     isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
     errorMessage: state.Message.errorMessage,
   }));
   const {
+    SemesterGrouped,
     profileData,
     isNotificationVisible,
     notificationMessage,
@@ -58,6 +80,35 @@ const SimplePage = () => {
   useEffect(() => {
     dispatch(GetStudentProfile());
   }, []);
+
+  const columns = [
+    {
+      title: "Index",
+      key: "Index",
+      fixed: "left",
+      width: 100,
+      render: (text, record, index) => index + 1,
+    },
+    {
+      title: "code",
+      key: "code",
+      render: (text, record) => {
+        const department = record.department;
+
+        return <>{department.code}</>;
+      },
+    },
+    {
+      title: "subject",
+      key: "subject",
+      dataIndex: "subject",
+      render: (text, record) => {
+        const department = record.department;
+
+        return <>{department.subject}</>;
+      },
+    },
+  ];
 
   useEffect(() => {
     if (errorMessage && isErrorNotificationVisible) {
@@ -229,7 +280,7 @@ const SimplePage = () => {
                         >
                           <i className="ri-list-unordered d-inline-block d-md-none"></i>{" "}
                           <span className="d-none d-md-inline-block">
-                            Activities
+                            Semester
                           </span>
                         </NavLink>
                       </NavItem>
@@ -243,21 +294,7 @@ const SimplePage = () => {
                         >
                           <i className="ri-price-tag-line d-inline-block d-md-none"></i>{" "}
                           <span className="d-none d-md-inline-block">
-                            Projects
-                          </span>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem className="fs-14">
-                        <NavLink
-                          href="#documents"
-                          className={classnames({ active: activeTab === "4" })}
-                          onClick={() => {
-                            toggleTab("4");
-                          }}
-                        >
-                          <i className="ri-folder-4-line d-inline-block d-md-none"></i>{" "}
-                          <span className="d-none d-md-inline-block">
-                            Documents
+                            Feedback
                           </span>
                         </NavLink>
                       </NavItem>
@@ -596,8 +633,23 @@ const SimplePage = () => {
                       <Card>
                         <CardBody>
                           <Row>
-                            <h5 className="card-title mb-3">Activities</h5>
+                            <h5 className="card-title mb-3">Semester </h5>
                           </Row>
+                        </CardBody>
+                        <CardBody>
+                          {/* SemesterGrouped */}
+                          {SemesterGrouped.map((semester, index) => (
+                            <Card key={index}>
+                              <CardHeader>{`Year ${
+                                Math.floor(index / 2) + 1
+                              }, Semester ${(index % 2) + 1}`}</CardHeader>
+                              <AntTable
+                                columns={columns}
+                                dataSource={semester}
+                                rowKey="id"
+                              />
+                            </Card>
+                          ))}
                         </CardBody>
                       </Card>
                     </TabPane>
@@ -606,18 +658,33 @@ const SimplePage = () => {
                       <Card>
                         <CardBody>
                           <Row>
-                            <h5 className="card-title mb-3">projects</h5>
+                            <h5 className="card-title mb-3">Feedback</h5>
                           </Row>
                         </CardBody>
-                      </Card>
-                    </TabPane>
-
-                    <TabPane tabId="4">
-                      <Card>
                         <CardBody>
-                          <Row>
-                            <h5 className="card-title mb-3">documents</h5>
-                          </Row>
+                          <form onSubmit={handleSearchSubmit}>
+                            <Row>
+                              <div className="input-group mb-4">
+                                <textarea
+                                  name="Description"
+                                  className="form-control"
+                                  id="exampleFormControlTextarea5"
+                                  rows="3"
+                                  onChange={handleSearchChange}
+                                  value={Description}
+                                />
+                              </div>
+                              <div className="input-group-append">
+                                <button
+                                  id="button-addon5"
+                                  type="submit"
+                                  className="btn btn-primary"
+                                >
+                                  Feedback
+                                </button>
+                              </div>
+                            </Row>
+                          </form>
                         </CardBody>
                       </Card>
                     </TabPane>

@@ -71,7 +71,7 @@ import AdmissionProccess from "../dashboard/pages/Admission/AdmissionProccess";
 import AdmissionAccept from "../dashboard/pages/Admission/AdmissionAccept";
 import AdmissionReject from "../dashboard/pages/Admission/AdmissionReject";
 import AdmissionDetail from "../dashboard/pages/Admission/AdmissionDetail";
-
+// C:\Users\thien\OneDrive\Documents\GitHub\frontend-react\src\home\pages\admission\JoinUs.js
 const AdminProtectedRoutes = [
   { path: "/dashboard/Courses", component: <Courses /> },
   // /dashboard/article

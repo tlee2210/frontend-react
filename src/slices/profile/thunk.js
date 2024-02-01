@@ -1,12 +1,15 @@
 import axios from "axios";
-import { setprofileData } from "./reducer";
+import { setprofileData, setSessionsGrouped } from "./reducer";
 import { setMessage, errorMessage } from "../message/reducer";
 export const GetStudentProfile = () => async (dispatch) => {
   await axios
     .get("https://localhost:7112/api/ProfileStudent/GetStudentProfile")
     .then((response) => {
       console.log(response);
-      dispatch(setprofileData(response.data));
+      dispatch(setprofileData(response.data.students));
+      dispatch(
+        setSessionsGrouped(response.data.departmentSemesterSessionsGrouped)
+      );
     })
     .catch((error) => {
       console.log(error);
