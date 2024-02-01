@@ -52,6 +52,9 @@ const SimplePage = () => {
         .post(`https://localhost:7112/api/home/feedback?Description=${Description}`)
         .then((response) => {
           console.log(response);
+          message.success(response.data.message);
+          setDescription("");
+
         })
         .catch((error) => {
           console.log(error);
@@ -669,7 +672,7 @@ const SimplePage = () => {
                                   name="Description"
                                   className="form-control"
                                   id="exampleFormControlTextarea5"
-                                  rows="3"
+                                  rows="14"
                                   onChange={handleSearchChange}
                                   value={Description}
                                 />
