@@ -5,11 +5,12 @@ const HeaderGraduate = ({ data }) => {
   return (
     <header
       style={{
-        background: `url(${data.image}) no-repeat center center`,
+        background: `url(${data.image})`,
         display: "flex",
         alignItems: "center",
+        padding: "63px",
+        width: "1472px",
         backgroundSize: "cover",
-        padding: "79px",
       }}
     >
       <div className="header-content-graduate-Header">

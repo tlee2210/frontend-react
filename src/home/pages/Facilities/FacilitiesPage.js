@@ -64,7 +64,7 @@ function FacilitiesPage() {
             <h1 className="header-title-news-Header mb-5">Facilities</h1>
             <div className="mt-1">
               <p className="text-news-css">
-                At Swinburne University of Technology, we have invested more
+                At University of Technology, we have invested more
                 than A$250m in state-of-the-art research equipment and
                 facilities in order to support innovative, world-first,
                 leading-edge research. Use our leading facilities to advance
@@ -79,7 +79,7 @@ function FacilitiesPage() {
             <div className="col-sm-2"></div>
             <div className="col-sm-8">
               <p className="fs-5">
-                At Swinburne, we have invested more than A$250m in
+                We have invested more than A$250m in
                 state-of-the-art research equipment and facilities in order to
                 support innovative, world-first, leading-edge research. By
                 collaborating with us, you can access these resources to benefit

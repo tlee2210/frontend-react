@@ -39,3 +39,10 @@
     background-color: #424242; /* Darker shade for hover effect */
   }
   
+  .header-container-FASources-Header {
+    display: flex;
+    align-items: center;
+    background: url('../../../assets/images/small/1.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 80px; 
+}

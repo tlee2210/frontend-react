@@ -181,7 +181,7 @@ const MainPage = ({ data, data2 }) => {
               <div style={{ backgroundColor: "red" }}>
                 <div className="why-swinburne-container-overview-WhySwinburne">
                   <h2 className="why-swinburne-heading-overview-WhySwinburne">
-                    Why Swinburne?
+                    Why?
                   </h2>
                   <div className="why-swinburne-items-overview-WhySwinburne">
                     <div className="why-swinburne-item-overview-WhySwinburne">

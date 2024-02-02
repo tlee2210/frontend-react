@@ -89,7 +89,11 @@ function NewsPage() {
             <div className="header-actions-news-Header">
               <div className="student-status-news-Header">
                 <p className="text-news-css fw-bold">
+<<<<<<< Updated upstream
                   2nd annual Children’s University graduation
+=======
+                  It's 2nd annual Children’s University graduation
+>>>>>>> Stashed changes
                 </p>
               </div>
             </div>
@@ -110,7 +114,7 @@ function NewsPage() {
             <div className="col-sm-2"></div>
             <div className="col-sm-8">
               <p className="fs-5">
-                Discover news from Swinburne University of Technology including
+                Discover news from  University of Technology including
                 research innovations, stories about our people and reports from
                 the latest events.
               </p>
@@ -122,7 +126,7 @@ function NewsPage() {
             <div className="p-5">
               <h1 className="pb-1">Find an expert for comment</h1>
               <p className="pb-5">
-                Search for a Swinburne researcher or academic expert who is
+                Search for a  researcher or academic expert who is
                 available for media comment about their field of expertise.
               </p>
               <form onSubmit={handleSearchSubmit}>
@@ -229,10 +233,10 @@ function NewsPage() {
         </Container>
       </div>
 
-      {/* Want to be kept informed about all things Swinburne? */}
+      {/* Want to be kept informed about all things ? */}
       <div className="Socials-news-page" style={{ paddingBottom: 0 }}>
         <h4 className="fs-2">
-          Want to be kept informed about all things Swinburne?
+          Want to be kept informed about all things ?
         </h4>
         <div className="features-news-page row">
           <div className="col-md-2 feature-news-page">

@@ -3,16 +3,16 @@ import { Button } from "reactstrap";
 
 const HeaderSourcePage = () => {
   return (
-    <header className="header-container-graduate-Header">
-      <div className="header-content-graduate-Header">
+    <header className="header-container-Sources-Header">
+      <div className="header-content-Sources-Header">
         <h1
-          className="header-title-graduate-Header"
+          className="header-title-Sources-Header"
           style={{ color: "#5a4f4f" }}
         >
           COURSE
         </h1>
-        <div className="header-actions-graduate-Header">
-          <div className="student-status-graduate-Header fs-3">
+        <div className="header-actions-Sources-Header">
+          <div className="student-status-Sources-Header fs-3">
             <span>The new Bachelor of Business</span>
           </div>
         </div>

@@ -38,7 +38,7 @@ function UnderGraduatePage(props) {
   document.title = item.title;
 
   return (
-    <div style={{ paddingTop: 150 }}>
+    <div style={{ paddingTop: 115 }}>
       <ParticlesAuth>
         <HeaderGraduate data={item} />
         <NavBarGraduate data={item} data2={SemesterGrouped} />

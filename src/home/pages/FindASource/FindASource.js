@@ -50,7 +50,7 @@ const FindASource = (props) => {
   return (
     <div style={{ paddingTop: 100 }}>
       <ParticlesAuth>
-        <header className="header-container-graduate-Header">
+        <header className="header-container-FASources-Header">
           <div className="header-content-graduate-Header">
             <h1
               className="header-title-graduate-Header"
@@ -108,7 +108,7 @@ const FindASource = (props) => {
             </ul>
             <h2 className="fw-bold">Learn from industry</h2>
             <p className="industry-fs">
-              Thrive in Swinburne's culture of creativity and innovation built
+              Thrive in culture of creativity and innovation built
               through decades of tight-knit relationships with industry.
             </p>
             <p className="industry-sf">

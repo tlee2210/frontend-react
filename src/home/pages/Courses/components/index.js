@@ -90,8 +90,8 @@ const index = (props) => {
           <h4 className="fs-1">Future-ready learning</h4>
           <div>
             <p>
-              Students come first at Swinburne. Our courses are designed with
-              your future in mind. Swinburne offers high-quality teaching,
+              Students come first at here. Our courses are designed with
+              your future in mind. It offers high-quality teaching,
               opportunities to engage with industry, state-of-the-art facilities
               and flexible study options.
             </p>
@@ -154,12 +154,11 @@ const index = (props) => {
           <h4 className="fs-1">Real industry experience</h4>
           <div>
             <p>
-              At Swinburne, your education is more than reading; it’s doing.
+              Your education is more than reading; it’s doing.
               It’s Work Integrated Learning (WIL) in the form of placements,
               internships or industry-linked projects, and it’s guaranteed in
               all our bachelor degrees. Not looking to study a bachelor degree?
-              That’s ok. There’s plenty of WIL opportunities available to all
-              Swinburne students.
+              That’s ok. There’s plenty of WIL opportunities available to all students.
             </p>
             <a href="#" style={{ color: "red" }}>
               Learn more about Work Integrated Learning
@@ -188,22 +187,22 @@ const index = (props) => {
         </div>
       </div>
 
-      {/* Study online with Swinburne */}
-      <div style={{ paddingBottom: 100 }}>
-        <header className="header-container-Sources-Header">
-          <div className="header-content-Sources-Header">
+      {/* Study online */}
+      <div style={{ paddingBottom: 100,paddingLeft:450 }}>
+        <header className="header-container-Study-online-Header">
+          <div className="header-content-Study-online-Header">
             <h1
-              className="header-title-Sources-Header"
+              className="header-title-Study-online-Header"
               style={{ color: "#5a4f4f" }}
             >
-              Study online with Swinburne
+              Study online 
             </h1>
-            <div className="header-actions-Sources-Header"></div>
+            <div className="header-actions-Study-online-Header"></div>
             <p className="mt-3 fs-6">
-              Swinburne is a world leader in online education by using
+              It is a world leader in online education by using
               interactive and innovative technologies to deliver our courses and
               degrees. From vocational education and undergraduate to
-              postgraduate study, Swinburne has online study options at all
+              postgraduate study, It has online study options at all
               levels.
             </p>
             <Button color="danger mt-3" outline>
