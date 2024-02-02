@@ -59,7 +59,6 @@ export const getEditStudent = (id, history) => async (dispatch) => {
     });
 };
 export const studentUpdate = (formData, history) => async (dispatch) => {
-  // console.log(formData);
   axios
     .post("https://localhost:7112/api/dashboard/student/Update", formData, {
       headers: {
@@ -79,19 +78,16 @@ export const studentUpdate = (formData, history) => async (dispatch) => {
     });
 };
 
-// export const Deletestaff = (id) => async (dispatch) => {
-//   axios
-//     .delete(`https://localhost:7112/api/dashboard/staff/${id}/delete`)
-//     .then((response) => {
-//       console.log(response);
-//       if (response.data.message) {
-//         dispatch(setMessage(response.data.message));
-//       }
-//       if (response.data.data) {
-//         dispatch(removeStaff(response.data.data));
-//       }
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
+export const AdmissionCreateStudent = (id) => async (dispatch) => {
+  axios
+    .get(`https://localhost:7112/api/dashboard/admission/${id}/AdmissionCreate`)
+    .then((response) => {
+      console.log(response);
+      dispatch(setSelectOption(response.data.selectOption));
+      dispatch(setEdit(response.data.model));
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch(errorMessage(error.response.data.message));
+    });
+};

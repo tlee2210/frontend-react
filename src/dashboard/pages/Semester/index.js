@@ -8,6 +8,7 @@ import {
   GetParameters,
   GetSearch,
   deleteSemester,
+  CreateSemesters,
 } from "../../../slices/Semester/thunk";
 import {
   Card,
@@ -63,6 +64,49 @@ const SemesterCreate = (props) => {
     isNotificationVisible,
     notificationMessage,
   } = useSelector(SemesterCreateCreatepageData);
+  const k = 2;
+  const getYearFromLabel = (label) => {
+    const matches = label.match(/\d{4}/);
+    return matches ? parseInt(matches[0], 10) : null;
+  };
+
+  const currentYear = new Date().getFullYear();
+
+  const [semesterCourses, setSemesterCourses] = useState([]);
+  const [semesterFaculty, setSemesterFaculty] = useState(null);
+  const [semestery, setSemester] = useState(null);
+  const collectCourseIdsForSemester = (semesterIndex) => {
+    const selectedSemesterCourses = SemesterData[semesterIndex];
+
+    const DepartmentIds = selectedSemesterCourses.map((course) => course.id);
+    setSemesterCourses(DepartmentIds);
+
+    let facultyId = null; // Define facultyId
+    let semesterId = null; // Define semesterId
+
+    if (selectedSemesterCourses.length > 0) {
+      facultyId = selectedSemesterCourses[0].facultyId;
+      semesterId = selectedSemesterCourses[0].semesterId;
+      setSemesterFaculty(facultyId);
+      setSemester(semesterId);
+    }
+
+    if (facultyId && semesterId) {
+      const dataToSend = {
+        facultyId,
+        semesterId,
+        DepartmentIds,
+      };
+      console.log(dataToSend);
+      dispatch(CreateSemesters(dataToSend));
+    }
+  };
+
+  // useEffect(() => {
+  //   console.log(semesterCourses);
+  //   console.log("facultyId: " + semesterFaculty);
+  //   console.log("semestery: " + semestery);
+  // }, [semesterCourses]);
 
   const columns = [
     {
@@ -95,8 +139,9 @@ const SemesterCreate = (props) => {
       title: "Actions",
       fixed: "right",
       render: (record) => {
-        return (
-          <>
+        const selectedSessionYear = getYearFromLabel(sessionSelectValue?.label);
+        if (selectedSessionYear && currentYear <= selectedSessionYear) {
+          return (
             <span
               className="fs-4 text-danger"
               onClick={() => {
@@ -106,8 +151,10 @@ const SemesterCreate = (props) => {
             >
               <i className="ri-delete-bin-5-line"></i>
             </span>
-          </>
-        );
+          );
+        } else {
+          return null;
+        }
       },
     },
   ];
@@ -128,9 +175,10 @@ const SemesterCreate = (props) => {
       semesterId: "",
       sessionId: "",
     },
-    // validationSchema: Yup.object({
-
-    // }),
+    validationSchema: Yup.object({
+      facultyId: Yup.string().required("Faculty is required"),
+      sessionId: Yup.string().required("Session is required"),
+    }),
     onSubmit: (values) => {
       // console.log(values);
       dispatch(GetSearch(values));
@@ -260,6 +308,14 @@ const SemesterCreate = (props) => {
                     (index % 2) + 1
                   }`}</CardHeader>
                   <Table columns={columns} dataSource={semester} rowKey="id" />
+                  {semester.length > 0 && (
+                    <Button
+                      color="primary"
+                      onClick={() => collectCourseIdsForSemester(index)}
+                    >
+                      ADD next year
+                    </Button>
+                  )}
                 </Card>
               ))}
             </Form>

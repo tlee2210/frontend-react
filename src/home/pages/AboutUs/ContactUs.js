@@ -42,6 +42,15 @@ function NewDetailsPage(props) {
     errorMessage,
   } = useSelector(ArticleCreatepageData);
 
+  const getYouTubeEmbedURL = (youTubeWatchURL) => {
+    const url = new URL(youTubeWatchURL);
+    const videoId = url.searchParams.get("v");
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
+
+  const youTubeEmbedLink = ContactUs.youTubeLink
+    ? getYouTubeEmbedURL(ContactUs.youTubeLink)
+    : "";
   return (
     <ParticlesAuth>
       <div style={{ paddingTop: 120, paddingBottom: 100 }}>
@@ -93,7 +102,7 @@ function NewDetailsPage(props) {
                       Address:
                     </h3>
                     <p className="fs-5" style={{ paddingLeft: 56 }}>
-                      191 Tay Hoa
+                      {ContactUs.address}
                     </p>
                   </div>
                   <div className="text-edit-contact-us">
@@ -105,7 +114,7 @@ function NewDetailsPage(props) {
                       Phone Number:
                     </h3>
                     <p className="fs-5" style={{ paddingLeft: 56 }}>
-                      10123456789
+                      {ContactUs.phone}
                     </p>
                   </div>
                 </div>
@@ -118,8 +127,19 @@ function NewDetailsPage(props) {
                   <iframe
                     width="600"
                     height="315"
-                    src="https://www.youtube.com/embed/LlCwHnp3kL4"
+                    src={youTubeEmbedLink}
                   ></iframe>
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div
+                  className="youtube-video"
+                  style={{ paddingLeft: 140, paddingTop: 20 }}
+                >
+                  <div
+                    className="description-content"
+                    dangerouslySetInnerHTML={{ __html: ContactUs.description }}
+                  />
                 </div>
               </div>
             </div>

@@ -51,6 +51,7 @@ import Student from "../dashboard/pages/Student/index";
 import StudentCreate from "../dashboard/pages/Student/create";
 import StudentEdit from "../dashboard/pages/Student/edit";
 import Studentdetail from "../dashboard/pages/Student/detail";
+import AdmissionCreate from "../dashboard/pages/Student/AdmissionCreate";
 // staff
 import Staff from "../dashboard/pages/staff/index";
 import StaffCreate from "../dashboard/pages/staff/create";
@@ -103,6 +104,10 @@ const AdminProtectedRoutes = [
   { path: "/dashboard/student/create", component: <StudentCreate /> },
   { path: "/dashboard/student/:id/edit", component: <StudentEdit /> },
   { path: "/dashboard/student/:id/detail", component: <Studentdetail /> },
+  {
+    path: "/dashboard/student/:id/Create",
+    component: <AdmissionCreate />,
+  },
   // Staff
   { path: "/dashboard/staffs", component: <Staff /> },
   { path: "/dashboard/staff/create", component: <StaffCreate /> },

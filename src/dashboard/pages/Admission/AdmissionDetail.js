@@ -141,6 +141,7 @@ const AdmissionDetail = (props) => {
                 </Row>
               </CardBody>
             </Card>
+            {/* /dashboard/student/:id/Create */}
             {item.status !== "Accept" && item.status !== "Reject" && (
               <Row>
                 <Col md={12}>
@@ -168,6 +169,18 @@ const AdmissionDetail = (props) => {
                   </div>
                 </Col>
               </Row>
+            )}
+            {item.status === "Accept" ? (
+              // here
+              // /dashboard/student/:id/Create
+              <Link to={`/dashboard/student/${id}/Create`}>
+                <Button color="warning" className="btn-label me-2">
+                  <i className="ri-error-warning-line label-icon align-middle fs-16 me-2"></i>
+                  Create Student
+                </Button>
+              </Link>
+            ) : (
+              []
             )}
           </Col>
 
