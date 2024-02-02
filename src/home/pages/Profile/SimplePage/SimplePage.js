@@ -29,6 +29,7 @@ import ParticlesAuth from "../../../layouts/ParticlesAuth";
 import {
   GetStudentProfile,
   ChangePasswordStudent,
+  feedbackStudent,
 } from "../../../../slices/profile/thunk";
 import { useSelector, useDispatch } from "react-redux";
 import { clearNotificationMessage } from "../../../../slices/message/reducer";
@@ -47,18 +48,7 @@ const SimplePage = () => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     if (Description != null) {
-      console.log(Description);
-      axios
-        .post(`https://localhost:7112/api/home/feedback?Description=${Description}`)
-        .then((response) => {
-          console.log(response);
-          message.success(response.data.message);
-          setDescription("");
-
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      dispatch(feedbackStudent(Description));
     }
   };
 
@@ -123,7 +113,7 @@ const SimplePage = () => {
     if (isNotificationVisible && notificationMessage) {
       message.success(notificationMessage);
       dispatch(clearNotificationMessage());
-      validation.resetForm();
+      setDescription("");
     }
   }, [isNotificationVisible, notificationMessage]);
 

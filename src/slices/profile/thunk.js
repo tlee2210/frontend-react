@@ -51,3 +51,15 @@ export const ChangePasswordStudent = (formData) => async (dispatch) => {
       dispatch(errorMessage(error.response.data.message));
     });
 };
+// feedback
+export const feedbackStudent = (Description) => async (dispatch) => {
+  await axios
+    .post(`https://localhost:7112/api/home/feedback?Description=${Description}`)
+    .then((response) => {
+      // console.log(response);
+      dispatch(setMessage(response.data.message));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

@@ -18,6 +18,7 @@ import {
 import Select from "react-select";
 import Flatpickr from "react-flatpickr";
 import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
 
 // Formik validation
 import * as Yup from "yup";
@@ -25,14 +26,23 @@ import { useFormik } from "formik";
 
 import withRouter from "../../../Components/Common/withRouter";
 
-const GroupOptions2 = [
-  { value: "Zero", label: "Zero" },
-  { value: "Two", label: "Two" },
-  { value: "Four", label: "Four" },
-];
-
 const JoinUs = ({ data }) => {
   const dispatch = useDispatch();
+
+  const selecthomeState = (state) => state;
+  const homepageData = createSelector(selecthomeState, (state) => ({
+    isNotificationVisible: state.Message.isNotificationVisible,
+    notificationMessage: state.Message.notificationMessage,
+  }));
+  const { isNotificationVisible, notificationMessage } =
+    useSelector(homepageData);
+
+  useEffect(() => {
+    if (isNotificationVisible && notificationMessage) {
+      console.log("ok");
+      validation.resetForm();
+    }
+  }, [isNotificationVisible, notificationMessage, dispatch]);
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -79,31 +89,32 @@ const JoinUs = ({ data }) => {
     }),
 
     onSubmit: (values) => {
-      console.log(values);
-      const formData = new FormData();
-      formData.append("FirstName", values.FirstName);
-      formData.append("LastName", values.LastName);
-      formData.append("FatherName", values.FatherName);
-      formData.append("MotherName", values.MotherName);
-      formData.append("Email", values.email);
-      formData.append("Phone", values.Phone);
+      // console.log(values);
+      let formattedDate = "";
       if (values.dateOfBirth) {
         const dob = new Date(values.dateOfBirth);
-        const formattedDate = [
+        formattedDate = [
           dob.getFullYear(),
           ("0" + (dob.getMonth() + 1)).slice(-2),
           ("0" + dob.getDate()).slice(-2),
-        ].join("-"); // Format: YYYY-MM-DD
-
-        formData.append("DOB", formattedDate);
+        ].join("-");
       }
-      formData.append("Gender", values.Gender);
-      formData.append("Address", values.Address);
-      formData.append("HighSchool", values.HighSchool);
-      formData.append("GPA", values.GPA);
-      formData.append("FacultyId", values.FacultyId);
 
-      dispatch(admission(formData));
+      const jsonPayload = {
+        firstName: values.FirstName,
+        lastName: values.LastName,
+        fatherName: values.FatherName,
+        motherName: values.MotherName,
+        email: values.email,
+        phone: values.Phone,
+        dob: formattedDate,
+        gender: values.Gender === "Female" ? "1" : "0",
+        address: values.Address,
+        highSchool: values.HighSchool,
+        gpa: values.GPA,
+        facultyId: values.FacultyId,
+      };
+      dispatch(admission(jsonPayload));
     },
   });
   return (

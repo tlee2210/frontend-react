@@ -20,6 +20,8 @@ import AdmissionReducer from "./Admission/reducer";
 import StudentsReducer from "./Student/reducer";
 import ProfileReducer from "./profile/reducer";
 import SemesterReducer from "./Semester/reducer";
+import FeedbackReducer from "./feedback/reducer";
+
 import HomeReducer from "./home/home/reducer";
 import HomeFacilitiesReducer from "./home/facilities/reducer";
 import HomenewsReducer from "./home/news/reducer";
@@ -43,6 +45,7 @@ const rootReducer = combineReducers({
   Sessiondashboard: SessionReducer,
   Admissiondashboard: AdmissionReducer,
   Semesterdashboard: SemesterReducer,
+  Feedbackdashboard: FeedbackReducer,
   //home
   Home: HomeReducer,
   Facilities: HomeFacilitiesReducer,

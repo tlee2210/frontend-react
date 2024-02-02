@@ -71,7 +71,11 @@ import AdmissionProccess from "../dashboard/pages/Admission/AdmissionProccess";
 import AdmissionAccept from "../dashboard/pages/Admission/AdmissionAccept";
 import AdmissionReject from "../dashboard/pages/Admission/AdmissionReject";
 import AdmissionDetail from "../dashboard/pages/Admission/AdmissionDetail";
-// C:\Users\thien\OneDrive\Documents\GitHub\frontend-react\src\home\pages\admission\JoinUs.js
+
+import FeedbackProcess from "../dashboard/pages/feedback/Process";
+import FeedbackUnprocess from "../dashboard/pages/feedback/Unprocess";
+import Feedbackdetail from "../dashboard/pages/feedback/detail";
+
 const AdminProtectedRoutes = [
   { path: "/dashboard/Courses", component: <Courses /> },
   // /dashboard/article
@@ -114,6 +118,10 @@ const AdminProtectedRoutes = [
   // Semester
   { path: "/dashboard/study/create", component: <SemesterCreate /> },
   { path: "/dashboard/study", component: <Semester /> },
+
+  { path: "/dashboard/feedback/Process", component: <FeedbackProcess /> },
+  { path: "/dashboard/feedback/Unprocess", component: <FeedbackUnprocess /> },
+  { path: "/dashboard/feedback/:id/detail", component: <Feedbackdetail /> },
 ];
 const authProtectedRoutes = [
   //User Profile

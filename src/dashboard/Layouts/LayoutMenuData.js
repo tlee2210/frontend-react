@@ -314,14 +314,14 @@ const Navdata = () => {
       subItems: [
         {
           id: "feedbackId",
-          label: "feedback list",
-          link: "/#",
+          label: "feedback Process list",
+          link: "/dashboard/feedback/Process",
           parentId: "feedback",
         },
         {
           id: "feedbackId2",
-          label: "feedback list",
-          link: "/#",
+          label: "feedback Unprocess list",
+          link: "/dashboard/feedback/Unprocess",
           parentId: "feedback",
         },
       ],

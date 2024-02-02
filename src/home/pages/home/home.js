@@ -32,6 +32,8 @@ import img2 from "../../../assets/images/small/3.png";
 import img1 from "../../../assets/images/small/1.jpg";
 import img4 from "../../../assets/images/small/4.png";
 import { createSelector } from "reselect";
+import { clearNotificationMessage } from "../../../slices/message/reducer";
+import { message } from "antd";
 
 import { Gethome } from "../../../slices/home/home/thunk";
 
@@ -78,6 +80,19 @@ const home = (props) => {
       return '<span className="' + className + '">' + (index + 1) + "</span>";
     },
   };
+  useEffect(() => {
+    if (isNotificationVisible && notificationMessage) {
+      message.success(notificationMessage);
+      dispatch(clearNotificationMessage());
+    }
+  }, [isNotificationVisible, notificationMessage, dispatch]);
+
+  useEffect(() => {
+    if (isErrorNotificationVisible && errorMessage) {
+      message.error(errorMessage);
+      dispatch(clearNotificationMessage());
+    }
+  }, [isErrorNotificationVisible, errorMessage]);
 
   document.title = "home";
   return (

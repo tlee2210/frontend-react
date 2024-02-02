@@ -7,7 +7,7 @@ import Flatpickr from "react-flatpickr";
 
 import Dropzone from "react-dropzone";
 import Select from "react-select";
-import { GetCreatestudent,studentStore } from "../../../slices/Student/thunk";
+import { GetCreatestudent, studentStore } from "../../../slices/Student/thunk";
 import {
   Card,
   CardBody,
@@ -174,8 +174,8 @@ const StudentCreate = (props) => {
 
         formData.append("DateOfBirth", formattedDate);
       }
-      // formData.append("Avatar", values.files[0]);
-      // formData.append("Password", values.Password);
+      formData.append("Avatar", values.files[0]);
+      formData.append("Password", values.Password);
       formData.append("FacultyId", values.FacultyId);
       dispatch(studentStore(formData, props.router.navigate));
       //   validation.resetForm();

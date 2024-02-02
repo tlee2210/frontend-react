@@ -16,37 +16,22 @@ export const Gethome = () => async (dispatch) => {
     });
 };
 
-// export const admission = (values) => async (dispatch) => {
-//   console.log(values);
-//   axios
-//     .post("https://localhost:7112/api/home/admissions", values, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     })
-//     .then((response) => {
-//       console.log(response);
-//       // if (response.data.message) {
-//       // dispatch(setMessage(response.data.message));
-//       // }
-//       // history("/dashboard/staffs");
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       // dispatch(errorMessage(error.response.data));
-//     });
-// };
 export const admission = (formData) => async (dispatch) => {
+  // console.log(formData);
   axios
-    .post("https://localhost:7112/api/home/admissions/admissionsCreate", formData)
+    .post("https://localhost:7112/api/home/admission/register", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
     .then((response) => {
       console.log(response);
-      // if (response.data.message) {
-      //   dispatch(setMessage(response.data.message));
-      // }
+      if (response.data.message) {
+        dispatch(setMessage(response.data.message));
+      }
     })
     .catch((error) => {
       console.log(error);
-      // dispatch(errorMessage(error.response.data));
+      dispatch(errorMessage(error.response.data.message));
     });
 };

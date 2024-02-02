@@ -137,12 +137,12 @@ const DepartmentTables = (props) => {
                 <i className="ri-eye-fill"></i>
               </span>
             </Link>
-            <span
+            {/* <span
               className="fs-4 text-danger"
               onClick={() => tog_togdelete(record.id)}
             >
               <i className="ri-delete-bin-5-line"></i>
-            </span>
+            </span> */}
           </>
         );
       },
