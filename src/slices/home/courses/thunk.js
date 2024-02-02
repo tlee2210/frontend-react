@@ -57,3 +57,14 @@ export const GetFacultyDetails = (slug) => async (dispatch) => {
       console.log(error);
     });
 };
+export const GetDepartmentDetails = (id) => async (dispatch) => {
+  await axios
+    .get(`https://localhost:7112/api/home/courses/GetDepartmentDetails/${id}`)
+    .then((response) => {
+      console.log(response);
+      dispatch(SetDetail(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

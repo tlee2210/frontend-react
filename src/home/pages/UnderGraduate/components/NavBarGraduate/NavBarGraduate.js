@@ -13,24 +13,7 @@ import {
 } from "reactstrap";
 import "./NavBarGraduate.css";
 import classnames from "classnames";
-
-const unitsOfStudy = [
-  { name: "Financial Information for Decision Making", code: "ACC10007" },
-  { name: "Economics for Business Decision Making", code: "ECO10005" },
-  // ... other units
-];
-
-const unitsOfStudy2 = [
-  { name: "Exploring Creativity and Innovation", code: "INV10001" },
-  { name: "Fundamentals of Innovation Practice", code: "INV10002" },
-  // ... other units
-];
-const unitsOfStudy3 = [
-  { name: "Work Experience In Industry A", code: "WEI20001" },
-  { name: "Integrated Professional Placement A - Business", code: "BUS20010" },
-  { name: "Work Experience in Industry B", code: "WEI20002" },
-  { name: "Integrated Professional Placement B - Business", code: "BUS20011" },
-];
+import { Link } from "react-router-dom";
 
 const MainPage = ({ data, data2 }) => {
   // console.log(data2);
@@ -470,11 +453,13 @@ const MainPage = ({ data, data2 }) => {
                               </div>
                               {semesterSessions.map((session, sessionIndex) => (
                                 <div key={sessionIndex} className="table-row">
-                                  <span>{session.department?.subject}</span>{" "}
-                                  <span>{session.department?.code}</span>{" "}
-                                  {/* Replace departmentName with the actual property name */}
-                                  <span>{session.code}</span>{" "}
-                                  {/* Replace code with the actual property name */}
+                                  <Link
+                                    to={`/Department/${session.id}/Details`}
+                                  >
+                                    <span>{session.department?.subject}</span>{" "}
+                                    <span>{session.department?.code}</span>{" "}
+                                    <span>{session.code}</span>{" "}
+                                  </Link>
                                 </div>
                               ))}
                             </div>

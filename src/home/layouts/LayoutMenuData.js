@@ -71,19 +71,7 @@ const Navdata = () => {
     //Course
     {
       label: "Courses",
-      link: ".",
-      subItems: [
-        {
-          id: "coursespage",
-          label: "Courses",
-          link: "/courses-page",
-        },
-        {
-          id: "unit",
-          label: "Unit",
-          link: "/unit-page",
-        },
-      ],
+      link: "/courses-page",
     },
 
     //News

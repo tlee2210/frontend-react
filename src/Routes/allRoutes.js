@@ -157,7 +157,7 @@ const publicHome = [
   },
   { path: "*", component: <HomePage /> },
   { path: "/contact-us", component: <ContactUsPage /> },
-  { path: "/unit-page", component: <UnitPage /> },
+  { path: "/Department/:id/Details", component: <UnitPage /> },
   {
     path: "/courses-page/undergraduate/:slug",
     component: <UnderGraduatePage />,

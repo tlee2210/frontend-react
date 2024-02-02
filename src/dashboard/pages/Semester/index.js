@@ -102,12 +102,6 @@ const SemesterCreate = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(semesterCourses);
-  //   console.log("facultyId: " + semesterFaculty);
-  //   console.log("semestery: " + semestery);
-  // }, [semesterCourses]);
-
   const columns = [
     {
       title: "Index",
