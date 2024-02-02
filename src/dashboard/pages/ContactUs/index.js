@@ -54,8 +54,6 @@ const ContactUs = (props) => {
   } = useSelector(ArticleCreatepageData);
 
   useEffect(() => {
-    let timeoutId;
-
     if (isNotificationVisible && notificationMessage) {
       successnotify(notificationMessage);
       dispatch(clearNotificationMessage());

@@ -39,9 +39,9 @@ export const SemesterStore = (formData, history) => async (dispatch) => {
     .post("https://localhost:7112/api/dashboard/Semester", formData)
     .then((response) => {
       console.log(response);
-      // if (response.data.message) {
-      //   dispatch(setMessage(response.data.message));
-      // }
+      if (response.data.message) {
+        dispatch(setMessage(response.data.message));
+      }
       // history("/dashboard/students");
     })
     .catch((error) => {

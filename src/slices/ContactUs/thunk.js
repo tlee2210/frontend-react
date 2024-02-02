@@ -1,13 +1,11 @@
 import axios from "axios";
-import {
-  setArticleData,
-} from "./reducer";
-import { setMessage , errorMessage } from "../message/reducer";
+import { setArticleData } from "./reducer";
+import { setMessage, errorMessage } from "../message/reducer";
 export const GetContactUs = () => async (dispatch) => {
   await axios
     .get("https://localhost:7112/api/dashboard/ContactUs")
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       dispatch(setArticleData(response.data));
     })
     .catch((error) => {

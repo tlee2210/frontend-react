@@ -46,6 +46,8 @@ const SemesterCreate = (props) => {
       sessionOptions: state.Semesterdashboard.sessionOptions,
       isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
       errorMessage: state.Message.errorMessage,
+      isNotificationVisible: state.Message.isNotificationVisible,
+      notificationMessage: state.Message.notificationMessage,
     })
   );
   const {
@@ -55,6 +57,8 @@ const SemesterCreate = (props) => {
     sessionOptions,
     isErrorNotificationVisible,
     errorMessage,
+    notificationMessage,
+    isNotificationVisible,
   } = useSelector(SemesterCreateCreatepageData);
 
   useEffect(() => {
@@ -91,7 +95,12 @@ const SemesterCreate = (props) => {
   // useEffect(() => {
   //   console.log("Current validation errors:", validation.errors);
   // }, [validation.errors]);
-
+  useEffect(() => {
+    if (isNotificationVisible && notificationMessage) {
+      message.success(notificationMessage);
+      dispatch(clearNotificationMessage());
+    }
+  }, [isNotificationVisible, notificationMessage, dispatch]);
   useEffect(() => {
     if (errorMessage && isErrorNotificationVisible) {
       message.error(errorMessage);
