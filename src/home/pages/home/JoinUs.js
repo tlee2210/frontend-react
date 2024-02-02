@@ -39,7 +39,7 @@ const JoinUs = ({ data }) => {
 
   useEffect(() => {
     if (isNotificationVisible && notificationMessage) {
-      console.log("ok");
+      // console.log("ok");
       validation.resetForm();
     }
   }, [isNotificationVisible, notificationMessage, dispatch]);
@@ -84,7 +84,12 @@ const JoinUs = ({ data }) => {
       MotherName: Yup.string().required("Please Enter a Mother Name"),
       FatherName: Yup.string().required("Please Enter Father Name"),
       HighSchool: Yup.string().required("Please Enter High School"),
-      GPA: Yup.string().required("Please Enter GPA"),
+      GPA: Yup.string()
+        .required("Please Enter GPA")
+        .matches(
+          /^[1-4](\.\d{1,2})?$/,
+          "GPA must be between 1 and 4, with up to 2 decimal places."
+        ),
       FacultyId: Yup.string().required("Please Enter a Faculty"),
     }),
 

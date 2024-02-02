@@ -1,5 +1,10 @@
 import axios from "axios";
-import { setcoursesData, SetDetail, setSessionsGrouped } from "./reducer";
+import {
+  setcoursesData,
+  SetDetail,
+  setSessionsGrouped,
+  setcoursesItem,
+} from "./reducer";
 import { setMessage, errorMessage } from "../../message/reducer";
 export const Gethomecourses = () => async (dispatch) => {
   await axios
@@ -19,7 +24,8 @@ export const GetFacultyByCourseSlug = (slug) => async (dispatch) => {
     )
     .then((response) => {
       console.log(response);
-      dispatch(setcoursesData(response.data));
+      dispatch(setcoursesData(response.data.listData));
+      dispatch(setcoursesItem(response.data.data));
       // dispatch(setCategoryData(data2));
     })
     .catch((error) => {

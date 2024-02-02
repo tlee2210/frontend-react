@@ -32,6 +32,7 @@ const FindASource = (props) => {
 
   const homepageData = createSelector(selecthomeState, (state) => ({
     coursesData: state.Courses.coursesData,
+    coursesItem: state.Courses.coursesItem,
     isNotificationVisible: state.Message.isNotificationVisible,
     notificationMessage: state.Message.notificationMessage,
     isErrorNotificationVisible: state.Message.isErrorNotificationVisible,
@@ -39,6 +40,7 @@ const FindASource = (props) => {
   }));
   const {
     coursesData,
+    coursesItem,
     isNotificationVisible,
     notificationMessage,
     isErrorNotificationVisible,
@@ -54,16 +56,9 @@ const FindASource = (props) => {
               className="header-title-graduate-Header"
               style={{ color: "#5a4f4f" }}
             >
-              Bachelor of Applied Innovation
+              {coursesItem.name}
             </h1>
-            <p className="mt-3 fs-6">
-              Don't just graduate, innovate. The Bachelor of Applied Innovation
-              aims to make you think like an innovator, explore bold ideas, and
-              create unprecedented solutions.
-            </p>
-            <Button color="danger mt-3" outline>
-              Find A Source
-            </Button>
+            <p className="mt-3 fs-6">{coursesItem.description}</p>
           </div>
         </header>
 

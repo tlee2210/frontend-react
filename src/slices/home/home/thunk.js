@@ -32,6 +32,6 @@ export const admission = (formData) => async (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
-      dispatch(errorMessage(error.response.data.message));
+      dispatch(errorMessage("You have already registered with this login information before."));
     });
 };

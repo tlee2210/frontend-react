@@ -50,20 +50,22 @@ const FindASource = (props) => {
       <ParticlesAuth>
         <header className="header-container-graduate-Header">
           <div className="header-content-graduate-Header">
-            <h1
+            {/* <h1
               className="header-title-graduate-Header"
               style={{ color: "#5a4f4f" }}
             >
               Bachelor of Applied Innovation
-            </h1>
+            </h1> */}
             <p className="mt-3 fs-6">
-              Don't just graduate, innovate. The Bachelor of Applied Innovation
-              aims to make you think like an innovator, explore bold ideas, and
-              create unprecedented solutions.
+              Embark on a transformative educational journey with the Bachelor
+              of Applied Innovation. This program is not just about earning a
+              degree; it's about nurturing your creative spirit and pioneering
+              mindset. As a student of this dynamic program, you will delve into
+              the art of innovation, discover groundbreaking ideas, and design
+              solutions that redefine norms. Prepare to become not just a
+              graduate, but a visionary innovator ready to leave a unique mark
+              on the world.
             </p>
-            <Button color="danger mt-3" outline>
-              Find A Source
-            </Button>
           </div>
         </header>
 

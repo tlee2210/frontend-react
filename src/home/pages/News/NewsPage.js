@@ -89,7 +89,7 @@ function NewsPage() {
             <div className="header-actions-news-Header">
               <div className="student-status-news-Header">
                 <p className="text-news-css fw-bold">
-                  Swinburne's 2nd annual Children’s University graduation
+                  2nd annual Children’s University graduation
                 </p>
               </div>
             </div>
@@ -101,9 +101,6 @@ function NewsPage() {
                 children to engage in learning outside the classroom.
               </p>
             </div>
-            <Button className="mt-3" size="lg" color="light">
-              Watch the Video
-            </Button>
           </div>
         </header>
 

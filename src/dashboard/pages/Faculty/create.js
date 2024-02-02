@@ -290,13 +290,13 @@ const FacultyCreate = (props) => {
                           className="form-label"
                           htmlFor="product-title-input"
                         >
-                          EntryScore
+                          GPA
                         </Label>
                         <Input
                           type="number"
                           className="form-control"
                           id="product-title-input"
-                          placeholder="Enter EntryScore"
+                          placeholder="Enter GPA"
                           name="EntryScore"
                           value={validation.values.EntryScore || ""}
                           onBlur={validation.handleBlur}

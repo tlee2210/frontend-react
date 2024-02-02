@@ -311,7 +311,7 @@ const MainPage = ({ data, data2 }) => {
                       <li>{data?.courses?.name}</li>
                       <li>{data.courses?.description}</li>
                     </ul>
-                    <blockquote className="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
+                    {/* <blockquote className="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
                       <p className="text-body mb-2 fw-bold">
                         Admission requirements
                       </p>
@@ -328,7 +328,7 @@ const MainPage = ({ data, data2 }) => {
                       >
                         View Source HandBook
                       </a>
-                    </blockquote>
+                    </blockquote> */}
                   </div>
                 </div>
 
@@ -452,7 +452,7 @@ const MainPage = ({ data, data2 }) => {
                               setShowBusinessUnits(updatedShowBusinessUnits);
                             }}
                           >
-                            <h1>{`Bachelor of Business - Semester ${
+                            <h1>{`${data.title} - Semester ${
                               semesterIndex + 1
                             }`}</h1>
                             {/* Toggle Icon */}
