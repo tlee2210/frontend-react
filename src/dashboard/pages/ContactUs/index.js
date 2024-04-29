@@ -21,6 +21,7 @@ import {
   FormGroup,
   Label,
 } from "reactstrap";
+import { message } from "antd";
 
 // Formik validation
 import * as Yup from "yup";
@@ -55,33 +56,17 @@ const ContactUs = (props) => {
 
   useEffect(() => {
     if (isNotificationVisible && notificationMessage) {
-      successnotify(notificationMessage);
+      message.success(notificationMessage);
       dispatch(clearNotificationMessage());
     }
   }, [isNotificationVisible, notificationMessage, dispatch]);
 
   useEffect(() => {
     if (isErrorNotificationVisible && errorMessage) {
-      errornotify(errorMessage);
+      message.error(errorMessage);
       dispatch(clearNotificationMessage());
     }
   }, [isErrorNotificationVisible, errorMessage]);
-
-  const errornotify = (errorMessage) =>
-    toast(String(errorMessage), {
-      position: "top-center",
-      hideProgressBar: true,
-      closeOnClick: false,
-      className: "bg-danger text-white",
-    });
-
-  const successnotify = (Msg) =>
-    toast(String(Msg), {
-      position: "top-center",
-      hideProgressBar: true,
-      closeOnClick: false,
-      className: "bg-success text-white",
-    });
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -146,8 +131,6 @@ const ContactUs = (props) => {
               <Row>
                 <Col lg={12}>
                   <Card>
-                    <ToastContainer />
-
                     <CardBody>
                       <div className="listjs-table" id="customerList">
                         <Row className="g-4 mb-3">
